@@ -26,11 +26,21 @@ class Texto {
     /* Pre: Cierto */
     /* Post: Devuelve el titulo del p.i */
     
+    void numero_frases();
+    /* Pre: Cierto */
+    /* Post: Muestra por pantalla  */
+    /* el numero de frases del p.i */
+    
+    void numero_palabras();
+    /* Pre: Cierto */
+    /* Post: Muestra por pantalla el */
+    /* numero de palabras del p.i    */
+    
     void contenido();
     /* Pre: Cierto */
     /* Post: Muestra por pantalla el contenido del p.i */
     
-    vector<Frase> frases(int x, int y, bool cita);
+    Cita frases(int x, int y, bool cita);
     /* Pre: x > 0 ^ y < this->contenido.size(); */
     /* Post: not cita -> muestra por pantalla el contenido del texto */
     /* desde la frase x hasta la frase y ^ devuelve un vector vacio  */
@@ -45,7 +55,7 @@ class Texto {
     /* Pre: Cierto */
     /* Post: Devuelve las palabras del p.i y su frecuencia */
     
-    list<int> frases(expresion);
+    list<int> frases(/*expresion*/); //Diferente de frases "<paraula1> ... <paraulaN>" ???
     /* Pre: Cierto */
     /* Post: Muestra por pantalla las frases del p.i */
     /* que corresponden con la expresion introducida */

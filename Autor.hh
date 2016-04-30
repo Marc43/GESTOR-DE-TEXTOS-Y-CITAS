@@ -35,7 +35,7 @@ class Autor {
     /* Post: Muestra la informacion de todas citas del autor */
     /* es decir, contenido y el titulo del cual provienen, ordenadas por referencia */
     
-    void texto_autor();
+    void textos_autor();
     /* Pre: Cierto */
     /* Post: Muestra por pantalla todos los textos  */
     /* del p.i ordenadas por titulo alfabeticamente */
