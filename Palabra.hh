@@ -1,3 +1,6 @@
+#ifndef PALABRA_HH
+#define PALABRA_HH
+
 #include<iostream>
 #include <string>
 using namespace std;

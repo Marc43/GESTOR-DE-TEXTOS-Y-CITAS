@@ -1,3 +1,6 @@
+#ifndef FRASE_HH
+#define FRASE_HH
+
 #include "Palabra.hh"
 #include <list>
 

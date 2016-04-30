@@ -1,3 +1,6 @@
+#ifndef TEXTO_HH
+#define TEXTO_HH
+
 #include "Frase.hh"
 
 class Texto {

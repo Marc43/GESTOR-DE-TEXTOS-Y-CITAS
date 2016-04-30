@@ -1,3 +1,6 @@
+#ifndef CITA_HH
+#define CITA_HH
+
 #include "Frase.hh"
 #include <vector>
 

@@ -1,3 +1,6 @@
+#ifndef CITAS_HH
+#define CITAS_HH
+
 #include "Cita.hh"
 
 class Cita {

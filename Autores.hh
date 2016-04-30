@@ -1,3 +1,6 @@
+#ifndef AUTORES_HH
+#define AUTORES_HH
+
 #include "Textos.hh"
 #include "Autor.hh"
 

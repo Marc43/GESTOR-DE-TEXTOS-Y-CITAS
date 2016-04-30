@@ -1,3 +1,6 @@
+#ifndef TEXTOS_HH
+#define TEXTOS_HH
+
 #include "Texto.hh"
 
 class Textos {
