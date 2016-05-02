@@ -14,6 +14,12 @@
 
 /** @class Cita
  *  @brief Representa una cita de un texto
+ *  <b>contenido</b> contiene las frases que forman la cita
+ *  <b>titulo_texto</b> es el titulo asociado al texto al que pertenece
+ *  <b>autor</b> representa el nombre del autor del texto al que pertenece
+ *  <b>x</b> e <b>y</b> representan el numero de frases inicial y final en el texto
+ *  <b>identificador</b> es el identificador asociado a la cita, dada por las iniciales del
+ *    autor y un numero de orden de aparicion
  */
 
 class Cita {
@@ -25,7 +31,7 @@ class Cita {
     vector<Frase> contenido;
     string titulo_texto;
     string autor;
-    int x, y; //Frase inicial y frase final respectivamente...
+    int x, y;
     string identificador;
   
   public:
@@ -44,7 +50,7 @@ class Cita {
     
     /**	@brief Muestra toda la informacion relativa a una Cita
      * 	\pre cierto
-     * 	\post muestra por pantalla la informacion de la Cita
+     * 	\post muestra por pantalla la informacion del p.i. (titulo, autor, frase inicial, final y contenido)
      */
     void info();
   

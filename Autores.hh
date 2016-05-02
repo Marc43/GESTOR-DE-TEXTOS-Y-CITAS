@@ -12,8 +12,8 @@
  */
 
 /** @class Autores
- *  @brief Representacion el conjunto de autores correspondientes
- *  con los textos
+ *  @brief Representacion el conjunto de autores de los textos guardados
+ *  <b>autores</b> es un vector que recoge objetos de clase autor, de los cuales existe algun texto
  */
 
 class Autores {
@@ -38,23 +38,23 @@ class Autores {
     
     /* Consultoras */
     
-    /**	@brief Consultora de un autor dado su nombre
+    /**	@brief Consultora de un autor del p.i. dado su nombre
      * 	\pre cierto
-     * 	\post devuelve un autor tal que su nombre es <b>nombre</b>
+     * 	\post devuelve un autor perteneciente al p.i. tal que su nombre es <b>nombre</b>
      */
     Autor autor_nombre(string nombre);
 
     /**	@brief Consultora de todos los autores almacenados
      * 	\pre cierto
-     * 	\post imprime por pantalla todos los autores almacenados
+     * 	\post imprime por pantalla todos los elementos del p.i.
      */
     void todos_autores();
 
     /* Modificadoras */
     
-    /**	@brief Modificadora que anade un autor a los autores
+    /**	@brief Modificadora que anade un autor al p.i.
      * 	\pre <b>autor</b> no es vacio
-     * 	\post <b>autor</b> pertenece a los autores
+     * 	\post <b>autor</b> pertenece al p.i.
     void anadir_autor(Autor autor);
     
     /**	@brief Modificadora que elimina un autor dado su nombre

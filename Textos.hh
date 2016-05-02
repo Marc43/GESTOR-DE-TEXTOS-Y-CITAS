@@ -13,6 +13,8 @@
 
 /** @class Textos
  *  @brief Representa todos los textos almacenados por el programa
+ *  <b>textos</b> es un vector que recoge objetos de la clase texto
+ *  <b>texto_escogido</b>
  */
 
 class Textos {
@@ -57,7 +59,7 @@ class Textos {
     /* Consultoras */
   
     /** @brief Consultora que escoge un texto en funcion de la aparicion
-     * 	de palabras en éste
+     * 	de palabras en este
      * 	\pre cierto
      * 	\post devuelve cierto si se encuentra un texto en el que aparezcan las
      * 	palabras, y <b>t</b> es este texto. Devuelve falso en caso contrario.

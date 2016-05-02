@@ -54,43 +54,43 @@ class Texto {
     /* Consultoras */
     
     
-    /**	@brief Consultora del autor del texto
+    /**	@brief Consultora del autor del p.i.
      * 	\pre cierto
      * 	\post devuelve el autor del texto
      */
     string autor_texto();
     
-    /**	@brief Consultora del titulo del texto
+    /**	@brief Consultora del titulo del p.il
      * 	\pre cierto
      * 	\post devuelve el titulo del texto
      */
     string titulo_texto();
     
-    /**	@brief Consultora de las citas del texto
+    /**	@brief Consultora de las citas del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las citas del texto, acompanadas por su referencias
      */
     void citas_texto();
     
-    /**	@brief Consultora del numero de frases del texto
+    /**	@brief Consultora del numero de frases del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de frases del texto
      */
     void numero_frases();
     
-    /**	@brief Consultora del numero de palabras del texto
+    /**	@brief Consultora del numero de palabras del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de palabras del texto
      */
     void numero_palabras();
     
-    /**	@brief Consultora del contenido del texto
+    /**	@brief Consultora del contenido del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el contenido (las frases) del texto.
      */
     void contenido();
     
-    /**	@brief Consultora de las frecuencias de cada palabra
+    /**	@brief Consultora de las frecuencias de cada palabra del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las palabras del texto ordenadas
      * 	decrecientemente por frecuencia, y en caso de empate, crecientemente
@@ -100,11 +100,11 @@ class Texto {
     
     /**	@brief Consultora de las frases entre la #x y la #y, ambas incluidas
      * 	\pre x > 0 e y < contenido.size()
-     * 	\post si <b>cita</b> es falso, muestra por pantalla el contenido del texto
+     * 	\post si <b>cita</b> es falso, muestra por pantalla el contenido del p.i.
      * 	entre las frases <b>x</b> e <b>y</b>, ambas incluidas, y devuelve una cita vacia.
      * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
      */
-    Cita frases_xy(int x, int y, bool cita, Citas citas);
+    Cita frases_xy(int x, int y, bool cita, Citas& citas);
     
     /**	@brief Consultora de un conjunto de frases dado un numero de palabras del texto
      * 	\pre cierto
@@ -119,18 +119,18 @@ class Texto {
     
     /* Modificadoras */
     
-    /**	@brief Modificadora que anade una cita a las citas del texto
+    /**	@brief Modificadora que anade una cita al p.i.
      * 	\pre cierto
      * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
      */
     void anadir_cita(Cita c);
     
-    /**	@brief Modificadora que elimina una cita de las citas del texto
+    /**	@brief Modificadora que elimina una cita del p.i.
      * 	\pre existe una cita cuyo identificador es <b>identificador</b>
      * 	\post dicha cita deja de pertenecer a las citas del texto.
     void eliminar_cita(string identificador);
     
-    /**	@brief Modificadora que sustituye una palabra por otra en el texto
+    /**	@brief Modificadora que sustituye una palabra por otra del p.i.
      * 	 \pre <b>p1</b> aparece en el texto
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
     void sustituir_palabra(Palabra p1, Palabra p2);

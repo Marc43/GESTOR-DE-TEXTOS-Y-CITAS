@@ -13,6 +13,9 @@
 
 /** @class Autor
  *  @brief Representa un autor de algún texto almacenado por el programa
+ *  <b>textos</b> es un vector que contiene los textos escritos por el autor
+ *  <b>citas</b> es un map, donde el key es el identificador de la cita, mapeando a la Cita
+ *  <b>nombre</b> representa el nombre del autor en concreto
  */
 
 class Autor {
@@ -39,13 +42,13 @@ class Autor {
     
     /* Consultoras */
     
-    /** @brief Consultora de las citas de los textos del autor
+    /** @brief Consultora de las citas de los textos del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las citas del autor, ordenadas por referencia.
      */
     void citas_autor();
     
-    /** @brief Consultora de los textos escritos por el autor
+    /** @brief Consultora de los textos del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla todos los textos del autor, ordenados
      * 	alfabeticamente
@@ -54,19 +57,19 @@ class Autor {
     
     /* Modificadoras */
     
-    /** @brief Modificadora que anade un texto a los textos del autor
+    /** @brief Modificadora que anade un texto al p.i.
      * 	\pre texto es un texto no vacio
      * 	\post texto pertenece a los textos del autor
      */
     void anadir_text(Texto texto);
     
-    /** @brief Modificadora que elimina un texto del autor
+    /** @brief Modificadora que elimina un texto del p.i.
      * 	\pre existe un texto del autor tal que su titulo es <b>titulo</b>
      * 	\post en la lista de textos del autor no existe dicho texto
      */
     void eliminar_text(string titulo);
     
-    /** @brief Modificadora que anade una cita a las citas del autor
+    /** @brief Modificadora que anade una cita al p.i.
      * 	\pre <b>cita</b> es una cita no vacia
      * 	\post <b>cita</b> cita pertenece a las citas del autor
      */
