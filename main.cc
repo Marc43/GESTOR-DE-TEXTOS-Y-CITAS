@@ -1,5 +1,4 @@
-#include "Autors.hh"
-using namespace std;
+#include "Autores.hh"
 
 int main(){
 
