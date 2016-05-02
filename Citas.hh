@@ -3,12 +3,30 @@
 
 #include "Cita.hh"
 
-class Cita {
+class Citas {
   private:
-    //Atributos de la clase Cita
+    //Atributos de la clase Citas
     map<string, Cita> citas; //Contiene todas las citas de todos los textos de Textos.
+    map<string, int> id; //Contiene el numero de citas actuales con las dos iniciales como key.
   public:
-    //Metodos de la clase Cita
+    //Metodos de la clase Citas
+    
+    /* Constructoras */
+    
+    Citas();
+    
+    /* Consultoras */
+    
+    void todas_citas();
+    /* Pre: Cierto */
+    /* Post: Imprime por pantalla todas las citas de todos los textos         */
+    /* por orden de referencia, es decir, orden cronologico de adicion al p.i */
+    
+    void imprimir_citas(vector<string>& identificadores);
+    /* Pre: identificadores contiene el identificador de las citas deseadas */
+    /* Post: Imprime por pantalla todas las citas correspondientes a los identificadores */
+    
+    /* Modificadoras */
     
     void anadir_cita(Cita cita);
     /* Pre: Cierto */
@@ -20,13 +38,5 @@ class Cita {
     /* Pre: Existe una cita tal que this->identificador == identificador */
     /* Post: Se ha eliminado la cita correspondiente del p.i		 */
     
-    void todas_citas();
-    /* Pre: Cierto */
-    /* Post: Imprime por pantalla todas las citas de todos los textos         */
-    /* por orden de referencia, es decir, orden cronologico de adicion al p.i */
-    
-    void imprimir_citas(vector<string>& identificadores);
-    /* Pre: identificadores contiene el identificador de las citas deseadas */
-    /* Post: Imprime por pantalla todas las citas correspondientes a los identificadores */
     
 }

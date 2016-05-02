@@ -2,15 +2,21 @@
 #define FRASE_HH
 
 #include "Palabra.hh"
-#include <list>
+#include <vector>
 
 class Frase {
   private:
     //Atributos clase Frase
-    list<string> frase; 
+    vector<Palabra> frase; 
     int num_palabras; // num_palabras == frase.size();
   public:
     //Metodos clase Frase
+    
+    /* Constructoras */
+    
+    Frase();
+    
+    /* Consultora */
     
     void leer_frase();
     /* Pre: Cierto */
@@ -20,4 +26,5 @@ class Frase {
     int longitud_frase();
     /* Pre: Cierto */
     /* Post: Retorna el numero de palabras del p.i */
+    
 }

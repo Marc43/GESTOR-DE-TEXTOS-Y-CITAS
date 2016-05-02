@@ -2,7 +2,7 @@
 #define CITA_HH
 
 #include "Frase.hh"
-#include <vector>
+#include <string>
 
 class Cita {
   private:
@@ -14,6 +14,12 @@ class Cita {
     string identificador;
   public:
     //Metodos de la clase Cita
+    
+    /* Constructoras */
+    
+    Cita();
+    
+    /* Consultoras */
     
     void info();
     /* Pre: Cierto */

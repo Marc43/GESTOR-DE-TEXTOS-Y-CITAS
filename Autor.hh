@@ -1,8 +1,7 @@
 #ifndef AUTOR_HH
 #define AUTOR_HH
 
-#include "Texto.hh"
-#include "Cita.hh"
+#include "Textos.hh"
 
 class Autor {
   private:
@@ -12,6 +11,24 @@ class Autor {
     string nombre;
   public:
     //Metodos de la clase Autor
+    
+    /* Constructoras */
+    
+    Autor();
+    
+    /* Consultoras */
+    
+    void citas_autor();
+    /* Pre: Cierto */
+    /* Post: Muestra la informacion de todas citas del autor */
+    /* es decir, contenido y el titulo del cual provienen, ordenadas por referencia */
+    
+    void textos_autor();
+    /* Pre: Cierto */
+    /* Post: Muestra por pantalla todos los textos  */
+    /* del p.i ordenadas por titulo alfabeticamente */
+    
+    /* Modificadoras */
     
     void anadir_text(Texto texto);
     /* Pre: Texto es un texto no vacio */
@@ -29,15 +46,5 @@ class Autor {
     /* Pre: Identificador = ID, existe una cita en p.i tal que */
     /* su ID == identificador...                               */
     /* Post: Dicha cita ya no pertenece al p.i                 */
-    
-    void citas_autor();
-    /* Pre: Cierto */
-    /* Post: Muestra la informacion de todas citas del autor */
-    /* es decir, contenido y el titulo del cual provienen, ordenadas por referencia */
-    
-    void textos_autor();
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla todos los textos  */
-    /* del p.i ordenadas por titulo alfabeticamente */
     
 }
