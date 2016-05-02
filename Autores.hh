@@ -55,6 +55,7 @@ class Autores {
     /**	@brief Modificadora que anade un autor al p.i.
      * 	\pre <b>autor</b> no es vacio
      * 	\post <b>autor</b> pertenece al p.i.
+     */
     void anadir_autor(Autor autor);
     
     /**	@brief Modificadora que elimina un autor dado su nombre
