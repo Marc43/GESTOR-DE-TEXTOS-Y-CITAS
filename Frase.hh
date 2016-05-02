@@ -1,5 +1,5 @@
-/** @file Palabra.hh
- *  @brief Especificacion de la clase Palabra
+/** @file Frase.hh
+ *  @brief Especificacion de la clase Frase
  */
 
 #ifndef FRASE_HH
@@ -9,11 +9,14 @@
 #include <vector>
 
 /*
- * Clase Palabra
+ * Clase Frase
  */
 
-/** @class Palabra
- *  @brief Representa la unidad minima del texto, la palabra
+/** @class Frase
+ *  @brief Representa la frase, es decir, la union de palabras
+ *  <b>frase</b> es un vector de palabras ya que siempre mantendran su forma
+ *  <b>num_palabras</b> es el atributo destinado a guardar el numero de palabras
+ *  del parametro implicito, es decir, frase.size();
  */
 
 class Frase {
@@ -25,21 +28,28 @@ class Frase {
     //Metodos clase Frase
     
     /* Constructoras */
-
-    /** @brief Constructora de la clase Palabra
-     *  
     
+    /** @brief Constructora de la clase Frase
+     * \pre cierto
+     * \post crea un objeto de la clase Frase
+     */
     Frase();
     
     /* Consultora */
     
-    void leer_frase();
-    /* Pre: Cierto */
-    /* Post: Lee por pantalla las frases escritas */
-    /* separdas por: '.', '?' y '!'               */
-    
+    /** @brief Consultora de Frase en cuanto a su longitud
+     * \pre cierto
+     * \post retorna el numero de palabras de. p.i
+     */
     int longitud_frase();
-    /* Pre: Cierto */
-    /* Post: Retorna el numero de palabras del p.i */
+
+    /* Modificadoras */
+    
+    /** @brief Modificadora de Frase en cuanto a su contenido
+     * \pre cierto
+     * \post lee por pantalla las frases escritas
+     * separadas por: '.', '?' y '!'
+     */
+    void leer_frase();    
     
 }
