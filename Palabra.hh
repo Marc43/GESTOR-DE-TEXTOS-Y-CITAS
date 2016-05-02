@@ -1,9 +1,23 @@
+/** @file Palabra.hh
+  * @brief Especificacion de la clase Palabra
+  */
+
 #ifndef PALABRA_HH
 #define PALABRA_HH
 
 #include<iostream>
 #include <list>
 using namespace std;
+
+/*
+ * Clase Palabra
+ */
+
+/** @class Palabra
+  * @brief Reperesenta la unidad minima de un texto, la palabra
+  * <b>palabra</b> la lista contiene los caracteres de la palabra
+  * <b> longitud</b> es el <b>palabra</b>.size() es decir, la longitud  
+  */
 
 class Palabra {
   private:
@@ -15,37 +29,51 @@ class Palabra {
     
     /* Cronstructoras */
     
+     /** @brief Constructora de la clase Palabra
+     * \pre cierto
+     * \post crea un objeto de la clase Palabra
+     */
     Palabra();
+
     
     /* Consultoras */
     
+    /** @brief Consultora de la longitud de la palabra
+     * \pre cierto
+     * \post retorna la longitud del p.i
+     */
     int longitud();
-    /* Pre: Cierto */
-    /* Post: Retorna la longitud del p.i */
     
+    /** @brief Consultora acerca de si la palabra contiene un signo de puntuacion
+     * \pre cierto
+     * \post retorna true si el p.i tiene un signo de puntuacion
+     * pegado al final, en caso contrario, retorna false
+     */
     bool signo_puntuacion();
-    /* Pre: Cierto */
-    /* Post: Devuelve true si el p.i tiene un signo de      */
-    /* puntuacion pegado al final, en caso contrario, false */
     
+    /** @brief Consultora de igualdad de palabras
+     * \pre cierto
+     * \post retorna true si <b>p</b> es igual 
+     * al p.i en cualquier otro caso, false
+     */
     bool son_iguales(Palabra p);
-    /* Pre: Cierto */
-    /* Post: Retorna true si las   */
-    /* palabras son iguales, false */
-    /* en cualquier otro caso...   */
     
     /* Modificadoras */
     
-    list<char> palabra(bool refined);
-    /* Pre: Cierto */
-    /* Post: if refined == true, devuelve la palabra del p.i    */
-    /* sin ninguna clase de signo de puntuacion, es decir, sola */
-    /* else, retorna la palabra, sin importar su estado...      */
+    /** @brief Modificadora de signo de puntuacion en una palabra
+     * \pre cierto
+     * \post if (p.i).signo_puntuacion(); == true, devuelve la 
+     * palabra del p.i sin ninguna clase de signo de puntuacion,
+     * else, retorna la palabra, sin importar su estado
+     */
+    Palabra palabra(bool refined);
     
-    void ampliar_palabra(char c);
-    /* Pre: El p.i es un identificador de cita = ID          */
-    /* Post: ID = ID + la concatenacion del caracter c       */
-    /* es decir, ID.size() += 1, donde ID[ID.size() - 1] = c */
-    /* obteniendo: [0...n - 1, c]... */    
+    /** @brief Modificadora de tamaño de una palabra (identificador)
+     * \pre el p.i es un identificador de cita = ID
+     * \post ID = ID + la concatenacion del caracter c
+     * es decir, ID.size() += 1, donde ID[ID.size() - 1] = c
+     * obteninedo: [0...n - 1, c]
+     */
+    void ampliar_palabra(char c); 
     
 }
