@@ -1,11 +1,34 @@
+/** @file Texto.hh
+ *  @brief Especificacion de la clase Texto
+ */
+
 #ifndef TEXTO_HH
 #define TEXTO_HH
 
 #include "Citas.hh"
 
+/*
+ * Clase Texto
+ */
+
+/** @class Texto
+ *  @brief Representa un texto.
+ *  <b>autor</b> es el nombre del autor del texto.
+ *  <b>titulo</b> es el titulo del texto
+ *  <b>contenido</b> es el conjunto de frases que forman el cuerpo del texto
+ *  <b>citas</b> son las frases citadas del texto
+ *  <b>num_frases</b> es el numero de frases, <b>num_palabras</b> es el numero de palabras
+ *  <b>frecuencia_palabras</b> es un diccionario, donde el key es la frecuencia de las palabras, y 
+ *  cada key le corresponde un vector de palabras con esa frecuencia.
+ *  <b>frecuencia_maxima</b> guarda la frecuencia de la palabra con frecuencia maxima
+ */
+
 class Texto {
+  
   private:
+    
     //Atributos de la clase Texto
+    
     string autor;
     string titulo;
     vector<Frase> contenido;
@@ -13,84 +36,103 @@ class Texto {
     vector<string> identificadores;
     int num_frases;
     int num_palabras;
-    map<int, vector<string>> frecuencia_palabras; //Acaso se puede hacer map con key de ints?
+    map<char, list<string>> frecuencia_palabras;
     int frecuencia_maxima;
+    
   public:
+    
     //Metodos de la clase Texto
     
     /* Constructoras */
     
+    /**	@brief Constructora de la clase Texto
+     * 	\pre cierto
+     * 	\post crea un objeto de la clase Texto
+     */
     Texto();
-    
-    Texto(Texto t);
     
     /* Consultoras */
     
-    string autor();
-    /* Pre: Cierto */
-    /* Post: Devuelve el autor del p.i */
     
-    string titulo();
-    /* Pre: Cierto */
-    /* Post: Devuelve el titulo del p.i */
+    /**	@brief Consultora del autor del texto
+     * 	\pre cierto
+     * 	\post devuelve el autor del texto
+     */
+    string autor_texto();
     
+    /**	@brief Consultora del titulo del texto
+     * 	\pre cierto
+     * 	\post devuelve el titulo del texto
+     */
+    string titulo_texto();
+    
+    /**	@brief Consultora de las citas del texto
+     * 	\pre cierto
+     * 	\post muestra por pantalla las citas del texto, acompanadas por su referencias
+     */
     void citas_texto();
-    /* Pre: Cierto */
-    /* Post: Muestra las referencias de las citas asociadas al p.i */
     
+    /**	@brief Consultora del numero de frases del texto
+     * 	\pre cierto
+     * 	\post muestra por pantalla el numero de frases del texto
+     */
     void numero_frases();
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla  */
-    /* el numero de frases del p.i */
     
+    /**	@brief Consultora del numero de palabras del texto
+     * 	\pre cierto
+     * 	\post muestra por pantalla el numero de palabras del texto
+     */
     void numero_palabras();
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla el */
-    /* numero de palabras del p.i    */
     
+    /**	@brief Consultora del contenido del texto
+     * 	\pre cierto
+     * 	\post muestra por pantalla el contenido (las frases) del texto.
+     */
     void contenido();
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla el contenido del p.i */
     
+    /**	@brief Consultora de las frecuencias de cada palabra
+     * 	\pre cierto
+     * 	\post muestra por pantalla las palabras del texto ordenadas
+     * 	decrecientemente por frecuencia, y en caso de empate, crecientemente
+     * 	por largada y alfabéticamente.
+     */
     void tabla_frecuencias();
-    /* Pre: Cierto */
-    /* Post: Devuelve las palabras del p.i y su frecuencia */
     
+    /**	@brief Consultora de las frases entre la #x y la #y, ambas incluidas
+     * 	\pre x > 0 e y < contenido.size()
+     * 	\post si <b>cita</b> es falso, muestra por pantalla el contenido del texto
+     * 	entre las frases <b>x</b> e <b>y</b>, ambas incluidas, y devuelve una cita vacia.
+     * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
+     */
+    Cita frases_xy(int x, int y, bool cita, Citas citas);
     
-    Cita frases_xy(int x, int y, bool cita);
-    /* Pre: x > 0 ^ y < this->contenido.size(); */
-    /* Post: not cita -> muestra por pantalla el contenido del texto */
-    /* desde la frase x hasta la frase y ^ devuelve un vector vacio  */
-    /* else devuelve el vector de las frases desde x hasta y del p.i */
-    /* y genera un identificador para la cita...                     */
-    
+    /**	@brief Consultora de un conjunto de frases dado un numero de palabras del texto
+     * 	\pre cierto
+     * 	\post muestra por pantalla las frases que contengan las palabras correspondientes
     void frases_npal();
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla las frases   */
-    /* que se correspondan con la secuencia de */
-    /* de npalabras que entran por pantalla    */
     
-    
+    /**	@brief Consultora de un conjunto de frases dada una expresion logica
+     * 	\pre cierto
+     * 	\post muestra por pantalla las frases que cumplen las expresion logica
+     */
     void frases_exp(/*expresion*/); //Diferente de frases "<paraula1> ... <paraulaN>" ???
-    /* Pre: Cierto */
-    /* Post: Muestra por pantalla las frases del p.i */
-    /* que corresponden con la expresion introducida */
-    /* ordenadas por numero                          */
     
     /* Modificadoras */
     
+    /**	@brief Modificadora que anade una cita a las citas del texto
+     * 	\pre cierto
+     * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
+     */
     void anadir_cita(Cita c);
-    /* Pre: Cierto */
-    /* Post: c pertenece al p.i */
-    /* con el identificador pertinente */
     
+    /**	@brief Modificadora que elimina una cita de las citas del texto
+     * 	\pre existe una cita cuyo identificador es <b>identificador</b>
+     * 	\post dicha cita deja de pertenecer a las citas del texto.
     void eliminar_cita(string identificador);
-    /* Pre:Identificador = ID, existe una cita en el p.i y */
-    /* su ID es identificador 				  */
     
+    /**	@brief Modificadora que sustituye una palabra por otra en el texto
+     * 	 \pre <b>p1</b> aparece en el texto
+     * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
     void sustituir_palabra(Palabra p1, Palabra p2);
-    /* Pre: p1 aparece en el texto */
-    /* Post: Todas las apariciones de p1 en   */
-    /* el p.i son ahora la segunda palabra p2 */
     
 }
