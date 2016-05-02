@@ -1,8 +1,20 @@
+/** @file Palabra.hh
+ *  @brief Especificacion de la clase Palabra
+ */
+
 #ifndef FRASE_HH
 #define FRASE_HH
 
 #include "Palabra.hh"
 #include <vector>
+
+/*
+ * Clase Palabra
+ */
+
+/** @class Palabra
+ *  @brief Representa la unidad minima del texto, la palabra
+ */
 
 class Frase {
   private:
@@ -13,6 +25,9 @@ class Frase {
     //Metodos clase Frase
     
     /* Constructoras */
+
+    /** @brief Constructora de la clase Palabra
+     *  
     
     Frase();
     
