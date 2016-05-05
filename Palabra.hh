@@ -66,7 +66,7 @@ class Palabra {
      * palabra del p.i sin ninguna clase de signo de puntuacion,
      * else, retorna la palabra, sin importar su estado
      */
-    Palabra palabra(bool refined);
+    list<char> palabra(bool refined);
     
     /** @brief Modificadora de tamaño de una palabra (identificador)
      * \pre el p.i es un identificador de cita = ID
@@ -74,6 +74,12 @@ class Palabra {
      * es decir, ID.size() += 1, donde ID[ID.size() - 1] = c
      * obteninedo: [0...n - 1, c]
      */
-    void ampliar_palabra(char c); 
+    void ampliar_palabra(char c);
+
+    /** @brief Modificadora de la composicion de una palabra
+     * \pre el p.i es una palabra vacia
+     * \post el p.i contiene la palabra entrada por pantalla
+     */
+    void leer_palabra(string s); 
     
 }
