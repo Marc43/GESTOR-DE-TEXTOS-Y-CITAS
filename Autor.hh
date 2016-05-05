@@ -55,6 +55,13 @@ class Autor {
      */
     void textos_autor();
     
+    /** @brief Consultora del nombre del p.i.
+     *  \pre cierto
+     *  \post devuelve la string que 
+     *  contiene el nombre del p.i
+     */
+     string nombre_autor();
+    
     /* Modificadoras */
     
     /** @brief Modificadora que anade un texto al p.i.
