@@ -12,8 +12,9 @@
  */
 
 /** @class Autores
- *  @brief Representacion el conjunto de autores de los textos guardados
- *  <b>autores</b> es un vector que recoge objetos de clase autor, de los cuales existe algun texto
+ *  @brief Representacion el conjunto de autores correspondientes
+ *  con los textos...
+ *  <b>autores</b> Es un map con los autores de la clase Autores ordenados alfabeticamente
  */
 
 class Autores {
@@ -22,7 +23,7 @@ class Autores {
     
     //Atributos de la clase Autores
     
-    vector<Autor> autores;  
+    map<string, Autor> autores;  
   
   public:
     
@@ -38,23 +39,23 @@ class Autores {
     
     /* Consultoras */
     
-    /**	@brief Consultora de un autor del p.i. dado su nombre
+    /**	@brief Consultora de un autor dado su nombre
      * 	\pre cierto
-     * 	\post devuelve un autor perteneciente al p.i. tal que su nombre es <b>nombre</b>
+     * 	\post devuelve un autor tal que su nombre es <b>nombre</b>
      */
     Autor autor_nombre(string nombre);
 
     /**	@brief Consultora de todos los autores almacenados
      * 	\pre cierto
-     * 	\post imprime por pantalla todos los elementos del p.i.
+     * 	\post imprime por pantalla todos los autores almacenados
      */
     void todos_autores();
 
     /* Modificadoras */
     
-    /**	@brief Modificadora que anade un autor al p.i.
+    /**	@brief Modificadora que anade un autor a los autores
      * 	\pre <b>autor</b> no es vacio
-     * 	\post <b>autor</b> pertenece al p.i.
+     * 	\post <b>autor</b> pertenece a los autores
      */
     void anadir_autor(Autor autor);
     
