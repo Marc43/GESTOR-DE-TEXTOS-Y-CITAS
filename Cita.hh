@@ -32,7 +32,6 @@ class Cita {
     Frase titulo_texto;
     Frase autor_texto;
     int x, y;
-    string id;
   
   public:
     
