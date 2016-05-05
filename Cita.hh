@@ -18,7 +18,7 @@
  *  <b>titulo_texto</b> es el titulo asociado al texto al que pertenece
  *  <b>autor</b> representa el nombre del autor del texto al que pertenece
  *  <b>x</b> e <b>y</b> representan el numero de frases inicial y final en el texto
- *  <b>identificador</b> es el identificador asociado a la cita, dada por las iniciales del
+ *  <b>id</b> es el identificador asociado a la cita, dada por las iniciales del
  *    autor y un numero de orden de aparicion
  */
 
@@ -32,7 +32,7 @@ class Cita {
     string titulo_texto;
     string autor_texto;
     int x, y;
-    string identificador;
+    string id;
   
   public:
     
@@ -71,5 +71,11 @@ class Cita {
        *  \post devuelve el contenido del p.i.
        */
        vector<Frase> contenido();
+       
+       /** @brief Devuelve el identificador de la cita
+       *  \pre cierto
+       *  \post devuelve el identificador del p.i.
+       */
+       string identificador();
   
 }
