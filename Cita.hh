@@ -65,5 +65,11 @@ class Cita {
       *  \post devuelve el autor asociado al p.i.
       */
       string autor();
+      
+      /** @brief Devuelve el contenido de la cita
+       *  \pre cierto
+       *  \post devuelve el contenido del p.i.
+       */
+       vector<Frase> contenido();
   
 }
