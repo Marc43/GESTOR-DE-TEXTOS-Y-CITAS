@@ -30,7 +30,7 @@ class Cita {
     
     vector<Frase> contenido;
     string titulo_texto;
-    string autor;
+    string autor_texto;
     int x, y;
     string identificador;
   
@@ -53,5 +53,17 @@ class Cita {
      * 	\post muestra por pantalla la informacion del p.i. (titulo, autor, frase inicial, final y contenido)
      */
     void info();
+    
+    /** @brief Devuelve el titulo asociado a la cita
+     *  \pre cierto
+     *  \post devuelve el titulo del texto asociado al p.i.
+     */
+     string titulo();
+     
+     /** @brief Devuelve el autor de la cita
+      *  \pre cierto
+      *  \post devuelve el autor asociado al p.i.
+      */
+      string autor();
   
 }
