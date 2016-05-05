@@ -29,8 +29,8 @@ class Cita {
     //Atributos de la clase Cita
     
     vector<Frase> contenido;
-    string titulo_texto;
-    string autor_texto;
+    Frase titulo_texto;
+    Frase autor_texto;
     int x, y;
     string id;
   
@@ -58,13 +58,13 @@ class Cita {
      *  \pre cierto
      *  \post devuelve el titulo del texto asociado al p.i.
      */
-     string titulo();
+     Frase titulo();
      
      /** @brief Devuelve el autor de la cita
       *  \pre cierto
       *  \post devuelve el autor asociado al p.i.
       */
-      string autor();
+      Frase autor();
       
       /** @brief Devuelve el contenido de la cita
        *  \pre cierto
