@@ -22,7 +22,7 @@
 class Frase {
   private:
     //Atributos clase Frase
-    vector<Palabra> frase; 
+    list<Palabra> frase;
     int num_palabras; // num_palabras == frase.size();
   public:
     //Metodos clase Frase
@@ -42,6 +42,12 @@ class Frase {
      * \post retorna el numero de palabras de. p.i
      */
     int longitud_frase();
+    
+    /** @brief Consultora que devuelve el conte4nido de la frase
+     * 	\pre cierto
+     * 	\post devuelve el contenido del p.i.
+     */
+    list<Palabra> contenido_frase();
 
     /* Modificadoras */
     

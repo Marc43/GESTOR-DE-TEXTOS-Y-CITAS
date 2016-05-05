@@ -13,7 +13,7 @@
 
 /** @class Autor
  *  @brief Representa un autor de algún texto almacenado por el programa
- *  <b>textos</b> es un vector que contiene los textos escritos por el autor
+ *  <b>textos</b> es una map donde el key es el titulo, mapeando al texto correspondiente, todos escritos por el autor
  *  <b>citas</b> es un map, donde el key es el identificador de la cita, mapeando a la Cita
  *  <b>nombre</b> representa el nombre del autor en concreto
  */
@@ -24,7 +24,7 @@ class Autor {
     
     //Atributos de la clase Autor
     
-    vector<Texto> textos;
+    map<string, Texto> textos;
     map<string, Cita> citas;
     string nombre;
     
@@ -36,9 +36,9 @@ class Autor {
     
     /** @brief Constructora de la clase Autor
      * 	\pre cierto
-     * 	\post crea un objeto de la clase Autor
+     * 	\post crea un objeto de la clase Autor, con <b>nombre</b> = nombre
      */
-    Autor();
+    Autor(string nombre);
     
     /* Consultoras */
     
@@ -54,13 +54,6 @@ class Autor {
      * 	alfabeticamente
      */
     void textos_autor();
-    
-    /** @brief Consultora del nombre del p.i.
-     *  \pre cierto
-     *  \post devuelve la string que 
-     *  contiene el nombre del p.i
-     */
-     string nombre_autor();
     
     /* Modificadoras */
     

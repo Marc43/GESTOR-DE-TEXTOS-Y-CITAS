@@ -14,9 +14,9 @@
 /** @class Citas
  *  @brief Representa todas el conjunto de citas almacenada por el programa
  *  <b>citas</b> es un map, donde el key es el identificador de la cita, formado por las iniciales del autor
- *  y un entero que representa un orden, acompañadas de una Cita
+ *  y un entero que representa un orden, acompaÃ±adas de una Cita
  *  <b>id</b> es un map, con un string, que son las letras del identificador (las inciales de uno o mas autores),
- *  acompañadas en cada momento de la ejecucion por el numero que tocaria en caso de anadir una Cita con ese
+ *  acompaÃ±adas en cada momento de la ejecucion por el numero que tocaria en caso de anadir una Cita con ese
  *  identificador
  */
 
