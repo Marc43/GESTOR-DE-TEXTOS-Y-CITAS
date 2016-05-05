@@ -44,7 +44,7 @@ class Cita {
      * 	\pre cierto
      * 	\post crea un objeto de la clase Cita
      */
-    Cita();
+    Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int x, y, string identificador);
     
     /* Consultoras */
     
