@@ -133,6 +133,7 @@ class Texto {
     /**	@brief Modificadora que sustituye una palabra por otra del p.i.
      * 	 \pre <b>p1</b> aparece en el texto
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
+     */
     void sustituir_palabra(Palabra p1, Palabra p2);
     
 }
