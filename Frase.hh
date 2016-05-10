@@ -33,7 +33,7 @@ class Frase {
      * \pre cierto
      * \post crea un objeto de la clase Frase
      */
-    Frase();
+    Frase(list<Palabra>& frase);
     
     /* Consultora */
     
