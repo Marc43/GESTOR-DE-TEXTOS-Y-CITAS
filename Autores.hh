@@ -44,6 +44,13 @@ class Autores {
      * 	\post devuelve un autor tal que su nombre es <b>nombre</b>
      */
     Autor autor_nombre(string nombre);
+    
+    /** @brief Consultora de existencia de un autor dado su nombre
+     * \pre cierto
+     * \post devuelve cierto si existe un autor con nombre <b>nombre</b>
+     * en caso contrario, devuelve falso
+     */
+     bool existe_autor(string nombre);
 
     /**	@brief Consultora de todos los autores almacenados
      * 	\pre cierto
