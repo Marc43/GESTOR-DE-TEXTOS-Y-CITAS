@@ -2,8 +2,12 @@
 
 /* Constructoras */
 
-Palabra::Palabra(){
-  longitud = 0;
+Palabra::Palabra(const string& t){
+  longitud = t.size();
+  list<char>::iterator *it = palabra.begin();
+  for(int i = 0; i < longitud; ++i){
+    palabra.insert(it, t[i]);
+  }
 }
 
 /* Consultoras */
@@ -47,11 +51,5 @@ void Palabra::ampliar_palabra(char c){
   palabra.insert(it, c);
 }
 
-void Palabra::leer_palabra(string s){
-  list<char>::iterator it = palabra.begin();
-  for(int i = 0; i < s.length(); ++i){
-    palabra.insert(it, s[i]);
-    ++it;
-  }
-}
+
 
