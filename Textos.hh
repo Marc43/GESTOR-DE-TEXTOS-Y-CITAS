@@ -61,7 +61,7 @@ class Textos {
      * 	\post devuelve cierto si se encuentra un texto en el que aparezcan las
      * 	palabras, y <b>t</b> es este texto. Devuelve falso en caso contrario.
      */
-    bool escoger_texto(Texto &t); 
+    bool escoger_texto(const list<Palabra>& p);
     
     /**
      * @brief Consultora que muestra todos los textos almacenados por el programa
