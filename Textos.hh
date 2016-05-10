@@ -22,12 +22,9 @@ class Textos {
   private:
     //Atributos de Textos
     
-    vector<Texto> textos;
+    map<string, Texto> textos;
     Texto texto_escogido;
     bool escogido;
-    
-    //Funcion auxiliar 
-    bool comp(Texto t1, Texto t2);
     
   public:
     
