@@ -49,7 +49,7 @@ class Texto {
      * 	\pre cierto
      * 	\post crea un objeto de la clase Texto
      */
-    Texto();
+    Texto(string autor, string titulo, list<Frase> contenido);
     
     /* Consultoras */
     
