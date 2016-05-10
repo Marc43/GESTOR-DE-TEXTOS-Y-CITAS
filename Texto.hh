@@ -31,7 +31,7 @@ class Texto {
     
     string autor;
     string titulo;
-    vector<Frase> contenido;
+    list<Frase> contenido;
     map<string, Cita> citas;
     vector<string> identificadores;
     int num_frases;
