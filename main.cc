@@ -47,8 +47,8 @@ int main(){
       }
     }
     else if(op == "textos"){
-      iss >> op; iss.str();
-      autores.autor_nombre().textos_autor();
+      iss >> op; string nombre = iss.str();
+      autores.autor_nombre(nombre).textos_autor();
     }
     else if(op == "tots"){
       iss >> op;
@@ -96,3 +96,83 @@ int main(){
     
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
+  string entrada_texto;
+  list<Palabra> frase;
+  list<Palabra>::iterator it = frase.begin();
+  list<Frase>::iterator fr = contenido.begin(); 
+  while(cin >> entrada_texto and entrada_texto != "****"){
+    Palabra p(entrada_texto);
+    if(not p.signo_puntuacion()) frase.insert(it, p);  
+    else{
+      frase.insert(it, p);
+      Frase f(frase);
+      contenido.insert(fr, f);
+      frase.clear();
+      it = frase.begin();
+    }
+  }
+}
+
+int main(){
+  //Anadir texto
+  string sr, p;
+  getline(cin, sr); //Extraemos la linea entera
+  while(sr != "sortir"){
+    Autores autores;
+    Textos textos;
+    Citas citas;
+    istringstream iss(sr);
+    iss >> sr;
+    if(sr == "afegir"){
+      iss >> sr;
+      if(sr == "text"){
+	iss.ignore('"');
+	string titulo = iss.str(); //Titulo del texto a anadir
+	getline(cin, sr); 
+	istringstream iss(sr);
+	iss >> sr; iss.ignore('"'); 
+	string nombre_autor = iss.str();
+	Autor autor(nombre_autor);
+	list<Frase> contenido;
+	leer_entrada_texto(contenido);
+	Texto t(nombre_autor, titulo, contenido);
+	//if(not autores.existe_autor(nombre_autor));
+	
+      }
+    }
+  }
+}
+
