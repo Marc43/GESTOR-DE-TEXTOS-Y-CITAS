@@ -22,7 +22,7 @@ class Textos {
   private:
     //Atributos de Textos
     
-    map<string, Texto> textos;
+    list<Texto> textos;
     Texto texto_escogido;
     bool escogido;
     
@@ -84,5 +84,13 @@ class Textos {
       *  false en caso contrario
       */
       bool escogido();
+      
+      /**
+       * @brief Consultora de la existencia de un texto segun titulo y autor
+       * \pre cierto
+       * \post retorna cierto si existe un texto con el titlo y autor
+       * entrados por parametros, retorna false en caso contrario
+       */
+       bool existe_texto(string titulo, string autor);
     
 }
