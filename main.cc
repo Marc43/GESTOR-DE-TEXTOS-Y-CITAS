@@ -25,7 +25,7 @@ int main(){
     else if(op == "eliminar"){
       iss >> op;
       if(op == "text"){
-	if(textos.escogido() == false) cout << "ERROR" << endl;
+	if(textos.escogido() == false) cout << "ERROR" << endl; //Same as not textos.escogido()
 	else{
 	  textos.eliminar_texto();
 	}
@@ -37,7 +37,7 @@ int main(){
       }
     }
     else if(op == "substitueix"){
-      if(textos.escogido() == false) cout << "ERROR" << endl;
+      if(textos.escogido() == false) cout << "ERROR" << endl; //Same as not textos.escogido()
       else{
 	iss.ignore('"');
 	iss >> op; Palabra p1(op);
@@ -63,9 +63,9 @@ int main(){
       iss >> op;
       if(op == "cita"){
 	iss.ignore('"');
-	citas.
+	citas. //inacabada?
       }
-      if(textos.escogido() == false) cout << "ERROR" << endl;
+      else if(textos.escogido() == false) cout << "ERROR" << endl; //Same as not textos.escogido()
       else{
 	cout << textos.texto_escogido().autor_texto() << endl << textos.texto_escogido().titulo_texto() << endl;
 	cout << textos.texto_escogido().numero_frases() << endl << textos.texto_escogido().numero_palabras() << endl;
@@ -79,7 +79,7 @@ int main(){
       }
     }
     else if(op == "contingut"){
-      if(textos.escogido() == false) cout << "ERROR" << endl;
+      if(textos.escogido() == false) cout << "ERROR" << endl; //Same as not textos.escogido()
       else{
 	cout << textos.texto_escogido().contenido();
       }
@@ -88,12 +88,12 @@ int main(){
       //pendiente
     }
     else if(op == "nombre"){
-      if(textos.escogido() == false) cout << "ERROR" << endl;
-      iss >> op;
+      iss >> op; //Quitamos el "de" 
+      iss >> op; //Guardamos el paraules o frases
+      if(textos.escogido() == false) cout << "ERROR" << endl; //Same as not textos.escogido()
       else if(op == "paraules") cout << textos.texto_escogido().numero_palabras() << endl;
       else cout << textos.texto_escogido().numero_frases() << endl;
     }
-    
   }
 }
 
