@@ -27,7 +27,7 @@ class Palabra {
   public:
     //Metodos de la clase Palabra
     
-    /* Cronstructoras */
+    /* Constructoras */
     
      /** @brief Constructora de la clase Palabra
      * \pre cierto
