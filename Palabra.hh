@@ -33,7 +33,7 @@ class Palabra {
      * \pre cierto
      * \post crea un objeto de la clase Palabra
      */
-    Palabra();
+    Palabra(string palabra);
 
     
     /* Consultoras */
