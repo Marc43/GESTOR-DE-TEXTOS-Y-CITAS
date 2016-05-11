@@ -62,7 +62,9 @@ class Autores {
     
     /**	@brief Modificadora que anade un autor a los autores
      * 	\pre <b>autor</b> no es vacio
-     * 	\post <b>autor</b> pertenece a los autores
+     * 	\post <b>autor</b> pertenece a los autores, en caso de 
+     *  pertenecer, ha sido actualizado con la version anadida
+     *  por parametros
      */
     void anadir_autor(Autor autor);
     
