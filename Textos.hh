@@ -70,4 +70,19 @@ class Textos {
      */
     void todos_textos();
     
+    /**
+     * @brief Consultora que retorna el texto escogido, si existe
+     * \pre existe el texto escogido
+     * \post devuelve el texto escogido
+     */
+     Texto texto_escogido();
+     
+     /**
+      * @brief Consultora que retorna si hay un texto escogido
+      * \pre cierto
+      * \post retorna cierto si existe tal texto, 
+      *  false en caso contrario
+      */
+      bool escogido();
+    
 }
