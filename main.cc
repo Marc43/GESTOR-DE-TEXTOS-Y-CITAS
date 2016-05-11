@@ -85,7 +85,17 @@ int main(){
       }
     }
     else if(op == "frases"){
-      //pendiente
+     iss >> op;
+     if(not textos.escogido()) cout << "ERROR" << endl;
+     else if(op >= 0 and op <= 9){ //En caso que el numero tuviese mas de un digito?? Existe ese caso??
+     	//frases x y
+     }
+     else if(op == '"'){
+     	//frases sequencia
+     }
+     else{
+     	//frases expressio
+     }
     }
     else if(op == "nombre"){
       iss >> op; //Quitamos el "de" 
