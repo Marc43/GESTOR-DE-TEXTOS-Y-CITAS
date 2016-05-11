@@ -113,9 +113,17 @@ class Texto {
     
     /**	@brief Consultora de un conjunto de frases dada una expresion logica
      * 	\pre cierto
-     * 	\post muestra por pantalla las frases que cumplen las expresion logica
+     * 	\post muestra por pantalla las frases del texto escogido
+     *  que cumplen las expresion logica dada
      */
     void frases_exp(/*expresion*/); //Diferente de frases "<paraula1> ... <paraulaN>" ???
+    
+    /** @brief Consultora de frases dada una expresion sequencial
+     *  \pre cierto
+     *  \post muestra por pantalla las frases del texto escogido que 
+     *  cumplen la sequencia de palabras dada
+     */
+     void frases_seq(list<Palabra>& seq);
     
     /* Modificadoras */
     
