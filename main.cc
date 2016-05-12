@@ -28,14 +28,14 @@ int main(){
   getline(cin, linea);
   while(linea != "sortir"){ //Condicion de salida
     istringstream iss(linea); iss >> op;
-      if(p == "afegir"){
-	iss >> p;
-	if(p == "text"){ //afegir text "<titol>"
+      if(op == "afegir"){
+	iss >> op;
+	if(op == "text"){ //afegir text "<titol>"
 	  iss.ignore('"');
 	  string titulo = iss.str(); //Titulo del texto a anadir
-	  getline(cin, sr); 
-	  istringstream iss(sr);
-	  iss >> p; iss.ignore('"'); 
+	  getline(cin, linea); 
+	  istringstream iss(linea);
+	  iss >> op; iss.ignore('"'); 
 	  string nombre_autor = iss.str(); //Nombre del autor
 	  if(autores.existe_autor(nombre_autor) and textos.existe_texto(titulo, nombre_autor)) cout << "ERROR" << endl; //Ya existe tal texto en este autor
 	  else{  
@@ -49,7 +49,8 @@ int main(){
 	else if(textos.escogido()){ //afegir cita x y
 	  iss >> p; int x = p - '0';
 	  iss >> p; int y = p - '0';
-	  Cita c = frases_xy(x, y, true, citas, textos, autores);
+	  Cita c = textos.texto_escogido().frases_xy(x, y, true, citas, textos, autores);
+	  citas.anadir_cita(c, autores, textos);
 	  //Las cita ha sido anadida a citas y a su texto y autor correspondiente
 	}
         else cout << "ERROR" << endl; //Ningun texto escogido
