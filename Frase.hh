@@ -37,6 +37,12 @@ class Frase {
     
     /* Consultora */
     
+    /** @brief Consultora del contenido del p.i.
+     * \pre cierto
+     * \post muestra por pantalla el contenido del p.i.
+     */
+    void escribir_frase(string s); 
+    
     /** @brief Consultora de Frase en cuanto a su longitud
      * \pre cierto
      * \post retorna el numero de palabras de. p.i
@@ -48,14 +54,5 @@ class Frase {
      * 	\post devuelve el contenido del p.i.
      */
     list<Palabra> contenido_frase();
-
-    /* Modificadoras */
-    
-    /** @brief Modificadora de Frase en cuanto a su contenido
-     * \pre cierto
-     * \post lee por pantalla las frases escritas
-     * separadas por: '.', '?' y '!'
-     */
-    void leer_frase();    
     
 }
