@@ -50,7 +50,7 @@ class Citas {
     /**	@brief Modificadora que anade una cita al p.i.
      * 	\pre cierto
      * 	\post <b>cita</b> ha sido anadida al p.i., con su correspondiente identificador.
-    void anadir_cita(Cita cita);
+    void anadir_cita(Cita cita, Autores &autores, Textos &textos);
     
     /**	@brief Modificadora que elimina una cita dado su identificador
      * 	\pre existe una cita cuyo identificador es <b>identificador</b>
