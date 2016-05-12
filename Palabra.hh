@@ -38,6 +38,12 @@ class Palabra {
     
     /* Consultoras */
     
+    /** @brief Consultora del contenido del p.i.
+     * \pre cierto
+     * \post muestra por pantalla el contenido del p.i.
+     */
+    void escribir_palabra(string s); 
+    
     /** @brief Consultora de la longitud de la palabra
      * \pre cierto
      * \post retorna la longitud del p.i
@@ -75,11 +81,5 @@ class Palabra {
      * obteninedo: [0...n - 1, c]
      */
     void ampliar_palabra(char c);
-
-    /** @brief Modificadora de la composicion de una palabra
-     * \pre el p.i es una palabra vacia
-     * \post el p.i contiene la palabra entrada por pantalla
-     */
-    void leer_palabra(string s); 
     
 }
