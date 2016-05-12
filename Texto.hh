@@ -6,6 +6,7 @@
 #define TEXTO_HH
 
 #include "Citas.hh"
+#include <sstream>
 
 /*
  * Clase Texto
@@ -36,7 +37,7 @@ class Texto {
     vector<string> identificadores;
     int num_frases;
     int num_palabras;
-    map<char, list<string>> frecuencia_palabras;
+    map<int, vector< set <palabra> >> frecuencia_palabras;
     int frecuencia_maxima;
     
   public:
@@ -116,7 +117,7 @@ class Texto {
      * 	\post muestra por pantalla las frases del texto escogido
      *  que cumplen las expresion logica dada
      */
-    void frases_exp(/*expresion*/); //Diferente de frases "<paraula1> ... <paraulaN>" ???
+    void frases_exp(istringstream iss); //Diferente de frases "<paraula1> ... <paraulaN>" ???
     
     /** @brief Consultora de frases dada una expresion sequencial
      *  \pre cierto
@@ -131,7 +132,7 @@ class Texto {
      * 	\pre cierto
      * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
      */
-    void anadir_cita(Cita c);
+    void anadir_cita(const Cita &c);
     
     /**	@brief Modificadora que elimina una cita del p.i.
      * 	\pre existe una cita cuyo identificador es <b>identificador</b>
@@ -142,6 +143,6 @@ class Texto {
      * 	 \pre <b>p1</b> aparece en el texto
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
      */
-    void sustituir_palabra(Palabra p1, Palabra p2);
+    void sustituir_palabra(const Palabra &p1, const Palabra &p2);
     
 }
