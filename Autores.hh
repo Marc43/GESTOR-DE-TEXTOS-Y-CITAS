@@ -75,4 +75,10 @@ class Autores {
      */
     void eliminar_autor(string nombre);
     
+    /** @brief Modificadora que añade un texto a un autor dado su nombre
+     * \pre existe un autor con <b>nombre_autor</b>
+     * \post <b>texto</b> ha sido añadido a tal autor
+     */
+     void anadir_texto_autor(Texto texto, string nombre_autor);
+    
 }
