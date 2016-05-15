@@ -54,5 +54,66 @@ void Texto::citas_texto(){
 }
 
 void Texto::numero_frases(){
-  cout << contenido.size();
+  cout << num_frases << endl;
+}
+
+void Texto::numero_palabras(){
+  cout << num_palabras << endl;
+}
+
+void Texto::contenido(){
+  list<Frase>::iterator it = contenido.begin(); int n = 1;
+  while(it != contenido.end()){
+    cout << n << ' ' << (*it).escribir_frase();
+    ++it; ++n;
+  }
+}
+
+void Texto::tabla_frecuencias(){
+  
+}
+
+Cita Texto::frases_xy(int x, int y, bool cita, Citas& citas, Textos& textos, Autores& autores){
+  
+}
+
+void Texto::frases_exp(istringstream iss){
+  
+}
+
+void Texto::frases_seq(list<Palabra>& seq){
+  list<Frase>::iterator it1 = contenido.begin();
+  while(it1 != contenido.end()){
+    list<Palabra> p = (*it1).contenido_frase();
+    list<Palabra>::iterator it2 = p.begin(); 
+    bool imp = false; list<Palabra> aux = seq;
+    list<Palabra>::iterator it3 = aux.begin();
+    while(not imp and it2 != p.end()){
+      if((*it2).son_iguales(*it3)){
+	it3 = it3.erase();
+      }
+      if(aux.size() == 0) imp = true;
+      ++it2;
+    }
+    if(imp == true) (*it1).escribir_frase();
+    ++it1;
+  }
+  
+void Texto::anadir_cita(const Cita& c){
+  
+}
+
+void sustituir_palabra(const Palabra &p1, const Palabra &p2){
+  list<Frase>::iterator it1 = contenido.begin();
+  while(it1 != contenido.end()){
+    list<Palabra> p = (*it1).contenido_frase();
+    list<Palabra>::iterator it2 = p.begin();
+    while(it2 != p.end()){
+      if((*it2).son_iguales(p1)) *it2 = p2;
+      ++it2;
+    }
+    ++it1;
+  }
+}
+  
 }
