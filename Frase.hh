@@ -41,7 +41,7 @@ class Frase {
      * \pre cierto
      * \post muestra por pantalla el contenido del p.i.
      */
-    void escribir_frase(string s); 
+    void escribir_frase(); 
     
     /** @brief Consultora de Frase en cuanto a su longitud
      * \pre cierto
