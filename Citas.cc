@@ -12,6 +12,7 @@ void Citas::todas_citas(){
     vector<Frase> contenido = it->second.contenido();
     while(i < contenido.size()){
       contenido[i].escribir_frase();
+      ++i; //Falta anadir el numero que es cada cita, quiero decir, x y de la cita
     }
     it->second.autor().escribir_frase();
     it->second.titulo().escribir_frase();
