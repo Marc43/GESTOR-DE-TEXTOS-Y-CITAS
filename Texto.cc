@@ -66,7 +66,6 @@ void Texto::contenido(){
   while(it != contenido.end()){
     cout << n << ' ';
     (*it).escribir_frase()
-    cout << endl;
     ++it; ++n;
   }
 }
@@ -82,7 +81,6 @@ Cita Texto::frases_xy(int x, int y, bool cita, Citas& citas, Textos& textos, Aut
     while(it != contenido.end() and x >= y){
       cout << x << ' ';
       (*it).escribir_frase();
-      cout << endl;
       ++x; ++it;
     }
   } //Falta el caso de las citas
