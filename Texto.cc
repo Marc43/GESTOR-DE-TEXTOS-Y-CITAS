@@ -49,7 +49,7 @@ void Texto::citas_texto(){
     for(int i = 0; i < contenido.size(); ++i){
       cout << x + i << " "; contenido[i].escribir_frase();
     }
-    cout << it->second.titulo() << ' "' << it->second.autor() << '"' << endl;
+    cout << it->second.titulo() << '"' << it->second.autor() << '"' << endl;
   }
 }
 
@@ -64,7 +64,9 @@ void Texto::numero_palabras(){
 void Texto::contenido(){
   list<Frase>::iterator it = contenido.begin(); int n = 1;
   while(it != contenido.end()){
-    cout << n << ' ' << (*it).escribir_frase();
+    cout << n << ' ';
+    (*it).escribir_frase()
+    cout << endl;
     ++it; ++n;
   }
 }
@@ -74,7 +76,16 @@ void Texto::tabla_frecuencias(){
 }
 
 Cita Texto::frases_xy(int x, int y, bool cita, Citas& citas, Textos& textos, Autores& autores){
-  
+  if(x > y) cout << "ERROR" << endl;
+  else{
+    list<Frase>::iterator it = contenido.begin();
+    while(it != contenido.end() and x >= y){
+      cout << x << ' ';
+      (*it).escribir_frase();
+      cout << endl;
+      ++x; ++it;
+    }
+  } //Falta el caso de las citas
 }
 
 void Texto::frases_exp(istringstream iss){
