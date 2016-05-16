@@ -1,6 +1,6 @@
 #include "Autores.hh"
 
-Autores::Autores(){//NO_OP}
+Autores::Autores(){/*NO_OP*/}
 
 Autor Autores::autor_nombre(string nombre){
   map<string, Autor>::iterator it = autores.find(nombre);
