@@ -53,7 +53,7 @@ class Autor {
      * 	\post muestra por pantalla todos los textos del autor, ordenados
      * 	alfabeticamente
      */
-    void textos_autor();
+    map<string, Texto> textos_autor();
     
     /* Modificadoras */
     
@@ -61,13 +61,13 @@ class Autor {
      * 	\pre texto es un texto no vacio
      * 	\post texto pertenece a los textos del autor
      */
-    void anadir_text(Texto texto);
+    void anadir_texto(Texto texto);
     
     /** @brief Modificadora que elimina un texto del p.i.
      * 	\pre existe un texto del autor tal que su titulo es <b>titulo</b>
      * 	\post en la lista de textos del autor no existe dicho texto
      */
-    void eliminar_text(string titulo);
+    void eliminar_texto(string titulo);
     
     /** @brief Modificadora que anade una cita al p.i.
      * 	\pre <b>cita</b> es una cita no vacia
@@ -80,5 +80,12 @@ class Autor {
      * \post dicha cita ya no pertenece a las citas del autor 
      */
     void eliminar_cita(string identificador);
+
+    /** @brief Consultora del nombre del autor
+     *  \pre ciert
+     *  \post devuelve el nombre del autor
+     */
+    string nombre_autor();
     
-}
+};
+#endif

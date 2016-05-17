@@ -55,4 +55,5 @@ class Frase {
      */
     list<Palabra> contenido_frase();
     
-}
+};
+#endif

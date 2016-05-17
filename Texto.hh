@@ -5,8 +5,8 @@
 #ifndef TEXTO_HH
 #define TEXTO_HH
 
-#include "Citas.hh"
 #include <sstream>
+#include <set>
 
 /*
  * Clase Texto
@@ -145,4 +145,5 @@ class Texto {
      */
     void sustituir_palabra(const Palabra &p1, const Palabra &p2);
     
-}
+};
+#endif

@@ -25,7 +25,7 @@
 class Cita {
   
   private:
-    
+
     //Atributos de la clase Cita
     
     vector<Frase> contenido;
@@ -57,30 +57,31 @@ class Cita {
      *  \pre cierto
      *  \post devuelve el titulo del texto asociado al p.i.
      */
-     string titulo();
+     string titulo_cita();
      
      /** @brief Devuelve el autor de la cita
       *  \pre cierto
       *  \post devuelve el autor asociado al p.i.
       */
-      string autor();
+      string autor_cita();
       
       /** @brief Devuelve el contenido de la cita
        *  \pre cierto
        *  \post devuelve el contenido del p.i.
        */
-       vector<Frase> contenido();
+       vector<Frase> contenido_cita();
        
        /** @brief Devuelve el identificador de la cita
        *  \pre cierto
        *  \post devuelve el identificador del p.i.
        */
-       //string identificador();
+       string identificador();
+
+        /** @brief Consultora que escribe la cita por el canal de salida
+         *  \pre cierto
+         *  \post la cita ha sido escrita por el canal de salida
+         */
+        void escribir_cita();
        
-       /** @brief consultora del numero de frases final e inicial
-	*  \pre cierto
-	*  \post <b>x</b> es el numero de frase inicial e <b>y</b> el numero de frase final
-	*/
-       void num_frases(int &x, int &y); 
-       
-}
+};
+#endif
