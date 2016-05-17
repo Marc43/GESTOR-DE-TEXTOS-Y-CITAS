@@ -90,23 +90,28 @@ void Texto::frases_exp(istringstream iss){
   
 }
 
-void Texto::frases_seq(list<Palabra>& seq){
-  list<Frase>::iterator it1 = contenido.begin();
-  while(it1 != contenido.end()){
-    list<Palabra> p = (*it1).contenido_frase();
-    list<Palabra>::iterator it2 = p.begin(); 
-    bool imp = false; list<Palabra> aux = seq;
-    list<Palabra>::iterator it3 = aux.begin();
-    while(not imp and it2 != p.end()){
-      if((*it2).son_iguales(*it3)){
-	it3 = it3.erase();
-      }
-      if(aux.size() == 0) imp = true;
-      ++it2;
+void Texto::frases_seq(const list<Palabra>& seq){ //metodo de frase para comparar frases?
+  list<Frase>::iterator frase_act = contenido.begin();
+  while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
+    list<Palabra> frase = (*frase_act).contenido_frase();
+    list<Palabra>::iterator pf = frase.begin();
+    list<Palabra>::iterator pseq = seq.begin();
+    bool seq = true;
+    while(pf != frase.end()){
+    	if((*pf).son_iguales(*pseq)){
+    		list<Palabra>::iterator aux_pf = pf; ++aux_pf;
+    		list<Palabra>::iterator aux_pseq = pseq; ++aux_pseq;
+    		while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
+    	  		if(not (*aux_pf).son_iguales(*aux_pseq)) seq = false;
+    	  		++aux_pf; ++aux_pseq;
+    		}
+      		if(seq and aux_pseq == seq.end()) (*pf).escribir_frase();
+    	}
+    	++pf; //Comprueba la secuencia para la siguiente palabra
     }
-    if(imp == true) (*it1).escribir_frase();
-    ++it1;
+    ++frase_act; //Pasamos a comprobar la siguiente frase
   }
+}
   
 void Texto::anadir_cita(const Cita& c){
   
