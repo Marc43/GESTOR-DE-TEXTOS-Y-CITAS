@@ -77,13 +77,13 @@ class Texto {
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de frases del texto
      */
-    void numero_frases();
+    int numero_frases();
     
     /**	@brief Consultora del numero de palabras del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de palabras del texto
      */
-    void numero_palabras();
+    int numero_palabras();
     
     /**	@brief Consultora del contenido del p.i.
      * 	\pre cierto

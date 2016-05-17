@@ -118,15 +118,11 @@ int main(){
     }
     else if(op == "autor"){ //autor ?
       if(not textos.escogido()) cout << "ERROR" << endl;
-      else{
-	cout << textos.texto_escogido().autor_texto();
-      }
+      else cout << textos.texto_escogido().autor_texto() << endl;
     }
     else if(op == "contingut"){ //contingut ?
       if(not textos.escogido()) cout << "ERROR" << endl;
-      else{
-	cout << textos.texto_escogido().contenido();
-      }
+      else textos.texto_escogido().contenido();
     }
     else if(op == "frases"){
      iss >> op;
@@ -144,7 +140,7 @@ int main(){
 	  Palabra p(op);
 	  l.insert(it, p);
 	}
-	textos.texto_escogido().frases_seq();
+	textos.texto_escogido().frases_seq(l);
      }
      else{ //frases expressio
      	iss.ignore('?');

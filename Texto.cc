@@ -28,7 +28,7 @@ Texto::Texto(string autor, string titulo, list<Frase> contenido){
   it_f = freq.begin();
   while(it_f != freq.end()){
     
-     +
+     //+
     ++it_f;
   }
 }
@@ -53,12 +53,12 @@ void Texto::citas_texto(){
   }
 }
 
-void Texto::numero_frases(){
-  cout << num_frases << endl;
+int Texto::numero_frases(){
+  return num_frases;
 }
 
-void Texto::numero_palabras(){
-  cout << num_palabras << endl;
+int Texto::numero_palabras(){
+  return num_palabras;
 }
 
 void Texto::contenido(){
