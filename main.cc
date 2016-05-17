@@ -13,7 +13,7 @@ void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
     else{
       frase.insert(it, p);
       Frase f(frase);
-      contenido.insert(fr, f);
+      fr = contenido.insert(fr, f);
       frase.clear();
       it = frase.begin();
     }
