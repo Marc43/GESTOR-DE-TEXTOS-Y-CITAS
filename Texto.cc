@@ -53,6 +53,16 @@ void Texto::citas_texto(){
   }
 }
 
+bool Texto::existe_cita(int x, int y){
+  bool match = false;
+  map<string, Cita>::iterator it = citas.begin();
+  while(not match and it != citas.end()){
+    match = x == it->second.frase_inicial() and y == it->second.frase_final();
+  }
+  
+  return match;
+}
+
 int Texto::numero_frases_texto(){
   return num_frases;
 }
@@ -65,7 +75,8 @@ void Texto::contenido_texto(){
   list<Frase>::iterator it = contenido.begin(); int n = 1;
   while(it != contenido.end()){
     cout << n << ' ';
-    (*it).escribir_frase()
+    (*it).escribir_frase();
+    cout << endl;
     ++it; ++n;
   }
 }
@@ -75,12 +86,13 @@ void Texto::tabla_frecuencias_texto(){
 }
 
 Cita Texto::frases_xy(int x, int y, bool cita, Citas& citas, Textos& textos, Autores& autores){
-  if(x > y) cout << "ERROR" << endl;
+  if(x > y or y > num_frases) cout << "error" << endl;
   else{
     list<Frase>::iterator it = contenido.begin();
-    while(it != contenido.end() and x >= y){
+    while(it != contenido.end() and x <= y){
       cout << x << ' ';
       (*it).escribir_frase();
+      cout << endl;
       ++x; ++it;
     }
   } //Falta el caso de las citas
@@ -90,22 +102,27 @@ void Texto::frases_exp(istringstream iss){
   
 }
 
-void Texto::frases_seq(const list<string>& seq){ //metodo de frase para comparar frases?
+void Texto::frases_seq(const list<string>& seq){
   list<Frase>::iterator frase_act = contenido.begin();
   while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
     list<string> frase = (*frase_act).contenido_frase();
     list<string>::iterator pf = frase.begin();
     list<string>::iterator pseq = seq.begin();
     bool seq = true;
-    while(pf != frase.end()){
-    	if((*pf).son_iguales(*pseq)){
-    		list<string>::iterator aux_pf = pf; ++aux_pf;
-    		list<string>::iterator aux_pseq = pseq; ++aux_pseq;
-    		while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
-    	  		if(not (*aux_pf).son_iguales(*aux_pseq)) seq = false;
-    	  		++aux_pf; ++aux_pseq;
-    		}
-      		if(seq and aux_pseq == seq.end()) (*pf).escribir_frase();
+    bool match = false;
+    while(not match and pf != frase.end()){
+    	if(*pf == *pseq){
+	  list<string>::iterator aux_pf = pf; ++aux_pf;
+	  list<string>::iterator aux_pseq = pseq; ++aux_pseq;
+	  while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
+    	  	if(*aux_pf != *aux_pseq) seq = false;
+    	  	++aux_pf; ++aux_pseq;
+	  }
+	  if(seq and aux_pseq == seq.end()){
+	     (*pf).escribir_frase();
+	     cout << endl;
+	     match = true;
+	  }
     	}
     	++pf; //Comprueba la secuencia para la siguiente palabra
     }
@@ -113,21 +130,34 @@ void Texto::frases_seq(const list<string>& seq){ //metodo de frase para comparar
   }
 }
   
-void Texto::anadir_cita(const Cita& c){
-  
+void Texto::anadir_cita_texto(const Cita& c, string identificador){
+  map<string, Cita>::iterator it = it.
+  citas [identificador] = c;
+}
+
+void Texto::eliminar_cita_texto(string identificador){
+  map<string, Cita>::iterator it = citas.find(identificador);
+  if(it != citas.end()) it = citas.erase(it);
 }
 
 void sustituir_palabra(const string &p1, const string &p2){
   list<Frase>::iterator it1 = contenido.begin();
-  while(it1 != contenido.end()){
+  while(it1 != contenido.end()){ //Iteramos sobre las frases
     list<string> p = (*it1).contenido_frase();
     list<string>::iterator it2 = p.begin();
-    while(it2 != p.end()){
-      if((*it2).son_iguales(p1)) *it2 = p2;
+    while(it2 != p.end()){ //Iteramos sobre el contenido de dicha frase
+      string signo; signo = (*it2) [(*it2).length() - 1];
+      bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z'));
+      if(es_signo){
+	string aux = *it2; aux.pop_back();
+	if(aux == p1){
+	  aux = p2; aux += signo;
+	  *it2 = aux;
+	}
+      }
+      else if(*it2 == p1) *it2 = p2;
       ++it2;
     }
     ++it1;
   }
-}
-  
 }
