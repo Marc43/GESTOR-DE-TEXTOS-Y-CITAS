@@ -133,13 +133,13 @@ class Texto {
      * 	\pre cierto
      * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
      */
-    void anadir_cita(const Cita &c);
+    void anadir_cita_texto(const Cita &c);
 
     /**	@brief Modificadora que elimina una cita del p.i.
      * 	\pre existe una cita cuyo identificador es <b>identificador</b>
      * 	\post dicha cita deja de pertenecer a las citas del texto.
      */
-    void eliminar_cita(string identificador);
+    void eliminar_cita_texto(string identificador);
 
     /**	@brief Modificadora que sustituye una palabra por otra del p.i.
      * 	 \pre <b>p1</b> aparece en el texto
