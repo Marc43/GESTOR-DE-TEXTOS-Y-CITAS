@@ -5,8 +5,10 @@
 #ifndef FRASE_HH
 #define FRASE_HH
 
-#include "Palabra.hh"
-#include <vector>
+#include <string>
+#include <list>
+#include <iostream>
+using namespace std;
 
 /*
  * Clase Frase
@@ -22,8 +24,9 @@
 class Frase {
   private:
     //Atributos clase Frase
-    list<Palabra> frase;
+    list<string> frase;
     int num_palabras; // num_palabras == frase.size();
+
   public:
     //Metodos clase Frase
     
@@ -33,7 +36,7 @@ class Frase {
      * \pre cierto
      * \post crea un objeto de la clase Frase
      */
-    Frase(list<Palabra>& frase);
+    Frase(list<string>& frase);
     
     /* Consultora */
     
@@ -53,7 +56,7 @@ class Frase {
      * 	\pre cierto
      * 	\post devuelve el contenido del p.i.
      */
-    list<Palabra> contenido_frase();
+    list<string> contenido_frase();
     
 };
 #endif

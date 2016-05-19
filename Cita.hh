@@ -6,7 +6,7 @@
 #define CITA_HH
 
 #include "Frase.hh"
-#include <string>
+#include <vector>
 
 /*
  * Clase Cita

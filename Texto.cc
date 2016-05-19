@@ -8,11 +8,11 @@ Texto::Texto(string autor, string titulo, list<Frase> contenido){
   num_palabras = 0;
   frecuencia_maxima = 0;
   int maxima_longitud = 0;
-  map<Palabra, int> freq; map<Palabra, int>::iterator it_f;
+  map<string, int> freq; map<string, int>::iterator it_f;
   for(int i = 0; i < contenido.size(); ++i){
     num_palabras += contenido[i].size();
-    list<Palabra> frase = contenido[i].contenido_frase();
-    for(list<Palabra>::iterator it = frase.begin(); it != frase.end(); ++it){
+    list<string> frase = contenido[i].contenido_frase();
+    for(list<string>::iterator it = frase.begin(); it != frase.end(); ++it){
       it_f = freq.find(*it);
       if((*it_f).longitud() > maxima_longitud) maxima_longitud = (*it_f).longitud();
       if(it_f != freq.end()){
@@ -90,17 +90,17 @@ void Texto::frases_exp(istringstream iss){
   
 }
 
-void Texto::frases_seq(const list<Palabra>& seq){ //metodo de frase para comparar frases?
+void Texto::frases_seq(const list<string>& seq){ //metodo de frase para comparar frases?
   list<Frase>::iterator frase_act = contenido.begin();
   while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
-    list<Palabra> frase = (*frase_act).contenido_frase();
-    list<Palabra>::iterator pf = frase.begin();
-    list<Palabra>::iterator pseq = seq.begin();
+    list<string> frase = (*frase_act).contenido_frase();
+    list<string>::iterator pf = frase.begin();
+    list<string>::iterator pseq = seq.begin();
     bool seq = true;
     while(pf != frase.end()){
     	if((*pf).son_iguales(*pseq)){
-    		list<Palabra>::iterator aux_pf = pf; ++aux_pf;
-    		list<Palabra>::iterator aux_pseq = pseq; ++aux_pseq;
+    		list<string>::iterator aux_pf = pf; ++aux_pf;
+    		list<string>::iterator aux_pseq = pseq; ++aux_pseq;
     		while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
     	  		if(not (*aux_pf).son_iguales(*aux_pseq)) seq = false;
     	  		++aux_pf; ++aux_pseq;
@@ -117,11 +117,11 @@ void Texto::anadir_cita(const Cita& c){
   
 }
 
-void sustituir_palabra(const Palabra &p1, const Palabra &p2){
+void sustituir_palabra(const string &p1, const string &p2){
   list<Frase>::iterator it1 = contenido.begin();
   while(it1 != contenido.end()){
-    list<Palabra> p = (*it1).contenido_frase();
-    list<Palabra>::iterator it2 = p.begin();
+    list<string> p = (*it1).contenido_frase();
+    list<string>::iterator it2 = p.begin();
     while(it2 != p.end()){
       if((*it2).son_iguales(p1)) *it2 = p2;
       ++it2;

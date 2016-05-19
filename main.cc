@@ -1,14 +1,15 @@
-#include "Autores.hh"
+#include "Gestor.hh"
+#include <iostream>
 
 using namespace std;
 
 void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
   string entrada_texto;
-  list<Palabra> frase;
-  list<Palabra>::iterator it = frase.begin();
+  list<string> frase;
+  list<string>::iterator it = frase.begin();
   list<Frase>::iterator fr = contenido.begin(); 
   while(cin >> entrada_texto and entrada_texto != "****"){
-    Palabra p(entrada_texto);
+    string p(entrada_texto);
     if(not p.signo_puntuacion()) frase.insert(it, p);  
     else{
       frase.insert(it, p);
@@ -46,7 +47,7 @@ int main(){
 	    textos.anadir_texto(t, autores);
 	  }
 	}
-	else if(textos.escogido()){ //afegir cita x y
+	else if(textos.esta_escogido()){ //afegir cita x y
 	  iss >> p; int x = p - '0';
 	  iss >> p; int y = p - '0';
 	  Cita c = textos.texto_escogido().frases_xy(x, y, true, citas, textos, autores);
@@ -58,10 +59,10 @@ int main(){
     else if(op == "triar"){ //triar text {titol}
       iss >> op;
       iss.ignore('{'); iss.ignore('}');
-      list<Palabra> p;
-      list<Palabra>::iterator it = p.begin();
+      list<string> p;
+      list<string>::iterator it = p.begin();
       while(iss >> op){
-	Palabra w(op);
+	string w(op);
 	p.insert(it, w);
 	textos.escoger_texto(p);
       }
@@ -69,24 +70,24 @@ int main(){
     else if(op == "eliminar"){
       iss >> op;
       if(op == "text"){ //eliminar text
-	if(not textos.escogido()) cout << "ERROR" << endl;
+	if(not textos.esta_escogido()) cout << "ERROR" << endl;
 	else{
 	  textos.eliminar_texto();
 	}
       }
       else{ //eliminar cita
 	iss.ignore('"'); iss >> op;
-	Palabra ref(op);
+	string ref(op);
 	citas.eliminar_cita(ref);
       }
     }
     else if(op == "substitueix"){ //substitueix "<paraula1>" per "<paraula2>"
-      if(not textos.escogido()) cout << "ERROR" << endl;
+      if(not textos.esta_escogido()) cout << "ERROR" << endl;
       else{
 	iss.ignore('"');
-	iss >> op; Palabra p1(op);
+	iss >> op; string p1(op);
 	iss >> op;
-	iss >> op; Palabra p2(op);
+	iss >> op; string p2(op);
 	textos.texto_escogido().sustituir_palabra(p1, p2);
       }
     }
@@ -109,7 +110,7 @@ int main(){
 	iss.ignore('"');
 	citas.todas_citas(); 
       }
-      else if(not textos.escogido()) cout << "ERROR" << endl;
+      else if(not textos.esta_escogido()) cout << "ERROR" << endl;
       else{ //info ?
 	cout << textos.texto_escogido().autor_texto() << endl << textos.texto_escogido().titulo_texto() << endl;
 	cout << textos.texto_escogido().numero_frases() << endl << textos.texto_escogido().numero_palabras() << endl;
@@ -117,27 +118,27 @@ int main(){
       }
     }
     else if(op == "autor"){ //autor ?
-      if(not textos.escogido()) cout << "ERROR" << endl;
+      if(not textos.esta_escogido()) cout << "ERROR" << endl;
       else cout << textos.texto_escogido().autor_texto() << endl;
     }
     else if(op == "contingut"){ //contingut ?
-      if(not textos.escogido()) cout << "ERROR" << endl;
+      if(not textos.esta_escogido()) cout << "ERROR" << endl;
       else textos.texto_escogido().contenido();
     }
     else if(op == "frases"){
      iss >> op;
-     if(not textos.escogido()) cout << "ERROR" << endl;
+     if(not textos.esta_escogido()) cout << "ERROR" << endl;
      else if(int(op[0]) >= 0 and int(op[0]) <= 9){ //frases x y
         int x = int(op); iss >> op; //Extraemos y
 	int y = int(op);
 	textos.texto_escogido().frases_xy(x, y);
      }
      else if(op[0] == '"'){ //frases secuencia
-	list<Palabra> l; list<Palabra>::iterator it = l.begin(); 
-	Palabra p(op); l.insert(it, p);
+	list<string> l; list<string>::iterator it = l.begin();
+	string p(op); l.insert(it, p);
 	while(op[op.size()-1] != '"'){
 	  iss >> op;
-	  Palabra p(op);
+	  string p(op);
 	  l.insert(it, p);
 	}
 	textos.texto_escogido().frases_seq(l);
@@ -150,7 +151,7 @@ int main(){
     else if(op == "nombre"){
       iss >> op; //Quitamos el "de" 
       iss >> op; //Guardamos el paraules o frases
-      if(not textos.escogido()) cout << "ERROR" << endl;
+      if(not textos.esta_escogido()) cout << "ERROR" << endl;
       else if(op == "paraules") cout << textos.texto_escogido().numero_palabras() << endl; //nombre de paraules ?
       else cout << textos.texto_escogido().numero_frases() << endl; //nombre de frases ?
     }

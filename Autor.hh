@@ -5,7 +5,8 @@
 #ifndef AUTOR_HH
 #define AUTOR_HH
 
-#include "Textos.hh"
+#include "Texto.hh"
+#include "Cita.hh"
 
 /*
  * Clase Autor
@@ -27,6 +28,7 @@ class Autor {
     map<string, Texto> textos;
     map<string, Cita> citas;
     string nombre;
+    int num_textos;
     
   public:
     
@@ -53,7 +55,13 @@ class Autor {
      * 	\post muestra por pantalla todos los textos del autor, ordenados
      * 	alfabeticamente
      */
-    map<string, Texto> textos_autor();
+    void textos_autor();
+
+    /** @brief Consultora del numero de textos del p.i
+     *  \pre cierto
+     *  \post devuelve el atributo num_textos del p.i
+     */
+    int numero_textos_autor();
     
     /* Modificadoras */
     

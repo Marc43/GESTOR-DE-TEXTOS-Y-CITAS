@@ -5,6 +5,14 @@
 #ifndef GESTOR_HH
 #define GESTOR_HH
 
+#include "Autor.hh"
+
+
+/* Anadido el atributo num_textos a la clase Autor, modificada el metodo textos_autor(), ahora solo imprime
+ * anadido el metodo, numero_textos_autor()                                                                 */
+
+
+
 /*
  * Clase Gestor
  */
@@ -25,13 +33,21 @@ class Gestor {
         map<string, Autor> autores;
 
         //Textos
-        list<Texto> textos;
-        list<Texto>::iterator texto_escogido; //Iterador que apunta al texto
+        map <string, Texto> textos;
+        map <string, Texto>::iterator texto_escogido; //Iterador que apunta al texto
         bool escogido;
 
         //Citas
         map<string, Cita> citas;
         map<string, int> id; //Contiene el numero de cita mas grande con tal identificador
+
+        /*
+        /**@brief Operacion auxiliar de strings
+         * \pre cierto
+         * \post Todas las minusculas de la cadena
+         * son ahora mayusculas
+         *
+         void a_mayus(string& s); */
 
     public:
 
@@ -67,19 +83,12 @@ class Gestor {
          */
         void anadir_autor(Autor autor);
 
-        /** @brief Modificadora que elimina un autor dado su nombre
-         *  \pre cierto
-         *  \post si existia un autor cuyo nombre es <b>nombre</b>, ha
-         *  sido eliminado del p.i
-         */
-        void eliminar_autor(string nombre); //no hace falta
-
         /** @brief Modificadora que anade un texto a gestor
          *  \pre cierto
          *  \post el Texto <b>texto</b> ha sido anadido al p.i
          *  en caso de no existir uno con mismo autor y titulo
          */
-        void anadir_texto(const Texto& texto);
+        void anadir_texto_gestor(const Texto& texto);
 
         /** @brief Modificadora que elimina un texto del gestor
          * \pre hay un texto escogido
@@ -95,7 +104,7 @@ class Gestor {
          * palabras de la lista, y <b>t</b> es dicho texto, devuelve falso en
          * caso contrario
          */
-        bool escoger_texto(const list<Palabra>& p, Texto& t);
+        bool escoger_texto(const list<string>& p, Texto& t);
 
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
@@ -109,7 +118,7 @@ class Gestor {
          *  \post retorna cierto si existe tal texto,
          *  false en caso contrario
          */
-        bool escogido();
+        bool esta_escogido();
 
         /** @brief Consultora delas citas del p.i.
          * \pre cierto
@@ -121,13 +130,17 @@ class Gestor {
          *  \pre cierto
          *  \post <b>cita</b> ha sido anadida al p.i. con su correspondiente etiqueta
          */
-        void anadir_cita(const Cita& cita);
+        void anadir_cita_gestor(const Cita& cita);
 
         /** @brief modificadora que elimina una cita dado su identificador
          *  \pre existe una cita con identificador = <b>id</b>
          *  \post dicha cita ya no pertence al p.i.
          */
         void eliminar_cita(string id);
+
+        void citas_autor(string autor);
+
+        void info_cita(string id);
 };
 
 #endif //GESTOR_HH
