@@ -83,7 +83,7 @@ class Texto {
      *  cierto
      *  devuelve cierto si la cita esta almacenada en el p.i., falso en caso contrario
      */
-    bool existe_cita(const Cita &c);
+    bool existe_cita(int x, int y);
     
     /**	@brief Consultora del numero de frases del p.i.
      * 	\pre cierto
