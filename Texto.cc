@@ -53,15 +53,15 @@ void Texto::citas_texto(){
   }
 }
 
-int Texto::numero_frases(){
+int Texto::numero_frases_texto(){
   return num_frases;
 }
 
-int Texto::numero_palabras(){
+int Texto::numero_palabras_texto(){
   return num_palabras;
 }
 
-void Texto::contenido(){
+void Texto::contenido_texto(){
   list<Frase>::iterator it = contenido.begin(); int n = 1;
   while(it != contenido.end()){
     cout << n << ' ';
@@ -70,7 +70,7 @@ void Texto::contenido(){
   }
 }
 
-void Texto::tabla_frecuencias(){
+void Texto::tabla_frecuencias_texto(){
   
 }
 
