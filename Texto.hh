@@ -79,6 +79,12 @@ class Texto {
      */
     void citas_texto();
     
+    /** @brief Consultora sobre si una cita existe en el p.i.
+     *  cierto
+     *  devuelve cierto si la cita esta almacenada en el p.i., falso en caso contrario
+     */
+    bool existe_cita(const Cita &c);
+    
     /**	@brief Consultora del numero de frases del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de frases del texto
