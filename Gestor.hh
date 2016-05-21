@@ -135,7 +135,8 @@ class Gestor {
 
         /** @brief Modificadora que anade una cita al p.i.
          *  \pre cierto
-         *  \post <b>cita</b> ha sido anadida al p.i. con su correspondiente etiqueta
+         *  \post <b>cita</b> ha sido anadida al p.i. y a todas 
+         *  las estructuras necesarias con su correspondiente id.
          */
         void anadir_cita_gestor(const Cita& cita);
 
