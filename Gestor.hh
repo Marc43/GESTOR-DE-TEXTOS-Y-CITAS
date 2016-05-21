@@ -85,10 +85,10 @@ class Gestor {
 
         /** @brief Modificadora que anade un texto a gestor
          *  \pre cierto
-         *  \post el Texto <b>texto</b> ha sido anadido al p.i
-         *  en caso de no existir uno con mismo autor y titulo
+         *  \post el Texto <b>texto</b> ha sido creado y anadido al p.i,
+         *  en caso de no existir uno con mismo autor y titulo.
          */
-        void anadir_texto_gestor(const Texto& texto);
+        void anadir_texto_gestor();
 
         /** @brief Modificadora que elimina un texto del gestor
          * \pre hay un texto escogido
@@ -106,12 +106,6 @@ class Gestor {
          */
         bool escoger_texto(const list<string>& p, Texto& t);
         
-        /** @brief Modificadora respecto a la entrada de un nuevo texto
-         * \pre cierto
-         * \post un texto ha sido creado y anadido, con su respectivo autor
-         */
-         void anadirn_texto_gestor();
-
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
          *  \post muestra por pantalla todos los textos del p.i
@@ -125,6 +119,13 @@ class Gestor {
          *  false en caso contrario
          */
         bool esta_escogido();
+        
+        /** @brief Consultora(???) del texto escogido
+         * \pre cierto
+         * \post si, escogido era true, la funcion 
+         * devuelve el texto escogido en el gestor
+         */
+         Texto texto_escogido();
 
         /** @brief Consultora delas citas del p.i.
          * \pre cierto
