@@ -105,6 +105,12 @@ class Gestor {
          * caso contrario
          */
         bool escoger_texto(const list<string>& p, Texto& t);
+        
+        /** @brief Modificadora respecto a la entrada de un nuevo texto
+         * \pre cierto
+         * \post un texto ha sido creado y anadido, con su respectivo autor
+         */
+         void anadirn_texto_gestor();
 
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
