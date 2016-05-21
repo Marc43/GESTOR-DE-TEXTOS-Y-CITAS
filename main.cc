@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
+/*void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
   string entrada_texto;
   list<string> frase;
   list<string>::iterator it = frase.begin();
   list<Frase>::iterator fr = contenido.begin(); 
-  while(cin >> entrada_texto and entrada_texto != "****"){
+  while(cin >> entrada_texto and entrada_texto != "****"){ //Rehacer...
     string p(entrada_texto);
     if(not p.signo_puntuacion()) frase.insert(it, p);  
     else{
@@ -19,12 +19,10 @@ void leer_entrada_texto(list<Frase>& contenido){ //MODULO IO TEXTOS
       it = frase.begin();
     }
   }
-} 
+}*/ //Hacerlo en el gestor? anadir_texto_gestor??
 
 int main(){
-  Citas citas;
-  Autores autores;
-  Textos textos;
+  Gestor gestor;
   string linea, op;
   getline(cin, linea);
   while(linea != "sortir"){ //Condicion de salida
@@ -38,23 +36,17 @@ int main(){
 	  istringstream iss(linea);
 	  iss >> op; iss.ignore('"'); 
 	  string nombre_autor = iss.str(); //Nombre del autor
-	  if(autores.existe_autor(nombre_autor) and textos.existe_texto(titulo, nombre_autor)) cout << "ERROR" << endl; //Ya existe tal texto en este autor
-	  else{  
-	    Autor autor(nombre_autor);
-	    list<Frase> contenido;
-	    leer_entrada_texto(contenido);
-	    Texto t(nombre_autor, titulo, contenido);
-	    textos.anadir_texto(t, autores);
-	  }
+	  if(autores.existe_autor(nombre_autor) and textos.existe_texto(titulo, nombre_autor)) cout << "error" << endl; //Ya existe tal texto en este autor
+	  else anadirn_texto_gestor();   
 	}
-	else if(textos.esta_escogido()){ //afegir cita x y
+	else if(gestor.esta_escogido()){ //afegir cita x y
 	  iss >> p; int x = p - '0';
 	  iss >> p; int y = p - '0';
-	  Cita c = textos.texto_escogido().frases_xy(x, y, true, citas, textos, autores);
-	  citas.anadir_cita(c, autores, textos);
-	  //Las cita ha sido anadida a citas y a su texto y autor correspondiente
+	  Texto t = gestor.texto_escogido();
+	  Cita c = t.frases_xy(x, y, true);
+	  geestor.anadir_cita_gestor(c);
 	}
-        else cout << "ERROR" << endl; //Ningun texto escogido
+	else cout << "error" << endl; //Ningun texto escogido
     }
     else if(op == "triar"){ //triar text {titol}
       iss >> op;
@@ -64,74 +56,72 @@ int main(){
       while(iss >> op){
 	string w(op);
 	p.insert(it, w);
-	textos.escoger_texto(p);
       }
+      if(gestor.escoger_texto(p)) cout << "error" << endl;
     }
     else if(op == "eliminar"){
       iss >> op;
       if(op == "text"){ //eliminar text
-	if(not textos.esta_escogido()) cout << "ERROR" << endl;
-	else{
-	  textos.eliminar_texto();
-	}
+	if(not gestor.esta_escogido()) cout << "error" << endl;
+	else gestor.eliminar_texto();
       }
       else{ //eliminar cita
 	iss.ignore('"'); iss >> op;
 	string ref(op);
-	citas.eliminar_cita(ref);
+	gestor.eliminar_cita(ref);
       }
     }
     else if(op == "substitueix"){ //substitueix "<paraula1>" per "<paraula2>"
-      if(not textos.esta_escogido()) cout << "ERROR" << endl;
+      if(not gestor.esta_escogido()) cout << "error" << endl;
       else{
 	iss.ignore('"');
 	iss >> op; string p1(op);
 	iss >> op;
 	iss >> op; string p2(op);
-	textos.texto_escogido().sustituir_palabra(p1, p2);
+	gestor.texto_escogido().sustituir_palabra(p1, p2);
       }
     }
     else if(op == "textos"){ //textos autor "<autor>" ?
       iss >> op; string nombre = iss.str();
-      autores.autor_nombre(nombre).textos_autor();
+      gestor.autor_nombre(nombre).textos_autor(); //FALTA MANERA DE ACCEDER A UN AUTOR
     }
     else if(op == "tots"){ 
       iss >> op;
       if(op == "autors"){ //tots autors ?
-	autores.todos_autores();
+	gestor.todos_autores();
       }
       else{ //tots textos ?
-	textos.todos_textos();
+	gestor.todos_textos();
       }
     }
     else if(op == "info"){ 
       iss >> op;
       if(op == "cita"){ //info cita "<referencia>"
 	iss.ignore('"');
-	citas.todas_citas(); 
+	gestor.todas_citas(); 
       }
-      else if(not textos.esta_escogido()) cout << "ERROR" << endl;
+      else if(not gestor.esta_escogido()) cout << "error" << endl;
       else{ //info ?
-	cout << textos.texto_escogido().autor_texto() << endl << textos.texto_escogido().titulo_texto() << endl;
-	cout << textos.texto_escogido().numero_frases() << endl << textos.texto_escogido().numero_palabras() << endl;
-	cout << textos.texto.escogido().citas_texto();
+	cout << gestor.texto_escogido().autor_texto() << endl << gestor.texto_escogido().titulo_texto() << endl;
+	cout << gestor.texto_escogido().numero_frases() << endl << gestor.texto_escogido().numero_palabras() << endl;
+	cout << gestor.texto.escogido().citas_texto();
       }
     }
     else if(op == "autor"){ //autor ?
-      if(not textos.esta_escogido()) cout << "ERROR" << endl;
-      else cout << textos.texto_escogido().autor_texto() << endl;
+      if(not gestor.esta_escogido()) cout << "error" << endl;
+      else cout << gestor.texto_escogido().autor_texto() << endl;
     }
     else if(op == "contingut"){ //contingut ?
-      if(not textos.esta_escogido()) cout << "ERROR" << endl;
-      else textos.texto_escogido().contenido();
+      if(not gestor.esta_escogido()) cout << "error" << endl;
+      else gestor.texto_escogido().contenido();
     }
     else if(op == "frases"){
      iss >> op;
-     if(not textos.esta_escogido()) cout << "ERROR" << endl;
+     if(not gestor.esta_escogido()) cout << "error" << endl;
      else if(int(op[0]) >= 0 and int(op[0]) <= 9){ //frases x y
         int x = int(op); iss >> op; //Extraemos y
 	int y = int(op);
-	textos.texto_escogido().frases_xy(x, y);
+	gestor.texto_escogido().frases_xy(x, y, false);
      }
      else if(op[0] == '"'){ //frases secuencia
 	list<string> l; list<string>::iterator it = l.begin();
@@ -141,22 +131,22 @@ int main(){
 	  string p(op);
 	  l.insert(it, p);
 	}
-	textos.texto_escogido().frases_seq(l);
+	gestor.texto_escogido().frases_seq(l);
      }
      else{ //frases expressio
      	iss.ignore('?');
-	textos.texto_escogido().frases_exp(iss);
+	gestor.texto_escogido().frases_exp(iss);
      }
     }
     else if(op == "nombre"){
       iss >> op; //Quitamos el "de" 
       iss >> op; //Guardamos el paraules o frases
-      if(not textos.esta_escogido()) cout << "ERROR" << endl;
-      else if(op == "paraules") cout << textos.texto_escogido().numero_palabras() << endl; //nombre de paraules ?
-      else cout << textos.texto_escogido().numero_frases() << endl; //nombre de frases ?
+      if(not gestor.esta_escogido()) cout << "ERROR" << endl;
+      else if(op == "paraules") cout << gestor.texto_escogido().numero_palabras() << endl; //nombre de paraules ?
+      else cout << gestor.texto_escogido().numero_frases() << endl; //nombre de frases ?
     }
     else if(op == "taula"){ //Taula de frequencies
-      textos.texto_escogido().tabla_frecuencias();
+      gestor.texto_escogido().tabla_frecuencias();
     }
     getline(cin, linea); //Entrada de un nuevo comando
   }
