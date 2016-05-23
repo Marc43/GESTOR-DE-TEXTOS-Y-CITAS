@@ -73,6 +73,12 @@ class Gestor {
          */
         void todos_autores();
 
+        /** @brief Consultora de un autor almacenado
+         *  \pre cierto
+         *  \post imprime por pantalla dicho autor
+         */
+        void info_autor(string nombre_autor);
+
         /* Modificadoras */
 
         /** @brief Modificadora que anade un autor a los autores
@@ -104,7 +110,7 @@ class Gestor {
          * palabras de la lista, y <b>t</b> es dicho texto, devuelve falso en
          * caso contrario
          */
-        bool escoger_texto(const list<string>& p, Texto& t);
+        bool escoger_texto(const list<string>& p);
         
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
@@ -126,6 +132,14 @@ class Gestor {
          * devuelve el texto escogido en el gestor
          */
          Texto texto_escogido();
+
+        /** @brief Consultora sobre si existe un texto
+         *  \pre cierto
+         *  \post si existe un texto con nombre <b>nombre_texto</b>
+         *  y nombre del autor <b>nombre_autor</b>
+         *  devuelve True, en caso contrario, False
+         */
+         bool existe_texto(string nombre_texto, string nombre_autor);
 
         /** @brief Consultora delas citas del p.i.
          * \pre cierto
