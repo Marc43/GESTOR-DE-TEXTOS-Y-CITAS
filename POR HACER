@@ -1,0 +1,9 @@
+FALTA POR HACER:
+-> Tots autors
+-> Constructor texto
+-> Funciones auxiliares frases_expresion (interseccion, fusion, frases palabra)
+-> añadir texto autor no altera numero de palabras, textos, frases del autor
+-> añadir texto gestor
+-> cambiar escribir frase, añadir numero de frase a frase, cambiar todas las consultoras que escriban frase para que ya no lo hagan (lo
+  debe hacer la propia frase)
+-> ¿?
