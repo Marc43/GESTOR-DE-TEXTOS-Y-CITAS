@@ -43,7 +43,7 @@ string Texto::titulo_texto(){
 
 void Texto::citas_texto(){
   for(map<string, Cita>::iterator it = citas.begin(); it != citas.end(); ++it){
-    cout << it->first << endl;
+    cout << (*it)->first << endl;
     int x; int y; (*it)->second.num_frases(x, y);
     vector<Frase> contenido = it->second.contenido();
     for(int i = 0; i < contenido.size(); ++i){
@@ -53,55 +53,76 @@ void Texto::citas_texto(){
   }
 }
 
-int Texto::numero_frases(){
+bool Texto::existe_cita(int x, int y){
+  bool match = false;
+  map<string, Cita>::iterator it = citas.begin();
+  while(not match and it != citas.end()){
+    match = x == it->second.frase_inicial() and y == it->second.frase_final();
+  }
+  
+  return match;
+}
+
+int Texto::numero_frases_texto(){
   return num_frases;
 }
 
-int Texto::numero_palabras(){
+int Texto::numero_palabras_texto(){
   return num_palabras;
 }
 
-void Texto::contenido(){
+void Texto::contenido_texto(){
   list<Frase>::iterator it = contenido.begin(); int n = 1;
   while(it != contenido.end()){
     cout << n << ' ';
     (*it).escribir_frase();
+    cout << endl;
     ++it; ++n;
   }
 }
 
-void Texto::tabla_frecuencias(){
+void Texto::tabla_frecuencias_texto(){
   
 }
 
 Cita Texto::frases_xy(int x, int y, bool cita, Citas& citas, Textos& textos, Autores& autores){
-  if(x > y) cout << "ERROR" << endl;
+  if(x > y or y > num_frases) cout << "error" << endl;
   else{
     list<Frase>::iterator it = contenido.begin();
-    while(it != contenido.end() and x >= y){
+    while(it != contenido.end() and x <= y){
       cout << x << ' ';
       (*it).escribir_frase();
+      cout << endl;
       ++x; ++it;
     }
   } //Falta el caso de las citas
 }
 
-void Texto::frases_seq(const list<string>& seq){ //metodo de frase para comparar frases?
+void Texto::frases_exp(istringstream iss){
+  
+}
+
+void Texto::frases_seq(const list<string>& seq){
   list<Frase>::iterator frase_act = contenido.begin();
   while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
     list<string> frase = (*frase_act).contenido_frase();
     list<string>::iterator pf = frase.begin();
     list<string>::iterator pseq = seq.begin();
     bool seq = true;
-    while(pf != frase.end()){
-    	if((*pf).son_iguales(*pseq)){
-    		list<string>::iterator aux_pf = pf; ++aux_pf;
-    		list<string>::iterator aux_pseq = pseq; ++aux_pseq;
-    		while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
-    	  		if(not (*aux_pf).son_iguales(*aux_pseq)) seq = false;
-    	  		++aux_pf; ++aux_pseq;
-    		}
-      		if(seq and aux_pseq == seq.end()) (*pf).escribir_frase();
+    bool match = false;
+    while(not match and pf != frase.end()){
+    	if(*pf == *pseq){
+	  list<string>::iterator aux_pf = pf; ++aux_pf;
+	  list<string>::iterator aux_pseq = pseq; ++aux_pseq;
+	  while(seq and aux_pf != frase.end() and aux_pseq != seq.end()){
+    	  	if(*aux_pf != *aux_pseq) seq = false;
+    	  	++aux_pf; ++aux_pseq;
+	  }
+	  if(seq and aux_pseq == seq.end()){
+	     (*pf).escribir_frase();
+	     cout << endl;
+	     match = true;
+	  }
     	}
     	++pf; //Comprueba la secuencia para la siguiente palabra
     }
@@ -109,97 +130,34 @@ void Texto::frases_seq(const list<string>& seq){ //metodo de frase para comparar
   }
 }
   
-void Texto::anadir_cita(const Cita& c){
-  
+void Texto::anadir_cita_texto(const Cita& c, string identificador){
+  map<string, Cita>::iterator it = it.
+  citas [identificador] = c;
+}
+
+void Texto::eliminar_cita_texto(string identificador){
+  map<string, Cita>::iterator it = citas.find(identificador);
+  if(it != citas.end()) it = citas.erase(it);
 }
 
 void sustituir_palabra(const string &p1, const string &p2){
   list<Frase>::iterator it1 = contenido.begin();
-  while(it1 != contenido.end()){
+  while(it1 != contenido.end()){ //Iteramos sobre las frases
     list<string> p = (*it1).contenido_frase();
     list<string>::iterator it2 = p.begin();
-    while(it2 != p.end()){
-      if((*it2).son_iguales(p1)) *it2 = p2;
+    while(it2 != p.end()){ //Iteramos sobre el contenido de dicha frase
+      string signo; signo = (*it2) [(*it2).length() - 1];
+      bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z'));
+      if(es_signo){
+	string aux = *it2; aux.pop_back();
+	if(aux == p1){
+	  aux = p2; aux += signo;
+	  *it2 = aux;
+	}
+      }
+      else if(*it2 == p1) *it2 = p2;
       ++it2;
     }
     ++it1;
   }
 }
-  
-void Texto::frases_exp(istringstream iss){
-
-}
-
-list<Frase> Texto::eval_exp(istringstream &iss, stack<bool_exp> &s){
-  string a_tratar;
-  iss >> a_tratar;
-  if(a_tratar.empty()){
-    if(s.top().op == '&'){
-      return interseccion(s.top().i, s.top().d);
-    }
-    else return fusion(s.top().i, s.top().d);
-  }
-  else{
-    if(a_tratar[0] == '('){
-      bool_exp aux; s.stack(aux);
-      a_tratar = a_tratar.substr(1, a_tratar.size()-1);
-      string aux2 = iss.str();
-      a_tratar += aux2;
-      istringstream aux3(a_tratar);
-      iss = aux3;
-      return eval_exp(iss, s);
-    }
-    else if(a_tratar[0] == '{'){
-      if(a_tratar[a_tratar.size()-1] == '}'){
-        a_tratar = a_tratar.substr(1, a_tratar.size() -2);
-        if(s.top().op.empty()){
-          bool_exp aux;
-          list<Frase> i = frases_palabra(a_tratar);
-          string op; iss >> op;
-          aux.i = i; aux.op = op;
-          s.top() = aux;
-          return eval_exp(iss, s);
-        }
-        else{
-          if(s.top().op == '&'){
-            list<Frase> aux = s.top().i;
-            s.pop();
-            s.top().i = interseccion(aux, frases_palabra(a_tratar));
-            return eval_exp(iss, s);
-          }
-          else{
-            list<Frase> aux = s.top.i;
-            s.pop();
-            s.top().i = fusion(aux, frases_palabra(a_tratar));
-            return eval_exp(iss, s);
-          }
-        }
-      }
-      else{
-        bool_exp aux;
-        aux.i = frases_palabra(a_tratar.substr(1, a_tratar.size() - 1));
-        aux.op = '&';
-        s.stack(aux);
-        return eval_exp(iss, s);
-      }
-    }
-    else{
-      if(a_tratar == '&'){
-        s.top().op = a_tratar;
-        return eval_exp(iss, s);
-      }
-      else if(a_tratar == '|'){
-        s.top().op = a_tratar;
-        return eval_exp(iss, s);
-      }
-      else{
-        list<Frase> i = interseccion(s.top().i, a_tratar.substr(0, a_tratar.size() - 1));
-        s.pop();
-        s.top().i = i;
-        return eval_exp(iss, s);
-      }
-    }
-  }
-}
-
-

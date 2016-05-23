@@ -8,7 +8,6 @@
 #include <sstream>
 #include <set>
 #include <map>
-#include <stack>
 #include "Frase.hh"
 #include "Cita.hh"
 
@@ -31,12 +30,7 @@
  */
 
 class Texto {
-
-    struct bool_exp{
-        list<Frase> i, d;
-        string op;
-    };
-
+  
   private:
     
     //Atributos de la clase Texto
@@ -51,11 +45,6 @@ class Texto {
     map<int, vector<set<string>>> tabla_frecuencias;
     map<string, int> frecuencia_palabras;
     int frecuencia_maxima;
-
-    //funciones auxiliares
-    list<Frase> frases_palabra(string palabra);
-    list<Frase> interseccion(list<Frase> a, list<Frase> b);
-    list<Frase> fusion(list<Frase> a, list<Frase> b);
     
   public:
     
@@ -89,7 +78,7 @@ class Texto {
      * 	\post muestra por pantalla las citas del texto, acompanadas por su referencias
      */
     void citas_texto();
-
+    
     /** @brief Consultora sobre si una cita existe en el p.i.
      *  cierto
      *  devuelve cierto si la cita esta almacenada en el p.i., falso en caso contrario
@@ -100,13 +89,13 @@ class Texto {
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de frases del texto
      */
-    int numero_frases();
+    int numero_frases_texto();
     
     /**	@brief Consultora del numero de palabras del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de palabras del texto
      */
-    int numero_palabras();
+    int numero_palabras_texto();
     
     /**	@brief Consultora del contenido del p.i.
      * 	\pre cierto
@@ -128,14 +117,14 @@ class Texto {
      * 	entre las frases <b>x</b> e <b>y</b>, ambas incluidas, y devuelve una cita vacia.
      * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
      */
-    void frases_xy(int x, int y);
+    Cita frases_xy(int x, int y, bool cita);
     
     /**	@brief Consultora de un conjunto de frases dada una expresion logica
      * 	\pre cierto
      * 	\post muestra por pantalla las frases del texto escogido
      *  que cumplen las expresion logica dada
      */
-    void frases_exp(istringstream &iss, stack<bool_exp> &s); //Diferente de frases "<paraula1> ... <paraulaN>" ???
+    void frases_exp(istringstream iss); //Diferente de frases "<paraula1> ... <paraulaN>" ???
     
     /** @brief Consultora de frases dada una expresion sequencial
      *  \pre cierto
@@ -150,20 +139,19 @@ class Texto {
      * 	\pre cierto
      * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
      */
-    void anadir_cita(const Cita &c);
+    void anadir_cita_texto(const Cita &c);
 
     /**	@brief Modificadora que elimina una cita del p.i.
      * 	\pre existe una cita cuyo identificador es <b>identificador</b>
      * 	\post dicha cita deja de pertenecer a las citas del texto.
      */
-    void eliminar_cita(string identificador);
+    void eliminar_cita_texto(string identificador);
 
     /**	@brief Modificadora que sustituye una palabra por otra del p.i.
      * 	 \pre <b>p1</b> aparece en el texto
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
      */
     void sustituir_palabra(const string &p1, const string &p2);
-
-    list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);
+    
 };
 #endif
