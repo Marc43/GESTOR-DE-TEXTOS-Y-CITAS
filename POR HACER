@@ -6,4 +6,5 @@ FALTA POR HACER:
 -> añadir texto gestor
 -> cambiar escribir frase, añadir numero de frase a frase, cambiar todas las consultoras que escriban frase para que ya no lo hagan (lo
   debe hacer la propia frase)
--> ¿?
+-> excepciones de sustituir palabra, sustituir palabra ha de alterar la tabla de frecuencias
+->¿?
