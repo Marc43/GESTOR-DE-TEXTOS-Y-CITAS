@@ -25,7 +25,8 @@ void Gestor::anadir_autor_gestor(Autor autor) {
     autores[autor.nombre_autor()] = autor;
 }
 
-void Gestor::anadir_texto_gestor(string nombre, string titulo){//añadir al autor y tabla frecuencias
+
+void Gestor::anadir_texto_gestor(string nombre, string titulo){
     string entrada, pa; getline(cin, entrada);
     istringstream iss(entrada);
     bool ini_frase = true;
@@ -34,13 +35,20 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){//añadir al auto
     list<string> f;
     list<string>::iterator it2 = f.begin();
     int num_p, num__f; num_p = num_f = 0;
+    map<string, int> frecuencia_palabras;
     while(iss >> pa){
         bool es_signo = not ((pa [0] >= 'a' and pa [0] <= 'z') or (pa [0] >= 'A' and pa [0] <= 'Z')) and pa.size() == 1;
-        if(not ini_frase and es_signo){
+        if(not es_signo){ //Ajustamos las frecuencias de las palabras
+            map<string, int>::iterator frec = frecuencia_palabras.find(pa);
+            if(frec != frecuencia_palabras.end()) ++frecuencia_palabras [pa];
+            else frecuencia_palabras [pa] = 1;
+        }
+    if(not ini_frase and es_signo){
             list<string>::iterator aux = it2; --aux;
             *aux += pa; //Le concatenamos el signo
             if(pa [0] == '.' or pa [0] == '?' or pa [0] == '!') {
-                it1 = contenido.insert(it1, f); ++num_f; //Si es un signo de final de frase la insertamos
+        Frase frase (f, num_f + 1);
+                it1 = contenido.insert(it1, frase); ++num_f; //Si es un signo de final de frase la insertamos
                 f.clear(); it2 = f.begin();
                 ini_frase = true; //Empezamos nueva frase
             }
@@ -48,7 +56,8 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){//añadir al auto
         else if(ini_frase and es_signo){
             //Hemos encontrado una frase vacia, y volvemos a empezar otra nueva
             it2 = f.insert(it2, pa);
-            it1 = contenido.insert(it1, f); ++num_f; //Es una frase (vacia) pero no una palabra.
+        Frase frase (f, num_f + 1);
+            it1 = contenido.insert(it1, frase); ++num_f; //Es una frase (vacia) pero no una palabra.
             f.clear(); it2 = f.begin();
             ini_frase = true; //Empezamos nueva frase
         }
@@ -57,8 +66,13 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){//añadir al auto
             ini_frase = false;
         }
     }
-    Texto t (nombre, titulo, contenido); //Pasar num_f y num_p ???
-    autores [nombre].anadir_texto_autor(t); //O pasarlos aqui
+    Texto t (nombre, titulo, contenido, num_f, num_p, frecuencia_palabras);
+    map<string, Autor>::iterator aut = autores.find(nombre);
+    if(aut != autores.end()) autores [nombre].anadir_texto_autor(t);
+    else{
+      Autor autor (nombre); autor.anadir_texto_autor(t);
+      autores [nombre] = autor;
+    }
 }
 
 void Gestor::eliminar_texto_gestor(){
@@ -152,16 +166,16 @@ void Gestor::anadir_cita_gestor(int x, int y){
         list<Frase> l = texto_escogido->second.contenido_texto();
         vector<Frase> v(y - x + 1);
         list<Frase>::iterator it = l.begin();
-        for(int i = 0; i < x; ++i){
-            ++it;
+            for(int i = 0; i < x; ++i){
+                ++it;
         }
         for(int i = 0; i < y-x+1; ++i){
             v[i] = *it;
             ++it;
         }
         Cita c(v, texto_escogido->second.titulo_texto(), texto_escogido->second.autor_texto());
-        map<string, map<int, Cita>>::iterator it = this->citas.find(id);
-        if(it != this->id.end()){
+        map<string, map<int, Cita>>::iterator it = citas.find(id);
+        if(it != citas.end()){
             map<int, Cita>::iterator it2 = it->second.end(); --it2;
             num = it2->first + 1;
         }
@@ -169,16 +183,35 @@ void Gestor::anadir_cita_gestor(int x, int y){
             num = 1;
         }
         citas[id][num] = c;
-        texto_escogido->second.anadir_cita(c);
-        autores[texto_escogido->second.autor_texto()].anadir_cita(c);
+        texto_escogido->second.anadir_cita(c, id, num);
+        autores[texto_escogido->second.autor_texto()].anadir_cita(c, id, num);
     }
     else cout << "error" << endl;
 }
 
-void eliminar_cita_gestor(string id){
+void Gestor::eliminar_cita_gestor(string id){
     int i = 0;
     while(id[i] >= 'A' and id[i] <= 'Z'){
         ++i;
     }
-    //falta
+    int num = int(id.substr(i, id.size() - i));
+    string ini = id.substr(0, i);
+    autores[citas[ini][num].autor_cita()].eliminar_cita_autor(ini, num);
+    textos[citas[ini][num].titulo_texto_cita()].eliminar_cita_texto(ini, num);
+    citas[ini].erase(num);
+    if(citas[ini].empty()) citas.erase(ini);
+}
+
+void Gestor::citas_autor(string autor){
+    autores[autor].citas_autor();
+}
+
+void Gestor::info_cita(string id){
+    int i = 0;
+    while(id[i] >= 'A' and id[i] <= 'Z'){
+        ++i;
+    }
+    int num = int(id.substr(i, id.size() - i));
+    string ini = id.substr(0, i);
+    citas[ini][num].info();
 }
