@@ -12,3 +12,4 @@ FALTA POR HACER:
 -> Solucionar orden citas
 -> Añadir atributo de numero de frase
 -> Modificar el anadir texto del gestor, para generar la tabla de frecuencia y el numero de cada frase
+-> Al añadir un texto al autor actualizar su numero de frases y numero de palabras (tiene que ser especialmente rapido)
