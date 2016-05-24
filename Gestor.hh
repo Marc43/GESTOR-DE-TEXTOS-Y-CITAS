@@ -9,7 +9,7 @@
 
 
 /* Anadido el atributo num_textos a la clase Autor, modificada el metodo textos_autor(), ahora solo imprime
- * anadido el metodo, numero_textos_autor()                                                                 */
+ * anadido el metodo, numero_textos_autor() */
 
 
 
@@ -38,16 +38,15 @@ class Gestor {
         bool escogido;
 
         //Citas
-        map<string, Cita> citas;
-        map<string, int> id; //Contiene el numero de cita mas grande con tal identificador
+        map<string, map<int, Cita>> citas;
 
-        /*
+        
         /**@brief Operacion auxiliar de strings
          * \pre cierto
          * \post Todas las minusculas de la cadena
          * son ahora mayusculas
-         *
-         void a_mayus(string& s); */
+         */
+         void a_mayus(string& s);
 
     public:
 
@@ -154,15 +153,33 @@ class Gestor {
          */
         void anadir_cita_gestor(const Cita& cita);
 
-        /** @brief modificadora que elimina una cita dado su identificador
+        /** @brief Modificadora que elimina una cita dado su identificador
          *  \pre existe una cita con identificador = <b>id</b>
          *  \post dicha cita ya no pertence al p.i.
          */
         void eliminar_cita(string id);
-
+        
+        /** @brief Consultora de las citas de un autor
+        *   \pre existe un autor con nombre <b>autor</b>
+        *   \post imprime por pantalla todas las referencias,
+        *   el contenido y el titulo del texto del cual son las citas
+        */
         void citas_autor(string autor);
-
+        
+        /** @brief Consultora de una cita por su identificador
+        *   \pre existe una cita con identificador <b>id</b>
+        *   \post imprime por pantalla el autor, el titulo del 
+        *   texto al cual cita, la frase inicial y final y 
+        *   el contenido de la cita.
+        */
         void info_cita(string id);
+        
+        /** @brief Consultora de la existencia de una cita
+        *   \pre cierto
+        *   \devuelve true, si existe una cita sobre el mismo
+        *   texto del mismo autor y tiene el mismo rango x-y
+        */
+        bool existe_cita(const Cita& c);
 };
 
 #endif //GESTOR_HH
