@@ -64,7 +64,7 @@ class Texto {
      * 	\pre cierto
      * 	\post crea un objeto de la clase Texto
      */
-    Texto(string autor, string titulo, list<Frase> contenido);
+    Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras);
     
     /* Consultoras */
     
