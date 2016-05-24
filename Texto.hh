@@ -117,7 +117,10 @@ class Texto {
      * 	entre las frases <b>x</b> e <b>y</b>, ambas incluidas, y devuelve una cita vacia.
      * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
      */
-    Cita frases_xy(int x, int y, bool cita);
+    void frases_xy(int x, int y);
+    
+    /** @brief */
+    list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);
     
     /**	@brief Consultora de un conjunto de frases dada una expresion logica
      * 	\pre cierto
