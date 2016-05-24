@@ -5,16 +5,15 @@ Autor::Autor(string nombre){
 }
 
 void Autor::citas_autor(){
-  map<string, cita>::iterator it = citas.begin();
-  while(it != citas.end()){
+  for(map<string, Cita>::iterator it = citas.begin(); it != citas.end(); ++it){
     cout << it->first << endl;
-    int i = 0;
-    while(i < it->second.contenido().size()){
-      if(i != 0) cout << " ";
-      it->second.contenido()[i].escribir_frase();
-    } cout << endl;
-    cout << it->second.titulo(); << endl;
+    it->second.escribir_cita();
+    cout << it->second.titulo_texto_cita();
   }
+}
+
+string Autor::nombre_autor(){
+  return nombre;
 }
 
 void Autor::textos_autor(){
@@ -26,21 +25,33 @@ void Autor::textos_autor(){
   } cout << endl;
 }
 
-void Autor::anadir_texto(Texto texto){ //excepcion tratada main
-  list<Texto>::iterator it = --textos.end();
-  textos.insert(it, texto);
+int Autor::numero_palabras_autor(){
+  return num_palabras;
 }
 
-void Autor::eliminar_text(string titulo){
+int Autor::numero_frases_autor(){
+  return num_frases;
+}
+
+int Autor::numero_textos_autor(){
+  return num_textos;
+}
+
+void Autor::anadir_texto_autor(Texto texto){ //actualizar las palabras, frases, textos del autor
+  list<Texto>::iterator it = textos.end();
+  it = textos.insert(it, texto);
+}
+
+void Autor::eliminar_text_autor(string titulo){
   map<string, Texto>::iterator it = textos.find(titulo);
   it = textos.erase(it);
 }
 
-void Autor::anadir_cita(Cita cita){
-  citas[cita.identificador()] = cita;
+void Autor::anadir_cita_autor(const Cita& c, string ini, int num){
+  citas[ini][num] = c;
 }
 
-void Autor::eliminar_cita(string identificador){ //excepcion trata main
-  map<string, Cita>::iterator it = citas.find(identificador);
-  it = citas.erase(it);
+void Autor::eliminar_cita_autor(string ini, int num){
+  citas[ini].erase(num);
+  if(citas[ini].empty()) citas.erase(ini);
 }

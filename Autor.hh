@@ -26,9 +26,11 @@ class Autor {
     //Atributos de la clase Autor
     
     map<string, Texto> textos;
-    map<string, Cita> citas;
+    map<string, map<int, Cita>> citas;
     string nombre;
     int num_textos;
+    int num_palabras;
+    int num_frases;
     
   public:
     
@@ -49,6 +51,12 @@ class Autor {
      * 	\post muestra por pantalla las citas del autor, ordenadas por referencia.
      */
     void citas_autor();
+
+    /** @brief Consultora del nombre del autor
+     *  \pre ciert
+     *  \post devuelve el nombre del autor
+     */
+    string nombre_autor();
     
     /** @brief Consultora de los textos del p.i.
      * 	\pre cierto
@@ -56,6 +64,18 @@ class Autor {
      * 	alfabeticamente
      */
     void textos_autor();
+
+    /** @brief Consultora del numero de palabras del p.i
+     *  \pre cierto
+     *  \post devuelve el atributo num_palabras del p.i
+     */
+    int numero_palabras_autor();
+
+    /** @brief Consultora del numero de frases del p.i
+     *  \pre cierto
+     *  \post devuelve el atributo num_frases del p.i
+     */
+    int numero_frases_autor();
 
     /** @brief Consultora del numero de textos del p.i
      *  \pre cierto
@@ -69,31 +89,25 @@ class Autor {
      * 	\pre texto es un texto no vacio
      * 	\post texto pertenece a los textos del autor
      */
-    void anadir_texto(Texto texto);
+    void anadir_texto_autor(Texto texto);
     
     /** @brief Modificadora que elimina un texto del p.i.
      * 	\pre existe un texto del autor tal que su titulo es <b>titulo</b>
      * 	\post en la lista de textos del autor no existe dicho texto
      */
-    void eliminar_texto(string titulo);
+    void eliminar_texto_autor(string titulo);
     
     /** @brief Modificadora que anade una cita al p.i.
      * 	\pre <b>cita</b> es una cita no vacia
      * 	\post <b>cita</b> cita pertenece a las citas del autor
      */
-    void anadir_cita(Cita cita);
+    void anadir_cita_autor(Cita cita, string ini, int num);
     
     /** @brief Modificadora que elimina una cita de las citas del autor
      * 	\pre existe una cita del autor tal que su referencia es <b>identificador</b>
      * \post dicha cita ya no pertenece a las citas del autor 
      */
-    void eliminar_cita(string identificador);
-
-    /** @brief Consultora del nombre del autor
-     *  \pre ciert
-     *  \post devuelve el nombre del autor
-     */
-    string nombre_autor();
+    void eliminar_cita_autor(string id);
     
 };
 #endif

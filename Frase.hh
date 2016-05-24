@@ -26,6 +26,7 @@ class Frase {
     //Atributos clase Frase
     list<string> frase;
     int num_palabras; // num_palabras == frase.size();
+    int num_frase;
 
   public:
     //Metodos clase Frase
@@ -36,7 +37,7 @@ class Frase {
      * \pre cierto
      * \post crea un objeto de la clase Frase
      */
-    Frase(list<string>& frase);
+    Frase(list<string>& frase, int num_frase);
     
     /* Consultora */
     

@@ -57,31 +57,30 @@ class Cita {
      *  \pre cierto
      *  \post devuelve el titulo del texto asociado al p.i.
      */
-     string titulo_cita();
+     string titulo_texto_cita();
      
      /** @brief Devuelve el autor de la cita
       *  \pre cierto
       *  \post devuelve el autor asociado al p.i.
       */
       string autor_cita();
-      
-      /** @brief Devuelve el contenido de la cita
-       *  \pre cierto
-       *  \post devuelve el contenido del p.i.
-       */
-       vector<Frase> contenido_cita();
-       
-       /** @brief Devuelve el identificador de la cita
-       *  \pre cierto
-       *  \post devuelve el identificador del p.i.
-       */
-       string identificador();
 
-        /** @brief Consultora que escribe la cita por el canal de salida
-         *  \pre cierto
-         *  \post la cita ha sido escrita por el canal de salida
-         */
-        void escribir_cita();
-       
+    /** @brief Consultora que escribe la cita por el canal de salida
+    *  \pre cierto
+    *  \post la cita ha sido escrita por el canal de salida
+    */
+    void escribir_cita();
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
+    int frase_inicial();
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
+    int frase_final();
 };
 #endif

@@ -1,6 +1,6 @@
 #include "Cita.hh"
 
-Cita::Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int x, int y, string identificador){
+Cita::Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int x, int y){
   this->contenido = contenido;
   this->titulo_texto = titulo_texto;
   this->autor_texto = autor_texto;
@@ -11,9 +11,7 @@ Cita::Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int
 void Cita::info(){
   cout << autor_texto << ' "' << titulo_texto << '"' << endl;
   cout << x << "-" << y << endl;
-  for(int i = 0; i < contenido.size(); ++i){
-    cout << x + i << " "; contenido[i].escribir_frase();
-  }
+  escribir_cita();
 }
 
 string Cita::titulo(){
@@ -24,6 +22,16 @@ string Cita::autor(){
   return autor_texto;
 }
 
-vector<Frase> Cita::contenido(){
-  return contenido;
+void Cita::escribir_cita(){
+  for(int i = 0; i < contenido.size(); ++i){
+    cout << contenido[i].escribir_frase(); cout << endl;
+  }
+}
+
+int frase_inicial(){
+  return x;
+}
+
+int frase_final(){
+  return y;
 }
