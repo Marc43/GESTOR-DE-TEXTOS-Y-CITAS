@@ -119,7 +119,11 @@ class Texto {
      */
     void frases_xy(int x, int y);
     
-    /** @brief */
+    /** @brief Consultora auxiliar de frases_exp
+     * \pre cierto
+     * \post devuelve las frases que cumplen
+     * la expresion booleana entrada por iss.
+     */
     list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);
     
     /**	@brief Consultora de un conjunto de frases dada una expresion logica
