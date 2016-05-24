@@ -1,15 +1,15 @@
 FALTA POR HACER:
--> Tots autors
+-> Tots autors ? (Done)
 -> Constructor texto
 -> Funciones auxiliares frases_expresion (interseccion, fusion, frases palabra)
 -> añadir texto autor no altera numero de palabras, textos, frases del autor
 -> añadir texto gestor (Done 24/05/2016)
 -> cambiar escribir frase, añadir numero de frase a frase, cambiar todas las consultoras que escriban frase para que ya no lo hagan (lo
-  debe hacer la propia frase)
+  debe hacer la propia frase) (Done)
 -> excepciones de sustituir palabra, sustituir palabra ha de alterar la tabla de frecuencias (Done 24/05/2016)
 ->¿?
 -> opcional: triar text con las frecuencias de las palabras 
--> Solucionar orden citas
--> Añadir atributo de numero de frase
+-> Solucionar orden citas (Done)
+-> Añadir atributo de numero de frase (Done)
 -> Modificar el anadir texto del gestor, para generar la tabla de frecuencia y el numero de cada frase
--> Al añadir un texto al autor actualizar su numero de frases y numero de palabras (tiene que ser especialmente rapido)
+
