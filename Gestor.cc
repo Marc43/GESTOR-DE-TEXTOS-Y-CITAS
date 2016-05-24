@@ -139,7 +139,7 @@ void Gestor::todas_citas(){//daños colaterales
 }
 
 void Gestor::anadir_cita_gestor(int x, int y){
-    if(x <= y and y <= texto_escogido->second.numero_frases() and not texto_escogido->second.existe_cita(x, y)){
+    if(x <= y and not (x <= 0 or y <= 0) and y <= texto_escogido->second.numero_frases() and not texto_escogido->second.existe_cita(x, y)){
         istringstream iss(texto_escogido->second.autor_texto());
         string a_tratar, id; id = ""; //id es nula
         while(iss >> a_tratar){
