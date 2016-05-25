@@ -21,3 +21,13 @@ void Frase::escribir_frase(){
     if(++it != frase.end()) cout << " ";
   }
 }
+
+bool Frase::existe_palabra_frase(string palabra){
+  match = false;
+  list<string>::iterator it = frase.begin();
+  while(it != frase.end() and not match){
+    if(*it == palabra) match = true;
+    ++it;
+  }
+  return match;
+}
