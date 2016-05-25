@@ -59,5 +59,10 @@ class Frase {
      */
     list<string> contenido_frase();
     
+    /** @brief Consultora sobre la existencia de una palabra en el pi
+     *  \pre cierto
+     *  \post devuelve cierto si la palabra esta en el pi, falso en caso contrario
+     */
+     bool existe_palabra_frase(string palabra);
 };
 #endif
