@@ -62,7 +62,13 @@ class Texto {
     
     /**	@brief Constructora de la clase Texto
      * 	\pre cierto
-     * 	\post crea un objeto de la clase Texto
+     * 	\post crea un objeto de la clase Texto vacio
+     */
+    Texto();
+    
+    /**	@brief Constructora de la clase Texto
+     * 	\pre cierto
+     * 	\post crea un objeto de la clase Texto con los atributos correspondientes
      */
     Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras);
     
