@@ -41,7 +41,13 @@ class Cita {
     
     /**	@brief Constructora de la clase Cita 
      * 	\pre cierto
-     * 	\post crea un objeto de la clase Cita
+     * 	\post crea un objeto de la clase Cita vacio
+     */
+    Cita();
+    
+    /**	@brief Constructora de la clase Cita 
+     * 	\pre cierto
+     * 	\post crea un objeto de la clase Cita con los atributos correspondientes
      */
     Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int x, int y);
     
