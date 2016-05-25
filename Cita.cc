@@ -1,5 +1,9 @@
 #include "Cita.hh"
 
+Cita::Cita(){
+  
+}
+
 Cita::Cita(vector<Frase> contenido, string titulo_texto, string autor_texto, int x, int y){
   this->contenido = contenido;
   this->titulo_texto = titulo_texto;
