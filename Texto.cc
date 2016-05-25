@@ -103,7 +103,8 @@ void Texto::frases_seq(list<string> &seq){ //mirar
           ++aux_pf; ++aux_pseq;
         }
         if(es_seq and aux_pseq == seq.end()){
-          (*pf).escribir_frase();
+          Frase 
+          (*frase_act).escribir_frase();
           match = true;
         }
       }
