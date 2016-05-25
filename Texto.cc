@@ -1,7 +1,15 @@
 #include "Texto.hh"
 
 Texto::Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras){
-
+  this->autor = autor;
+  this->titulo = titulo;
+  this->contenido = contenido;
+  this->num_frases = num_f;
+  this->num_palabras = num_p;
+  this->frecuencia_palabras = frecuencia_palabras;
+  for(map<string, int>::iterator it = frecuencia_palabras.begin(); it != frecuencia_palabras.end(); ++it){
+    tabla_frecuencias[it->second][it->first.size()-1].insert(it->first);
+  }
 }
 
 string Texto::autor_texto(){
@@ -46,7 +54,13 @@ void Texto::contenido_texto(){
 }
 
 void Texto::tabla_frecuencias_texto(){
-
+  for(map<int, vector<set<string>>>::iterator it = tabla_frecuencias.begin(); it != tabla_frecuencias.end(); ++it){
+    for(int i = 0; i < it->second.size(); ++i){
+      for(set<string>::iterator it2 = it->second[i].begin(); it2 != it->second[i].end(); ++it2){
+	cout << *it2 << " " << it->first << endl;
+      }
+    }
+  }
 }
 
 void Texto::frases_xy(int x, int y){
@@ -61,7 +75,10 @@ void Texto::frases_xy(int x, int y){
 }
 
 void Texto::frases_exp(istringstream iss){
-
+  list<Frase> f_e = eval_exp(iss);
+  for(list<Frase>::iterator it = f_e.begin(); it != f_e.end(); ++it){
+    (*it).escribir_frase;
+  }
 }
 
 void Texto::frases_seq(const list<string>& seq){
@@ -210,14 +227,19 @@ list<Frase> Texto::eval_exp(istringstream &iss, stack<bool_exp> &s){
         s.top().op = a_tratar;
         return eval_exp(iss, s);
       }
-      else{
+      else if(a_tratar[a_tratar.size()-1] == '}'){
         list<Frase> i = interseccion(s.top().i, a_tratar.substr(0, a_tratar.size() - 1));
         s.pop();
         s.top().i = i;
         return eval_exp(iss, s);
       }
+      else{
+	bool_exp aux;
+        aux.i = frases_palabra(a_tratar.substr(1, a_tratar.size() - 1));
+        aux.op = '&';
+        s.stack(aux);
+        return eval_exp(iss, s);
+      }
     }
   }
 }
-
-
