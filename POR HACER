@@ -13,3 +13,11 @@ FALTA POR HACER:
 -> Añadir atributo de numero de frase (Done)
 -> Modificar el anadir texto del gestor, para generar la tabla de frecuencia y el numero de cada frase
 
+
+->frases seq
+->añadir cita gestor (contenido del texto)
+->sustituir palabra (errores)
+->existe palabra texto
+->existe palabra frase
+->eval exp revisar
+->consturctoras por defecto
