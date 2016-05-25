@@ -1,5 +1,10 @@
 #include "Texto.hh"
 
+Texto::Texto(){
+  this->num_frases = 0;
+  this->num_palabras = 0;
+}
+
 Texto::Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras){
   this->autor = autor;
   this->titulo = titulo;
