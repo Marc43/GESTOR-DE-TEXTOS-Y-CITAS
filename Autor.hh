@@ -37,7 +37,13 @@ class Autor {
     //Metodos de la clase Autor
     
     /* Constructoras */
-    
+
+    /** @brief Constructora de la clase Autor
+     * 	\pre cierto
+     * 	\post crea un objeto de la clase Autor vacio
+     */
+    Autor();
+
     /** @brief Constructora de la clase Autor
      * 	\pre cierto
      * 	\post crea un objeto de la clase Autor, con <b>nombre</b> = nombre
@@ -82,6 +88,13 @@ class Autor {
      *  \post devuelve el atributo num_textos del p.i
      */
     int numero_textos_autor();
+
+    /** @brief Consultora de la existencia de un texto
+     *  \pre cierto
+     *  \post devuelve cierto si existe un texto
+     *  con nombre <b>titulo</b>, si no, false
+     */
+     bool existe_texto_autor(string titulo);
     
     /* Modificadoras */
     
@@ -107,7 +120,7 @@ class Autor {
      * 	\pre existe una cita del autor tal que su referencia es <b>identificador</b>
      * \post dicha cita ya no pertenece a las citas del autor 
      */
-    void eliminar_cita_autor(string id);
+    void eliminar_cita_autor(string ini, int num);
     
 };
 #endif

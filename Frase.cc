@@ -1,5 +1,9 @@
 #include "Frase.hh"
 
+Frase::Frase() {
+  num_palabras = 0;
+}
+
 Frase::Frase(list<string> &frase, int num_frase){
   this->frase = frase;
   num_palabras = frase.size();
@@ -23,7 +27,7 @@ void Frase::escribir_frase(){
 }
 
 bool Frase::existe_palabra_frase(string palabra){
-  match = false;
+  bool match = false;
   list<string>::iterator it = frase.begin();
   while(it != frase.end() and not match){
     if(*it == palabra) match = true;

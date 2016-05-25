@@ -8,6 +8,7 @@
 #include <string>
 #include <list>
 #include <iostream>
+
 using namespace std;
 
 /*
@@ -22,47 +23,53 @@ using namespace std;
  */
 
 class Frase {
-  private:
+private:
     //Atributos clase Frase
     list<string> frase;
     int num_palabras; // num_palabras == frase.size();
     int num_frase;
 
-  public:
+public:
     //Metodos clase Frase
-    
+
     /* Constructoras */
-    
+
     /** @brief Constructora de la clase Frase
      * \pre cierto
-     * \post crea un objeto de la clase Frase
+     * \post crea un objeto de la clase Frase vacio
+     */
+    Frase();
+
+    /** @brief Constructora de la clase Frase
+     * \pre cierto
+     * \post crea un objeto de la clase Frase con los atributos correspondientes
      */
     Frase(list<string>& frase, int num_frase);
-    
+
     /* Consultora */
-    
+
     /** @brief Consultora del contenido del p.i.
      * \pre cierto
      * \post muestra por pantalla el contenido del p.i.
      */
-    void escribir_frase(); 
-    
+    void escribir_frase();
+
     /** @brief Consultora de Frase en cuanto a su longitud
      * \pre cierto
      * \post retorna el numero de palabras de. p.i
      */
     int longitud_frase();
-    
+
     /** @brief Consultora que devuelve el conte4nido de la frase
      * 	\pre cierto
      * 	\post devuelve el contenido del p.i.
      */
     list<string> contenido_frase();
-    
+
     /** @brief Consultora sobre la existencia de una palabra en el pi
      *  \pre cierto
      *  \post devuelve cierto si la palabra esta en el pi, falso en caso contrario
      */
-     bool existe_palabra_frase(string palabra);
+    bool existe_palabra_frase(string palabra);
 };
 #endif

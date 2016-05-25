@@ -66,6 +66,13 @@ class Gestor {
          */
          bool existe_autor(string nombre);
 
+        /** @brief Consultora de existencia de un texto
+         *  \pre cierto
+         *  \post devuelve cierto si existe un texto de tal autor
+         *  con el mismo titulo, para <b>nombre</b> y <b>titulo</b>
+         */
+        bool existe_texto_autor(string nombre, string titulo);
+
         /** @brief Consultora de los autores almacenados en la estructura
          *  \pre cierto
          *  \post imprime por pantalla dichos autores
@@ -100,17 +107,27 @@ class Gestor {
          * de las palabras en este...
          * \pre cierto
          * \post devuelve cierto si se encuentra un texto en el que aparezcan las
-         * palabras de la lista, y <b>t</b> es dicho texto, devuelve falso en
-         * caso contrario
+         * palabras de la lista, y <b>t</b> es dicho texto, devuelve falso y
+         * un texto vacio en caso que no exista tal texto
          */
         bool escoger_texto(const list<string>& p, Texto& t);
 
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
          *  \post muestra por pantalla todos los textos del p.i
-         *
          */
         void todos_textos();
+
+        /** @brief Consultora que muestra todos los textos de un autr
+         *  \pre cierto
+         *  \post muestra todos los textos del autor con
+         *  nombre <b>nombre</b>
+         */
+        void textos_autor(string nombre);
+
+        void citas_autor(string nombre);
+
+        void citas_texto_escogido();
 
         /** @brief Consultora que retorna si hay un texto escogido
          *  \pre cierto
@@ -118,6 +135,12 @@ class Gestor {
          *  false en caso contrario
          */
         bool esta_escogido();
+
+        /** @brief Consultora que retorna el texto_escogido
+         *  \pre cierto
+         *  \post retorna el texto_escogido
+         */
+        Texto texto_escogido_gestor();
 
         /** @brief Consultora delas citas del p.i.
          * \pre cierto
@@ -129,15 +152,13 @@ class Gestor {
          *  \pre cierto
          *  \post <b>cita</b> ha sido anadida al p.i. con su correspondiente etiqueta
          */
-        void anadir_cita_gestor(const Cita& cita);
+        void anadir_cita_gestor(int x, int y);
 
         /** @brief modificadora que elimina una cita dado su identificador
          *  \pre existe una cita con identificador = <b>id</b>
          *  \post dicha cita ya no pertence al p.i.
          */
         void eliminar_cita_gestor(string id);
-
-        void citas_autor(string autor);
 
         void info_cita(string id);
 

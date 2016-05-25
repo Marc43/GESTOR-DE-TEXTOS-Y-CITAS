@@ -33,13 +33,13 @@ class Texto {
 
     struct bool_exp{
         list<Frase> i, d;
-        string op;
+        char op;
     };
 
-  private:
-    
+private:
+
     //Atributos de la clase Texto
-    
+
     string autor;
     string titulo;
     list<Frase> contenido;
@@ -50,43 +50,43 @@ class Texto {
     map<string, int> frecuencia_palabras;
 
     //funciones auxiliares
-    list<Frase> frases_palabra(string palabra);
+    /*list<Frase> frases_palabra(string palabra);
     list<Frase> interseccion(list<Frase> a, list<Frase> b);
-    list<Frase> fusion(list<Frase> a, list<Frase> b);
-    
-  public:
-    
+    list<Frase> fusion(list<Frase> a, list<Frase> b);*/
+
+public:
+
     //Metodos de la clase Texto
-    
+
     /* Constructoras */
-    
+
     /**	@brief Constructora de la clase Texto
      * 	\pre cierto
      * 	\post crea un objeto de la clase Texto vacio
      */
     Texto();
-    
+
     /**	@brief Constructora de la clase Texto
      * 	\pre cierto
      * 	\post crea un objeto de la clase Texto con los atributos correspondientes
      */
     Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras);
-    
+
     /* Consultoras */
-    
-    
+
+
     /**	@brief Consultora del autor del p.i.
      * 	\pre cierto
      * 	\post devuelve el autor del texto
      */
     string autor_texto();
-    
+
     /**	@brief Consultora del titulo del p.il
      * 	\pre cierto
      * 	\post devuelve el titulo del texto
      */
     string titulo_texto();
-    
+
     /**	@brief Consultora de las citas del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las citas del texto, acompanadas por su referencias
@@ -98,25 +98,25 @@ class Texto {
      *  devuelve cierto si la cita esta almacenada en el p.i., falso en caso contrario
      */
     bool existe_cita(int x, int y);
-    
+
     /**	@brief Consultora del numero de frases del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de frases del texto
      */
     int numero_frases();
-    
+
     /**	@brief Consultora del numero de palabras del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el numero de palabras del texto
      */
     int numero_palabras();
-    
+
     /**	@brief Consultora del contenido del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla el contenido (las frases) del texto.
      */
-    void contenido_texto();
-    
+    void mostrar_contenido_texto();
+
     /**	@brief Consultora de las frecuencias de cada palabra del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las palabras del texto ordenadas
@@ -124,7 +124,7 @@ class Texto {
      * 	por largada y alfabéticamente.
      */
     void tabla_frecuencias_texto();
-    
+
     /**	@brief Consultora de las frases entre la #x y la #y, ambas incluidas
      * 	\pre x > 0 e y < contenido.size()
      * 	\post si <b>cita</b> es falso, muestra por pantalla el contenido del p.i.
@@ -132,23 +132,23 @@ class Texto {
      * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
      */
     void frases_xy(int x, int y);
-    
+
     /**	@brief Consultora de un conjunto de frases dada una expresion logica
      * 	\pre cierto
      * 	\post muestra por pantalla las frases del texto escogido
      *  que cumplen las expresion logica dada
      */
     void frases_exp(istringstream &iss, stack<bool_exp> &s); //Diferente de frases "<paraula1> ... <paraulaN>" ???
-    
+
     /** @brief Consultora de frases dada una expresion sequencial
      *  \pre cierto
      *  \post muestra por pantalla las frases del texto escogido que 
      *  cumplen la sequencia de palabras dada
      */
-     void frases_seq(list<string>& seq);
-    
+    void frases_seq(list<string>& seq);
+
     /* Modificadoras */
-    
+
     /**	@brief Modificadora que anade una cita al p.i.
      * 	\pre cierto
      * 	\post <b>c</b> pertenece a las citas del texto, con su identificador.
@@ -171,6 +171,18 @@ class Texto {
      *  \pre
      *  \post
      */
-    list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);
+    /*list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);*/
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
+    map<string, int> frecuencia_palabras_texto();
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
+    list<Frase> contenido_texto();
 };
 #endif

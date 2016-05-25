@@ -38,13 +38,13 @@ class Cita {
     //Metodos de la clase Cita
     
     /* Constructoras */
-    
-    /**	@brief Constructora de la clase Cita 
+
+    /**	@brief Constructora de la clase Cita
      * 	\pre cierto
-     * 	\post crea un objeto de la clase Cita vacio
+     * 	\post crea un objeto de la clase Cita vacia
      */
     Cita();
-    
+
     /**	@brief Constructora de la clase Cita 
      * 	\pre cierto
      * 	\post crea un objeto de la clase Cita con los atributos correspondientes
