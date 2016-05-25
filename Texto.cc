@@ -137,6 +137,7 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){
     map<string, int>::iterator ex2 = frecuencia_palabras.find(p2);
     if(ex2 != frecuencia_palabras.end()){
       frecuencia_palabras [p2] += frec1; //Su nueva frecuencia es la suma de ambas frecuencias
+      int frec2 = frec1 + ex2->second;
       set <string>::iterator sa = tabla_frecuencias [ex2->second] [p2.length() - 1].find(p2);
       sa = tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
       tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.)
