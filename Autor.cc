@@ -9,7 +9,7 @@ Autor::Autor(string nombre){
 }
 
 void Autor::citas_autor(){
-  for(map<string, map<int, Cita>>::iterator it = citas.begin(); it != citas.end(); ++it){
+  for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
     //rehacer, 2for
   }
 }
@@ -46,11 +46,17 @@ bool Autor::existe_texto_autor(string titulo){
 
 void Autor::anadir_texto_autor(Texto texto){ //actualizar las palabras, frases, textos del autor
   textos[texto.titulo_texto()] = texto;
+  ++num_textos;
+  num_frases = texto.numero_frases();
+  num_palabras = texto.numero_palabras();
 }
 
 void Autor::eliminar_texto_autor(string titulo){
   map<string, Texto>::iterator it = textos.find(titulo);
-  it = textos.erase(it);
+  --num_textos;
+  num_frases -= it->second.numero_frases();
+  num_palabras -= it->second.numero_palabras();
+  textos.erase(it);
 }
 
 void Autor::anadir_cita_autor(Cita cita, string ini, int num){

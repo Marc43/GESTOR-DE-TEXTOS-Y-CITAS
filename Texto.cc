@@ -13,6 +13,7 @@ Texto::Texto(string autor, string titulo, int num_p, int num_f, list<Frase> cont
   this->num_palabras = num_p;
   this->frecuencia_palabras = frecuencia_palabras;
   for(map<string, int>::iterator it = frecuencia_palabras.begin(); it != frecuencia_palabras.end(); ++it){
+    if(tabla_frecuencias[it->second].size() < it->first.length()) tabla_frecuencias[it->second].resize(it->first.length());
     tabla_frecuencias[it->second][it->first.size()-1].insert(it->first);
   }
 }
@@ -26,7 +27,7 @@ string Texto::titulo_texto(){
 }
 
 void Texto::citas_texto(){
-  for(map<string, map<int, Cita>>::iterator it = citas.begin(); it != citas.end(); ++it){
+  for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       cout << it->first << it2->first << endl; it2->second.escribir_cita();
       cout << autor << " \"" << titulo << '"' << endl;
@@ -35,7 +36,7 @@ void Texto::citas_texto(){
 }
 
 bool Texto::existe_cita(int x, int y){
-  for(map<string, map<int, Cita>>::iterator it = citas.begin(); it != citas.end(); ++it){
+  for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       if(it2->second.frase_inicial() == x and it2->second.frase_final() == y) return true;
     }
@@ -59,7 +60,7 @@ void Texto::mostrar_contenido_texto(){
 }
 
 void Texto::tabla_frecuencias_texto(){
-  for(map<int, vector<set<string>>>::iterator it = tabla_frecuencias.begin(); it != tabla_frecuencias.end(); ++it){
+  for(map<int, vector< set<string> > >::iterator it = tabla_frecuencias.begin(); it != tabla_frecuencias.end(); ++it){
     for(int i = 0; i < it->second.size(); ++i){
       for(set<string>::iterator it2 = it->second[i].begin(); it2 != it->second[i].end(); ++it2){
         cout << *it2 << " " << it->first << endl;
@@ -105,7 +106,7 @@ void Texto::frases_seq(list<string> &seq){ //mirar
         if(es_seq and aux_pseq == seq.end()){
           Frase 
           (*frase_act).escribir_frase();
-          match = true;
+          match = true;       
         }
       }
       ++pf; //Comprueba la secuencia para la siguiente palabra
@@ -123,7 +124,7 @@ void Texto::eliminar_cita_texto(string ini, int num){
   if(citas[ini].empty()) citas.erase(ini);
 }
 
-void Texto::sustituir_palabra(const string &p1, const string &p2){
+void Texto::sustituir_palabra(const string &p1, const string &p2){//tratar resize tabla frecuencias
   list<Frase>::iterator it1 = contenido.begin();
   bool iguales = p1 == p2; //Si las palabras son iguales...
   map<string, int>::iterator ex1 = frecuencia_palabras.find(p1);
@@ -133,13 +134,13 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){
     int frec1 = ex1->second;
     frecuencia_palabras.erase(ex1);
     set <string>::iterator st = tabla_frecuencias [frec1] [p1.length() - 1].find(p1);
-    st = tabla_frecuencias [frec1] [p1.length() - 1].erase(st);
+    tabla_frecuencias [frec1] [p1.length() - 1].erase(st);
     map<string, int>::iterator ex2 = frecuencia_palabras.find(p2);
     if(ex2 != frecuencia_palabras.end()){
       frecuencia_palabras [p2] += frec1; //Su nueva frecuencia es la suma de ambas frecuencias
       int frec2 = frec1 + ex2->second;
       set <string>::iterator sa = tabla_frecuencias [ex2->second] [p2.length() - 1].find(p2);
-      sa = tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
+      tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
       tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.)
     }
     else{
@@ -153,7 +154,7 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){
         char signo; signo = (*it2) [(*it2).length() - 1];
         bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z'));
         if(es_signo){
-          string aux = *it2; aux.pop_back();
+          string aux = *it2; aux.substr(0, aux.size()-1);
           if(aux == p1){
             aux = p2; aux += signo;
             *it2 = aux;

@@ -26,7 +26,7 @@ class Autor {
     //Atributos de la clase Autor
     
     map<string, Texto> textos;
-    map<string, map<int, Cita>> citas;
+    map<string, map<int, Cita> > citas;
     string nombre;
     int num_textos;
     int num_palabras;
@@ -102,7 +102,7 @@ class Autor {
      * 	\pre texto es un texto no vacio
      * 	\post texto pertenece a los textos del autor
      */
-    void anadir_texto_autor(Texto texto);
+     void anadir_texto_autor(Texto texto);
     
     /** @brief Modificadora que elimina un texto del p.i.
      * 	\pre existe un texto del autor tal que su titulo es <b>titulo</b>

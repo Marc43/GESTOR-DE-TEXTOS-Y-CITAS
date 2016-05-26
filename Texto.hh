@@ -43,10 +43,10 @@ private:
     string autor;
     string titulo;
     list<Frase> contenido;
-    map<string, map<int, Cita>> citas;
+    map<string, map<int, Cita> > citas;
     int num_frases;
     int num_palabras;
-    map<int, vector<set<string>>> tabla_frecuencias;
+    map<int, vector< set <string> > > tabla_frecuencias;
     map<string, int> frecuencia_palabras;
 
     //funciones auxiliares

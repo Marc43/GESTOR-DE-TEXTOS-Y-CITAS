@@ -38,15 +38,7 @@ class Gestor {
         bool escogido;
 
         //Citas
-        map<string, map<int, Cita>> citas;
-
-        /*
-        /**@brief Operacion auxiliar de strings
-         * \pre cierto
-         * \post Todas las minusculas de la cadena
-         * son ahora mayusculas
-         *
-         void a_mayus(string& s); */
+        map<string, map<int, Cita> > citas;
 
     public:
 
@@ -161,6 +153,10 @@ class Gestor {
         void eliminar_cita_gestor(string id);
 
         void info_cita(string id);
+
+	void recorta(istringstream& iss);
+	
+	void anadir_texto_gestor(Texto& t);
 
 };
 
