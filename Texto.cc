@@ -53,9 +53,10 @@ int Texto::numero_palabras(){
 }
 
 void Texto::mostrar_contenido_texto(){
-  list<Frase>::iterator it = contenido.begin(); int n = 1;
-  while(it != contenido.end()){
-    (*it).escribir_frase(); ++it;
+  list<Frase>::iterator it = contenido.begin();
+  while(it != contenido.end()){ //Cambiado for por un while por si aca fallaba
+    (*it).escribir_frase();
+    ++it;
   }
 }
 

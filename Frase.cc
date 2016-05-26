@@ -19,11 +19,16 @@ list<string> Frase::contenido_frase(){
 }
 
 void Frase::escribir_frase(){
-  cout << num_frase << " ";
-  for(list<string>::iterator it = frase.begin(); it != frase.end(); ++it){
+  cout << num_frase << ' ';
+  list<string>::iterator it = frase.begin();
+  list<string>::iterator aux;
+  while(it != frase.end()){ //No imprimia bien, lo he cambiado por un while y he añadido el numero de frase (y el final de linea)
     cout << *it;
-    if(++it != frase.end()) cout << " ";
+    aux = it;
+    if(++aux != frase.end()) cout << ' '; //Deja un espacio entre strings
+    ++it;
   }
+  cout << endl;
 }
 
 bool Frase::existe_palabra_frase(string palabra){

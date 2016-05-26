@@ -6,6 +6,9 @@ Autor::Autor(){
 
 Autor::Autor(string nombre){
   this->nombre = nombre;
+  num_textos = 0;
+  num_palabras = 0; //Daba problemas no inicializarlas...
+  num_frases = 0;
 }
 
 void Autor::citas_autor(){
@@ -22,7 +25,7 @@ void Autor::textos_autor(){
   map<string, Texto>::iterator it = textos.begin();
   while(it != textos.end()){
     if(it != textos.begin()) cout << " ";
-    cout << it->second.titulo_texto();
+    cout << '\"' << it->second.titulo_texto() << '\"';
     ++it;
   } cout << endl;
 }

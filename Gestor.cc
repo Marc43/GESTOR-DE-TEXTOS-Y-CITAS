@@ -63,7 +63,7 @@ void Gestor::anadir_texto_gestor(Texto& t){
   escogido = true;
 }
 
-void Gestor::anadir_texto_gestor(string nombre, string titulo){
+void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo, reestructurarla
     string entrada, pa; getline(cin, entrada);
     bool ini_frase = true;
     list<Frase> contenido;
@@ -91,7 +91,10 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){
 		  --aux;
 		  *aux += pa; //Le concatenamos el signo
 		}
-		else ++num_p;
+		else{
+		   f.insert(it2, pa);
+		   ++num_p;
+		}
                 if (pa[pa.length()-1] == '.' or pa[pa.length()-1] == '?' or pa[pa.length()-1] == '!') {
                     Frase frase(f, num_f + 1);
                     contenido.insert(it1, frase);
@@ -101,8 +104,9 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){
                     ini_frase = true; //Empezamos nueva frase
                 }
             }
-            else if (ini_frase and es_signo) {
-                //Hemos encontrado una frase vacia, y volvemos a empezar otra nueva
+            else if (ini_frase and es_signo) { //NO TRATAR LOS SIGNOS SOLOS COMO FRASES!!!!
+	      if(pa[pa.length()-1] == '.' or pa[pa.length()-1] == '?' or pa[pa.length()-1] == '!'){
+		 //Hemos encontrado una frase vacia, y volvemos a empezar otra nueva
                 f.insert(it2, pa);
                 Frase frase(f, num_f + 1);
                 contenido.insert(it1, frase);
@@ -111,6 +115,12 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){
                 f.clear();
                 it2 = f.begin();
                 ini_frase = true; //Empezamos nueva frase
+	      }
+	      else{
+		f.insert(it2, pa);
+		++num_p;
+		ini_frase = false;
+	      }
             }
             else {
                 f.insert(it2, pa);
@@ -127,6 +137,7 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){
         Autor autor (nombre); autor.anadir_texto_autor(t);
         autores [nombre] = autor;
     }
+    textos [titulo] = t; 
 }
 
 void Gestor::eliminar_texto_gestor(){
@@ -144,18 +155,15 @@ bool Gestor::escoger_texto(const list<string>& p, Texto& t){ //version con frecu
     bool match = false;
     for(map<string, Texto>::iterator it = textos.begin(); it != textos.end(); ++it){
         list<string> aux = p;
-        for(list<string>::iterator it2 = aux.begin(); not aux.empty() and it2 != aux.end(); ++it2) {
+        for(list<string>::iterator it2 = aux.begin(); not aux.empty() and it2 != aux.end(); ++it2) { //Tratamiento de las palabras en el texto
             map<string, int>::iterator it3 = it->second.frecuencia_palabras_texto().find(*it2);
-            if (it3 != it->second.frecuencia_palabras_texto().end()) {
-                it2 = aux.erase(it2);
-                --it2;
-            }
+            if (it3 != it->second.frecuencia_palabras_texto().end()) aux.erase(it2);   
         }
         string a_tratar;
         istringstream autor(it->second.autor_texto());
         while(autor >> a_tratar and not aux.empty()){
             bool match2 = false;
-            for(list<string>::iterator it2 = aux.begin(); not match2 and it2 != aux.end(); ++it2){
+            for(list<string>::iterator it2 = aux.begin(); not match2 and it2 != aux.end(); ++it2){ //Tratamiento de las palabras en el autor
                 if(*it2 == a_tratar){
                     it2 = aux.erase(it2);
                     --it2;
@@ -166,7 +174,7 @@ bool Gestor::escoger_texto(const list<string>& p, Texto& t){ //version con frecu
         istringstream titulo(it->second.titulo_texto());
         while(titulo >> a_tratar and not aux.empty()){
             bool match2 = false;
-            for(list<string>::iterator it2 = aux.begin(); not match2 and it2 != aux.end(); ++it2){
+            for(list<string>::iterator it2 = aux.begin(); not match2 and it2 != aux.end(); ++it2){ //Tratamiento de las palabras en el titulo
                 if(*it2 == a_tratar){
                     it2 = aux.erase(it2);
                     --it2;
@@ -182,6 +190,9 @@ bool Gestor::escoger_texto(const list<string>& p, Texto& t){ //version con frecu
             }
         }
     }
+    texto_escogido = textos.find(t.titulo_texto());
+    escogido = true; //No modificaba los atributos de la clase gestor (ahora si)
+    
     return match;
 }
 

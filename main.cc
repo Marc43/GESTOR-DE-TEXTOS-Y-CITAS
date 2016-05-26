@@ -17,16 +17,18 @@ int main(){
   while(linea != "sortir"){ //Condicion de salida
     istringstream iss(linea); iss >> op;
       if(op == "afegir"){
+	cout << iss.str() << endl;
 	gestor.recorta(iss);
 	iss >> op;
 	if(op == "text"){ //afegir text "<titol>"
 	  gestor.recorta(iss);
-	  iss.ignore('"');
 	  string titulo = iss.str(); //Titulo del texto a anadir
+	  titulo = titulo.substr(1, titulo.length() - 2);
 	  getline(cin, linea); 
 	  iss.str(linea);
 	  iss >> op; gestor.recorta(iss); iss.ignore('"'); 
 	  string nombre_autor = iss.str(); //Nombre del autor
+	  nombre_autor = nombre_autor.substr(1, nombre_autor.length() - 2);
 	  if(gestor.existe_autor(nombre_autor) and gestor.existe_texto_autor(nombre_autor, titulo)) cout << "error" << endl; //Ya existe tal texto en este autor
 	  else gestor.anadir_texto_gestor(nombre_autor, titulo);
 	}
@@ -40,22 +42,24 @@ int main(){
 	else cout << "error" << endl; //Ningun texto escogido
     }
     else if(op == "triar"){ //triar text {titol}
+      cout << iss.str() << endl;
       gestor.recorta(iss); gestor.recorta(iss);
-      iss.ignore('{'); iss.ignore('}');
       list<string> p;
       list<string>::iterator it = p.begin();
-      cout << iss.str() << endl;
+      op = iss.str(); op = op.substr(1, op.length() - 2); //Quita las llaves 
+      iss.str(op); //Lo volvemos a transformar en istringstream pero sin {}
       while(iss >> op){
-	    cout << op << endl;
-	    string w(op);
-	    p.insert(it, w);
-	    gestor.recorta(iss);
+	  string w(op);
+	  p.insert(it, w);
+	  gestor.recorta(iss);
       }
+      it = p.begin(); 
       Texto t;
       bool encontrado = gestor.escoger_texto(p, t);
       if(not encontrado) cout << "error" << endl;
     }
     else if(op == "eliminar"){
+      cout << iss.str() << endl;
       gestor.recorta(iss); iss >> op;
       if(op == "text"){ //eliminar text
 	if(not gestor.esta_escogido()) cout << "error" << endl;
@@ -67,6 +71,7 @@ int main(){
       }
     }
     else if(op == "substitueix"){ //substitueix "<paraula1>" per "<paraula2>"
+      cout << iss.str() << endl;
       gestor.recorta(iss);
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else{
@@ -82,11 +87,13 @@ int main(){
       }
     }
     else if(op == "textos"){ //textos autor "<autor>" ?
+      cout << iss.str() << endl;
       gestor.recorta(iss); gestor.recorta(iss); iss.ignore('"'); string nombre = iss.str();
       if(not gestor.existe_autor(nombre)) cout << "error" << endl;
       else gestor.textos_autor(nombre);
     }
     else if(op == "tots"){ 
+      cout << iss.str() << endl;
       gestor.recorta(iss); iss >> op;
       if(op == "autors"){ //tots autors ?
         gestor.todos_autores();
@@ -95,7 +102,8 @@ int main(){
         gestor.todos_textos();
       }
     }
-    else if(op == "info"){ 
+    else if(op == "info"){
+      cout << iss.str() << endl;
       gestor.recorta(iss); iss >> op;
       if(op == "cita"){ //info cita "<referencia>"
 	iss.ignore('"');
@@ -109,20 +117,21 @@ int main(){
       }
     }
     else if(op == "autor"){ //autor ?
+      cout << iss.str() << endl;
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else cout << gestor.texto_escogido_gestor().autor_texto() << endl;
     }
     else if(op == "contingut"){ //contingut ?
+      cout << iss.str() << endl;
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else gestor.texto_escogido_gestor().mostrar_contenido_texto();
     }
-    else if(op == "frases"){ 
+    else if(op == "frases"){
      gestor.recorta(iss); iss >> op;
      if(not gestor.esta_escogido()) cout << "error" << endl;
-     else if(int(op[0]) >= 0 and int(op[0]) <= 9){ //frases x y
-        istringstream aux(op);
-        int x; aux >> x; gestor.recorta(aux);
-	int y; iss >> y;
+     else if(op[0] >= '0' and op[0] <= '9'){ //frases x y
+	int x, y;
+	iss >> x; gestor.recorta(iss); iss >> y; //LA Y DA PROBLEMAS.
 	gestor.texto_escogido_gestor().frases_xy(x, y);
      }
      else if(op[0] == '"'){ //frases secuencia
@@ -141,6 +150,7 @@ int main(){
      }
     }
     else if(op == "nombre"){
+      cout << iss.str() << endl;
       gestor.recorta(iss); //Quitamos el "de" 
       iss >> op; //Guardamos el paraules o frases
       if(not gestor.esta_escogido()) cout << "error" << endl;
@@ -148,6 +158,7 @@ int main(){
       else cout << gestor.texto_escogido_gestor().numero_frases() << endl; //nombre de frases ?
     }
     else if(op == "taula"){ //Taula de frequencies
+      cout << iss.str() << endl;
       gestor.texto_escogido_gestor().tabla_frecuencias_texto();
     }
     getline(cin, linea); //Entrada de un nuevo comando
