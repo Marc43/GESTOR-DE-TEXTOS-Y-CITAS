@@ -242,7 +242,7 @@ void Gestor::anadir_cita_gestor(int x, int y){
         vector<Frase> v(y-x+1);
         list<Frase>::iterator itf = l.begin();
         for(int i = 0; i < x; ++i){
-                ++itf;
+            ++itf;
         }
         for(int i = 0; i < y-x+1; ++i){
             v[i] = *itf;
@@ -260,7 +260,7 @@ void Gestor::anadir_cita_gestor(int x, int y){
         }
         citas[id][num] = c;
         texto_escogido->second.anadir_cita_texto(c, id, num);
-        autores[texto_escogido->second.autor_texto()].anadir_cita_autor(c, id, num);
+        autores [texto_escogido->second.autor_texto()].anadir_cita_autor(c, id, num);
     }
     else cout << "error" << endl;
 }

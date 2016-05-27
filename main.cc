@@ -36,7 +36,6 @@ int main(){
 	  char p;
 	  iss >> p; int x = p - '0';
 	  iss >> p; int y = p - '0';
-	  Texto t = gestor.texto_escogido_gestor();
 	  gestor.anadir_cita_gestor(x, y); //No le pasamos el texto ya que trabaja sobre el escogido
 	}
 	else cout << "error" << endl; //Ningun texto escogido
@@ -128,19 +127,20 @@ int main(){
     }
     else if(op == "frases"){
      gestor.recorta(iss); iss >> op;
-     if(not gestor.esta_escogido()) cout << "error" << endl;
-     else if(op[0] >= '0' and op[0] <= '9'){ //frases x y
-	int x, y;
-	iss >> x; gestor.recorta(iss); iss >> y; //LA Y DA PROBLEMAS.
+     if(not gestor.esta_escogido() or op[0] == '-' or op[0] == '0') cout << "error" << endl;
+     else if(op[0] >= '1' and op[0] <= '9'){ //frases x y
+	gestor.recorta(iss); int x, y;
+	istringstream aux; aux.str(op); aux >> x; iss >> y; 
 	gestor.texto_escogido_gestor().frases_xy(x, y);
      }
      else if(op[0] == '"'){ //frases secuencia
-        iss.ignore('\"'); iss >> op;
+	string aux = iss.str(); aux = aux.substr(1, aux.length() - 2);
+	iss.str(aux); //La reconvertimos en un stream
 	list<string> l; list<string>::iterator it = l.begin();
-	it = l.insert(it, op);
+	iss >> aux; l.insert(it, aux); gestor.recorta(iss);
 	while(iss >> op){
+	  l.insert(it, op);
 	  gestor.recorta(iss);
-	  it = l.insert(it, op);
 	}
 	gestor.texto_escogido_gestor().frases_seq(l);
      }

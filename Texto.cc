@@ -70,10 +70,12 @@ void Texto::tabla_frecuencias_texto(){
   }
 }
 
-void Texto::frases_xy(int x, int y){
-  if(x > y or x <= 0 or y <= 0 or y > num_frases) cout << "error" << endl;
+void Texto::frases_xy(int x, int y){ // Removido por que ya se trata en el main: or x <= 0 
+  if(x > y or y <= 0 or y > num_frases) cout << "error" << endl;
   else{
     list<Frase>::iterator it = contenido.begin();
+    int cont = 1;
+    while(x != cont){++it; ++cont;} //Ajustamos el iterador a la primera frase
     while(x <= y){
       (*it).escribir_frase();
       ++it; ++x;
@@ -88,24 +90,29 @@ void Texto::frases_exp(istringstream &iss, stack<bool_exp> &s){
   }
 }
 
-void Texto::frases_seq(list<string> &seq){ //mirar
+void Texto::frases_seq(list<string> &seq){ //mirar, tiene que tratar los signos
   list<Frase>::iterator frase_act = contenido.begin();
   while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
-    list<string> frase = (*frase_act).contenido_frase();
+    list<string> frase = (*frase_act).contenido_frase(); //Es una lista auxiliar, asi que podemos modificar su contenido...
     list<string>::iterator pf = frase.begin();
     list<string>::iterator pseq = seq.begin();
     bool es_seq = true;
     bool match = false;
     while(not match and pf != frase.end()){
+      char c = (*pf) [(*pf).length() - 1];
+      bool es_signo = not ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z'));
+      if(es_signo) *pf = (*pf).substr(0, (*pf).length() - 1);
       if(*pf == *pseq){
         list<string>::iterator aux_pf = pf; ++aux_pf;
         list<string>::iterator aux_pseq = pseq; ++aux_pseq;
         while(es_seq and aux_pf != frase.end() and aux_pseq != seq.end()){
+	  char c = (*aux_pf) [(*aux_pf).length() - 1];
+	  bool es_signo = not ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z')); //Se reutiliza codigo, quizas una funcion auxiliar?
+	  if(es_signo) *aux_pf = (*aux_pf).substr(0, (*aux_pf).length() - 1);
           if(*aux_pf != *aux_pseq) es_seq = false;
           ++aux_pf; ++aux_pseq;
         }
-        if(es_seq and aux_pseq == seq.end()){
-          Frase 
+        if(es_seq and aux_pseq == seq.end()){ 
           (*frase_act).escribir_frase();
           match = true;       
         }
