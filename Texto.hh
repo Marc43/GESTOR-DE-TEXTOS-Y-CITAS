@@ -10,7 +10,6 @@
 #include <stack>
 #include "Frase.hh"
 #include "Cita.hh"
-#include "funciones_aux.hh"
 
 
 /*
@@ -137,7 +136,7 @@ public:
      * 	\post muestra por pantalla las frases del texto escogido
      *  que cumplen las expresion logica dada
      */
-    void frases_exp(istringstream &iss, stack<bool_exp> &s); //Diferente de frases "<paraula1> ... <paraulaN>" ???
+    void frases_exp(istringstream &iss); //Diferente de frases "<paraula1> ... <paraulaN>" ???
 
     /** @brief Consultora de frases dada una expresion sequencial
      *  \pre cierto

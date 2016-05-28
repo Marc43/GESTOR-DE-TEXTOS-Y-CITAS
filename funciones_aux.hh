@@ -1,3 +1,7 @@
+//
+// Created by PCUSER on 28/05/2016.
+//
+
 #include<iostream>
 #include<sstream>
 #include<string>
@@ -6,14 +10,14 @@ using namespace std;
 
 /** @brief Elimina la primera parte de un sstream
  *  \pre cierto
- *  \post se ha eliminado la primera palabra 
+ *  \post se ha eliminado la primera palabra
  *  antes del primer espacio de <b>iss</b>
  */
 void recorta(istringstream& iss);
 
 /** @brief Elimina el primer y ultimo caracter
  * \pre cierto
- * \post se han eliminado el primer y 
+ * \post se han eliminado el primer y
  * ultimo caracter de la cadena
  */
 void refina_pf(string& palabra);

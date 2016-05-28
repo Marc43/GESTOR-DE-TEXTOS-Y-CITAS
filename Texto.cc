@@ -83,11 +83,10 @@ void Texto::frases_xy(int x, int y){ // Removido por que ya se trata en el main:
   }
 }
 
-void Texto::frases_exp(istringstream &iss, stack<bool_exp> &s){
-  list<Frase> f_e/* = eval_exp(iss, s);*/;
-  for(list<Frase>::iterator it = f_e.begin(); it != f_e.end(); ++it){
-    (*it).escribir_frase();
-  }
+void Texto::frases_exp(istringstream &iss){
+    for(list<Frase>::iterator it = contenido.begin(); it != contenido.end(); ++it){
+      if((*it).eval_exp(iss)) (*it).escribir_frase();
+    }
 }
 
 void Texto::frases_seq(list<string> &seq){ //mirar, tiene que tratar los signos
@@ -171,91 +170,6 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){//tratar resiz
     }
   }
 }
-
-/*list<Frase> Texto::eval_exp(istringstream &iss, stack<bool_exp> &s){
-  string a_tratar;
-  iss >> a_tratar;
-  if(a_tratar.empty()){
-    if(s.top().op == '&'){
-      return interseccion(s.top().i, s.top().d);
-    }
-    else if(s.top().op == '|'){
-      return fusion(s.top().i, s.top().d);
-    }
-    else{
-      return s.top().i;
-    }
-  }
-  else{
-    if(a_tratar[0] == '('){
-      bool_exp aux; s.push(aux);
-      a_tratar = a_tratar.substr(1, a_tratar.size()-1);
-      string aux2 = iss.str();
-      a_tratar += aux2;
-      iss.str(a_tratar);
-      return eval_exp(iss, s);
-    }
-    else if(a_tratar[0] == '{'){
-      if(a_tratar[a_tratar.size()-1] == '}'){
-        a_tratar = a_tratar.substr(1, a_tratar.size() -2);
-        if(s.top().op == ''){
-          bool_exp aux;
-          list<Frase> i = frases_palabra(a_tratar);
-          char op; iss >> op;
-          aux.i = i; aux.op = op;
-          s.top() = aux;
-          return eval_exp(iss, s);
-        }
-        else{
-          if(s.top().op == '&'){
-            list<Frase> aux = s.top().i;
-            s.pop();
-            s.top().i = interseccion(aux, frases_palabra(a_tratar));
-            return eval_exp(iss, s);
-          }
-          else{
-            list<Frase> aux = s.top().i;
-            s.pop();
-            s.top().i = fusion(aux, frases_palabra(a_tratar));
-            return eval_exp(iss, s);
-          }
-        }
-      }
-      else{
-        bool_exp aux;
-        aux.i = frases_palabra(a_tratar.substr(1, a_tratar.size() - 1));
-        aux.op = '&';
-        s.push(aux);
-        return eval_exp(iss, s);
-      }
-    }
-    else{
-      if(a_tratar == "&"){
-        char aux = a_tratar[0];
-        s.top().op = aux;
-        return eval_exp(iss, s);
-      }
-      else if(a_tratar == "|"){
-        char aux = a_tratar[0];
-        s.top().op = aux;
-        return eval_exp(iss, s);
-      }
-      else if(a_tratar[a_tratar.size()-1] == '}'){
-        list<Frase> i = interseccion(s.top().i, a_tratar.substr(0, a_tratar.size() - 1));
-        s.pop();
-        s.top().i = i;
-        return eval_exp(iss, s);
-      }
-      else{
-        bool_exp aux;
-        aux.i = frases_palabra(a_tratar.substr(1, a_tratar.size() - 1));
-        aux.op = '&';
-        s.push(aux);
-        return eval_exp(iss, s);
-      }
-    }
-  }
-}*/
 
 map<string, int> Texto::frecuencia_palabras_texto(){
   return frecuencia_palabras;

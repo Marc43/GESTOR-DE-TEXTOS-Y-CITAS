@@ -136,8 +136,9 @@ int main(){
 	gestor.texto_escogido_gestor().frases_seq(l);
      }
      else{ //frases expressio
-     	//falta 
-         cout << endl;
+         iss.str(iss.str().substr(0, iss.str().size()-2));
+         cout << iss.str() << endl;
+         gestor.texto_escogido_gestor().frases_exp(iss);
      }
     }
     else if(op == "nombre"){

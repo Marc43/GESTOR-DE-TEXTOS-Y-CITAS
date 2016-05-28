@@ -5,10 +5,9 @@
 #ifndef FRASE_HH
 #define FRASE_HH
 
-#include <string>
 #include <list>
-#include <iostream>
 #include <stack>
+#include "funciones_aux.hh"
 
 using namespace std;
 
@@ -24,6 +23,11 @@ using namespace std;
  */
 
 class Frase {
+
+    struct bool_exp{
+        bool i, d;
+        string op;
+    };
 
 private:
     //Atributos clase Frase
@@ -78,5 +82,13 @@ public:
      *  \pre
      *  \post
      */
+    bool eval_exp(istringstream & iss);
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
+    bool i_eval_exp(istringstream & iss, stack<bool_exp> & s);
+
 };
 #endif

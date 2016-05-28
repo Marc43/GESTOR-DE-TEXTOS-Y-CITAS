@@ -40,3 +40,48 @@ bool Frase::existe_palabra_frase(string palabra){
   }
   return match;
 }
+
+bool Frase::eval_exp(istringstream &iss){
+  stack<bool_exp> s;
+  return i_eval_exp(iss, s);
+}
+
+bool Frase::i_eval_exp(istringstream &iss, stack<bool_exp> &s){
+  string a_tratar; iss >> a_tratar;
+  if(a_tratar.empty()){
+    if(s.top().op == "&") return s.top().i and s.top().d;
+    else return s.top().i or s.top().d;
+  }
+  else{
+    if(a_tratar[0] == '('){
+      bool_exp aux;
+      s.push(aux);
+      iss.str(iss.str().substr(1, iss.str().size()-1));
+    }
+    else if(a_tratar[0] == '{'){
+      a_tratar = a_tratar.substr(1, a_tratar.size()-1);
+      bool value = true;
+      while(a_tratar[a_tratar.size()-1] != '}'){
+        if(value){
+          value = value and existe_palabra_frase(a_tratar);
+        }
+        recorta(iss); iss >> a_tratar;
+      }
+      if(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-2);
+      else a_tratar = a_tratar.substr(0, a_tratar.size()-1);
+      if(value) value = value and existe_palabra_frase(a_tratar);
+      recorta(iss);
+      if(s.top().op.empty()) s.top().i = value;
+      else s.top().d = value;
+    }
+    else{
+      if(not s.top().op.empty()){
+        if(s.top().op == "&") s.top().i = s.top().i and s.top().d;
+        else s.top().i = s.top().i or s.top().d;
+      }
+      s.top().op = a_tratar;
+      recorta(iss);
+    }
+    return i_eval_exp(iss, s);
+  }
+}
