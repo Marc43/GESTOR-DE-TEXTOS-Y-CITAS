@@ -5,13 +5,12 @@
 #ifndef TEXTO_HH
 #define TEXTO_HH
 
-#include <sstream>
 #include <set>
 #include <map>
 #include <stack>
 #include "Frase.hh"
 #include "Cita.hh"
-
+#include "funciones_aux.hh"
 
 
 /*

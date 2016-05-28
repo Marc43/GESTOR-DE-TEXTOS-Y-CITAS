@@ -146,8 +146,6 @@ class Gestor {
         void eliminar_cita_gestor(string id);
 
         void info_cita(string id);
-
-	void recorta(istringstream& iss);
 	
 	void anadir_texto_gestor(Texto& t);
 

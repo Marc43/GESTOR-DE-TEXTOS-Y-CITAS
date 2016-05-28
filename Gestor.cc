@@ -5,20 +5,6 @@
 #include "Gestor.hh"
 #include <stdlib.h>
 
-/* Privada (Ya no) */
-
-void Gestor::recorta(istringstream& iss){ //iss es un parametro de salida
-  int pos = 0;
-  bool encontrado = false;
-  string aux = iss.str();
-  while(aux[pos] == ' ') ++pos; //Llegamos hasta el primer espacio
-  while(aux[pos] != ' ' and pos < aux.length()) ++pos; //Numero de posiciones hasta el espacio
-  aux.erase(0, pos + 1); //Contamos el ultimo espacio tambien
-  iss.str(aux); //Convertimos la string aux en un iss
-}
-
-/////////////////
-
 Gestor::Gestor(){
     escogido = false;
 }
@@ -73,14 +59,10 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
 	while(iss >> pa){
 	    recorta(iss);
             bool es_signo = not ((pa[pa.length()-1] >= 'a' and pa[pa.length()-1] <= 'z') or (pa[pa.length()-1] >= 'A' and pa[pa.length()-1] <= 'Z'));
-            if (not es_signo or (es_signo and pa.length() > 1)) { //Ajustamos las frecuencias de las palabras
-              if(es_signo){
-		//tratar luego
-	      }
-	      map<string, int>::iterator frec = frecuencia_palabras.find(pa);
-              if (frec != frecuencia_palabras.end()) ++frecuencia_palabras[pa];
-              else frecuencia_palabras[pa] = 1;
-            }
+	    string aux = pa; refina_signo(aux);
+	    map<string, int>::iterator frec = frecuencia_palabras.find(aux);
+            if (frec != frecuencia_palabras.end()) ++frecuencia_palabras[aux];
+            else frecuencia_palabras[aux] = 1;
             if (not ini_frase and es_signo) {
 		if(pa.size() == 1){
 		  list<string>::iterator aux = it2;

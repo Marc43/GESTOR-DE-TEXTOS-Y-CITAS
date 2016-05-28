@@ -30,7 +30,7 @@ void Texto::citas_texto(){
   for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       cout << it->first << it2->first << endl; it2->second.escribir_cita();
-      cout << autor << " \"" << titulo << '"' << endl;
+      cout << autor << '"' << titulo << '"' << endl;
     }
   }
 }
@@ -99,16 +99,12 @@ void Texto::frases_seq(list<string> &seq){ //mirar, tiene que tratar los signos
     bool es_seq = true;
     bool match = false;
     while(not match and pf != frase.end()){
-      char c = (*pf) [(*pf).length() - 1];
-      bool es_signo = not ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z'));
-      if(es_signo) *pf = (*pf).substr(0, (*pf).length() - 1);
+      refina_signo(*pf);
       if(*pf == *pseq){
         list<string>::iterator aux_pf = pf; ++aux_pf;
         list<string>::iterator aux_pseq = pseq; ++aux_pseq;
         while(es_seq and aux_pf != frase.end() and aux_pseq != seq.end()){
-	  char c = (*aux_pf) [(*aux_pf).length() - 1];
-	  bool es_signo = not ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z')); //Se reutiliza codigo, quizas una funcion auxiliar?
-	  if(es_signo) *aux_pf = (*aux_pf).substr(0, (*aux_pf).length() - 1);
+	  refina_signo(*aux_pf);
           if(*aux_pf != *aux_pseq) es_seq = false;
           ++aux_pf; ++aux_pseq;
         }
