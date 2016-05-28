@@ -231,19 +231,17 @@ void Gestor::anadir_cita_gestor(int x, int y){
         istringstream iss(texto_escogido->second.autor_texto());
         string a_tratar, id; id = ""; //id es nula
         while(iss >> a_tratar){
-	    recorta(iss);
             char inicial = a_tratar[0];
             if(inicial >= 'a' and inicial <= 'z'){ //Si no es mayuscula, convertirla
                 inicial = (inicial - 'a') + 'A';
             }
             id += inicial;
+	    recorta(iss);
         }
         list<Frase> l = texto_escogido->second.contenido_texto();
         vector<Frase> v(y-x+1);
         list<Frase>::iterator itf = l.begin();
-        for(int i = 0; i < x; ++i){
-            ++itf;
-        }
+        for(int i = 1; i < x; ++i) ++itf;
         for(int i = 0; i < y-x+1; ++i){
             v[i] = *itf;
             ++itf;
@@ -258,6 +256,7 @@ void Gestor::anadir_cita_gestor(int x, int y){
         else{
             num = 1;
         }
+        
         citas[id][num] = c;
         texto_escogido->second.anadir_cita_texto(c, id, num);
         autores [texto_escogido->second.autor_texto()].anadir_cita_autor(c, id, num);
@@ -284,10 +283,9 @@ void Gestor::citas_autor(string autor){
 
 void Gestor::info_cita(string id){
     int i = 0;
-    while(id[i] >= 'A' and id[i] <= 'Z'){
-        ++i;
-    }
-    int num = atoi((id.substr(i, id.size() - i)).c_str());
+    while(id[i] >= 'A' and id[i] <= 'Z') ++i;
     string ini = id.substr(0, i);
+    int num = atoi((id.substr(i, id.size() - 1)).c_str());
+    cout << num <<  ' ' << ini << endl;
     citas[ini][num].info();
 }

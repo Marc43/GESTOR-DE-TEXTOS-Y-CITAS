@@ -34,7 +34,7 @@ int main(){
 	}
 	else if(gestor.esta_escogido()){ //afegir cita x y
 	  char p;
-	  iss >> p; int x = p - '0';
+	  iss >> p; int x = p - '0'; //Funcionara para digitos mas grandes? por ejemplo de la frase 10 a la 20
 	  iss >> p; int y = p - '0';
 	  gestor.anadir_cita_gestor(x, y); //No le pasamos el texto ya que trabaja sobre el escogido
 	}
@@ -103,10 +103,10 @@ int main(){
     }
     else if(op == "info"){
       cout << iss.str() << endl;
-      gestor.recorta(iss); iss >> op;
+      gestor.recorta(iss); iss >> op; gestor.recorta(iss);
       if(op == "cita"){ //info cita "<referencia>"
-	iss.ignore('"');
-	gestor.todas_citas(); 
+	string id = iss.str(); id = id.substr(1, id.length() - 2);
+	gestor.info_cita(id);
       }
       else if(not gestor.esta_escogido()) cout << "error" << endl;
       else{ //info ?
