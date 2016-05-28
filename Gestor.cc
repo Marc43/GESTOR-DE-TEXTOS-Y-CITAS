@@ -159,11 +159,13 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
             if(f_it != f_p.end()) aux_it = aux.erase(aux_it);
             else ++aux_it;
         }
-        aux_it = aux.begin();
         string a_tratar;
         istringstream autor(it->second.autor_texto());
-        while(autor >> a_tratar and not aux.empty()){
+        while(not autor.str().empty() and not aux.empty()){
+            autor >> a_tratar;
+            recorta(autor);
             bool match2 = false;
+            aux_it = aux.begin();
             while(aux_it != aux.end() and not match2){
                 if(*aux_it == a_tratar){
                     aux_it = aux.erase(aux_it);
@@ -172,10 +174,12 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
                 else ++aux_it;
             }
         }
-        aux_it = aux.begin();
         istringstream titulo(it->second.titulo_texto());
-        while(titulo >> a_tratar and not aux.empty()){
+        while(not titulo.str().empty() and not aux.empty()){
+            titulo >> a_tratar;
+            recorta(titulo);
             bool match2 = false;
+            aux_it = aux.begin();
             while(aux_it != aux.end() and not match2){
                 if(*aux_it == a_tratar){
                     aux_it = aux.erase(aux_it);
