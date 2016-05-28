@@ -44,17 +44,15 @@ int main(){
       cout << iss.str() << endl;
       gestor.recorta(iss); gestor.recorta(iss);
       list<string> p;
-      list<string>::iterator it = p.begin();
       op = iss.str(); op = op.substr(1, op.length() - 2); //Quita las llaves 
       iss.str(op); //Lo volvemos a transformar en istringstream pero sin {}
+      list<string>::iterator it = p.end();
       while(iss >> op){
-	  string w(op);
-	  p.insert(it, w);
-	  gestor.recorta(iss);
+	    string w(op);
+	    p.insert(it, w);
+        gestor.recorta(iss);
       }
-      it = p.begin(); 
-      Texto t;
-      bool encontrado = gestor.escoger_texto(p, t);
+      bool encontrado = gestor.escoger_texto(p);
       if(not encontrado) cout << "error" << endl;
     }
     else if(op == "eliminar"){
@@ -65,8 +63,9 @@ int main(){
 	else gestor.eliminar_texto_gestor();
       }
       else{ //eliminar cita
-          iss.ignore('"'); gestor.recorta(iss); iss >> op;
-          string ref(op); gestor.eliminar_cita_gestor(ref);
+          gestor.recorta(iss); iss >> op;
+          string ref(op); ref = ref.substr(1, ref.size() - 2);
+          gestor.eliminar_cita_gestor(ref);
       }
     }
     else if(op == "substitueix"){ //substitueix "<paraula1>" per "<paraula2>"
@@ -157,6 +156,20 @@ int main(){
       else if(op == "paraules") cout << gestor.texto_escogido_gestor().numero_palabras() << endl; //nombre de paraules ?
       else cout << gestor.texto_escogido_gestor().numero_frases() << endl; //nombre de frases ?
     }
+    else if(op == "totes"){
+        gestor.todas_citas();
+      }
+    else if(op == "cites"){
+        gestor.recorta(iss); iss >> op;
+        if(op == "autor"){
+          iss >> op;
+          string autor = op.substr(1, op.size()-2);
+          gestor.citas_autor(autor);
+        }
+        else{
+          gestor.texto_escogido_gestor().citas_texto();
+        }
+      }
     else if(op == "taula"){ //Taula de frequencies
       cout << iss.str() << endl;
       gestor.texto_escogido_gestor().tabla_frecuencias_texto();

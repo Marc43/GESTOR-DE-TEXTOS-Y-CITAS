@@ -8,6 +8,7 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -23,6 +24,7 @@ using namespace std;
  */
 
 class Frase {
+
 private:
     //Atributos clase Frase
     list<string> frase;
@@ -71,5 +73,10 @@ public:
      *  \post devuelve cierto si la palabra esta en el pi, falso en caso contrario
      */
     bool existe_palabra_frase(string palabra);
+
+    /** @brief
+     *  \pre
+     *  \post
+     */
 };
 #endif

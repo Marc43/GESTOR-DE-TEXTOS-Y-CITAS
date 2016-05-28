@@ -39,6 +39,7 @@ class Gestor {
 
         //Citas
         map<string, map<int, Cita> > citas;
+        map<string, int> id;
 
     public:
 
@@ -79,13 +80,7 @@ class Gestor {
          *  de pertenecer anteriormente, ha sido actualizado con
          *  la nueva version introducida en parametros.
          */
-        void anadir_autor_gestor(Autor autor);
 
-        /** @brief Modificadora que anade un texto a gestor
-         *  \pre cierto
-         *  \post el Texto <b>texto</b> ha sido anadido al p.i
-         *  en caso de no existir uno con mismo autor y titulo
-         */
         void anadir_texto_gestor(string nombre, string titulo);
 
         /** @brief Modificadora que elimina un texto del gestor
@@ -102,7 +97,7 @@ class Gestor {
          * palabras de la lista, y <b>t</b> es dicho texto, devuelve falso y
          * un texto vacio en caso que no exista tal texto
          */
-        bool escoger_texto(const list<string>& p, Texto& t);
+        bool escoger_texto(const list<string>& p);
 
         /** @brief Consultora que muestra todos los textos almacenados por el gestor
          *  \pre cierto
@@ -118,8 +113,6 @@ class Gestor {
         void textos_autor(string nombre);
 
         void citas_autor(string nombre);
-
-        void citas_texto_escogido();
 
         /** @brief Consultora que retorna si hay un texto escogido
          *  \pre cierto
