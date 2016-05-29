@@ -26,13 +26,13 @@ string Texto::titulo_texto(){
   return titulo;
 }
 
-void Texto::citas_texto(){
+void Texto::citas_texto(bool c){
   for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       cout << it->first << it2->first << endl; it2->second.escribir_cita();
-      cout << autor << '"' << titulo << '"' << endl;
     }
-  }
+    if(c) cout << autor << " \"" << titulo << '"' << endl;
+  } 
 }
 
 bool Texto::existe_cita(int x, int y){

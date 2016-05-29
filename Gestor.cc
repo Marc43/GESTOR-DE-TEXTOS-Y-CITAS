@@ -90,13 +90,13 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
                 contenido.insert(it1, frase);
                 ++num_f; //Es una frase (vacia) pero no una palabra.
                 if(pa.size() > 1) ++num_p;
-                f.clear();
-                it2 = f.begin();
-                ini_frase = true; //Empezamos nueva frase
+		f.clear();
+		it2 = f.begin();
+		ini_frase = true; //Empezamos nueva frase
 	      }
 	      else{
 		f.insert(it2, pa);
-		++num_p;
+		++num_p; //No se comprueba el size por que no puede haber comas en principio de frase
 		ini_frase = false;
 	      }
             }
@@ -278,6 +278,6 @@ void Gestor::info_cita(string id){
     while(id[i] >= 'A' and id[i] <= 'Z') ++i;
     string ini = id.substr(0, i);
     int num = atoi((id.substr(i, id.size() - 1)).c_str());
-    cout << num <<  ' ' << ini << endl;
+    //cout << num <<  ' ' << ini << endl;
     citas[ini][num].info();
 }

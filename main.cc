@@ -1,16 +1,6 @@
 #include "Gestor.hh"
 #include "funciones_aux.hh"
 
-// void recorta(istringstream& iss){ //iss es un parametro de salida
-//   int pos = 0;
-//   bool encontrado = false;
-//   string aux = iss.str();
-//   while(aux[pos] == ' ') ++pos; //Llegamos hasta el primer espacio
-//   while(aux[pos] != ' ' and pos < aux.length()) ++pos; //Numero de posiciones hasta el espacio
-//   aux.erase(0, pos + 1); //Contamos el ultimo espacio tambien
-//   iss.str(aux); //Convertimos la string aux en un iss
-// }
-
 int main(){
   Gestor gestor;
   string linea, op;
@@ -105,9 +95,11 @@ int main(){
       }
       else if(not gestor.esta_escogido()) cout << "error" << endl;
       else{ //info ?
-	cout << gestor.texto_escogido_gestor().autor_texto() << endl << gestor.texto_escogido_gestor().titulo_texto() << endl;
-	cout << gestor.texto_escogido_gestor().numero_frases() << endl << gestor.texto_escogido_gestor().numero_palabras() << endl;
-	gestor.texto_escogido_gestor().citas_texto();
+	cout << endl;
+	cout << gestor.texto_escogido_gestor().autor_texto() << " \"" << gestor.texto_escogido_gestor().titulo_texto() << "\"";
+	cout << ' ' << gestor.texto_escogido_gestor().numero_frases() << ' ' << gestor.texto_escogido_gestor().numero_palabras() << endl;
+	cout << "Cites Associades:" << endl << endl;
+	gestor.texto_escogido_gestor().citas_texto(0);
       }
     }
     else if(op == "autor"){ //autor ?
@@ -127,7 +119,8 @@ int main(){
 	gestor.texto_escogido_gestor().frases_xy(x, y);
      }
      else if(op[0] == '"'){ //frases secuencia
-	string aux = iss.str(); refina_pf(aux);
+	string aux = iss.str(); aux = aux.substr(0, aux.length() - 2); //Quitamos el " ?"
+	refina_pf(aux);
 	iss.str(aux); //La reconvertimos en un stream
 	list<string> l; list<string>::iterator it = l.begin();
 	iss >> aux; l.insert(it, aux); recorta(iss);
@@ -138,12 +131,12 @@ int main(){
 	gestor.texto_escogido_gestor().frases_seq(l);
      }
      else{ //frases expressio
-         iss.str(iss.str().substr(0, iss.str().size()-2));
+         iss.str(iss.str().substr(0, iss.str().size() - 2));
          gestor.texto_escogido_gestor().frases_exp(iss);
      }
     }
     else if(op == "nombre"){
-      recorta(iss); //Quitamos el "de" 
+      recorta(iss); recorta(iss); //Quitamos el "de" 
       iss >> op; //Guardamos el paraules o frases
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else if(op == "paraules") cout << gestor.texto_escogido_gestor().numero_palabras() << endl; //nombre de paraules ?
@@ -154,13 +147,14 @@ int main(){
       }
     else if(op == "cites"){
         recorta(iss); iss >> op;
-        if(op == "autor"){
-          iss >> op;
-          string autor = op; refina_pf(autor);
+        if(op == "autor"){ //cites autor
+          recorta(iss);
+          string autor = iss.str(); autor = autor.substr(0, autor.length() - 2); //Quitamos el " ?"
+	  refina_pf(autor);
           gestor.citas_autor(autor);
         }
-        else{
-          gestor.texto_escogido_gestor().citas_texto();
+        else{ //cites ?
+          gestor.texto_escogido_gestor().citas_texto(1);
         }
       }
     else if(op == "taula"){ //Taula de frequencies
