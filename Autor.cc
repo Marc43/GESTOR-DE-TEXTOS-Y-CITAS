@@ -11,9 +11,13 @@ Autor::Autor(string nombre){
   num_frases = 0;
 }
 
-void Autor::citas_autor(){
+void Autor::citas_autor(){ //map<string, map<int, Cita> > citas;
   for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
-    //rehacer, 2for
+    for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
+      cout << it->first << it2->first << endl;
+      it2->second.escribir_cita();
+      cout << '"' << it2->second.titulo_texto_cita() << '"' << endl;
+    }
   }
 }
 

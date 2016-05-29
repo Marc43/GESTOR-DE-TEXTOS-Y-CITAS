@@ -1,12 +1,7 @@
-//
-// Created by PCUSER on 28/05/2016.
-//
-
 #include "funciones_aux.hh"
 
 void recorta(istringstream& iss){ //iss es un parametro de salida
     int pos = 0;
-    bool encontrado = false;
     string aux = iss.str();
     while(aux[pos] == ' ') ++pos; //Llegamos hasta el primer espacio
     while(aux[pos] != ' ' and pos < aux.length()) ++pos; //Numero de posiciones hasta el espacio

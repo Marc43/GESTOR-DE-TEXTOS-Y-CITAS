@@ -7,7 +7,6 @@
 
 #include <set>
 #include <map>
-#include <stack>
 #include "Frase.hh"
 #include "Cita.hh"
 
@@ -88,8 +87,10 @@ public:
     /**	@brief Consultora de las citas del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla las citas del texto, acompanadas por su referencias
+     *  en caso que valga false el booleano c, si valiese true, ademas imprimiria el autor
+     *  y texto al cual van asociadas las citas imprimidas por pantalla.
      */
-    void citas_texto();
+    void citas_texto(bool c);
 
     /** @brief Consultora sobre si una cita existe en el p.i.
      *  cierto

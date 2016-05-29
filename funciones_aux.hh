@@ -1,6 +1,5 @@
-//
-// Created by PCUSER on 28/05/2016.
-//
+#ifndef FUNCIONES_AXU_HH
+#define FUNCIONES_AUX_HH
 
 #include<iostream>
 #include<sstream>
@@ -29,3 +28,5 @@ void refina_pf(string& palabra);
  *  en caso contrario no se modifica
  */
 void refina_signo(string& palabra);
+
+#endif
