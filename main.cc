@@ -67,7 +67,7 @@ int main(){
 	string titulo = gestor.texto_escogido_gestor().titulo_texto();
 	Texto t = gestor.texto_escogido_gestor();
 	gestor.eliminar_texto_gestor();
-	t.sustituir_palabra(p1, p2);
+	if(p1 != p2) t.sustituir_palabra(p1, p2);
 	gestor.anadir_texto_gestor(t);
       }
     }
