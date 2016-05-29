@@ -61,7 +61,7 @@ void Texto::mostrar_contenido_texto(){
 }
 
 void Texto::tabla_frecuencias_texto(){
-  for(map<int, vector< set<string> > >::iterator it = tabla_frecuencias.begin(); it != tabla_frecuencias.end(); ++it){
+  for(map<int, vector< set<string> > >::reverse_iterator it = tabla_frecuencias.rbegin(); it != tabla_frecuencias.rend(); ++it){
     for(int i = 0; i < it->second.size(); ++i){
       for(set<string>::iterator it2 = it->second[i].begin(); it2 != it->second[i].end(); ++it2){
         cout << *it2 << " " << it->first << endl;
@@ -128,8 +128,7 @@ void Texto::eliminar_cita_texto(string ini, int num){
   if(citas[ini].empty()) citas.erase(ini);
 }
 
-void Texto::sustituir_palabra(const string &p1, const string &p2){//tratar resize tabla frecuencias
-  list<Frase>::iterator it1 = contenido.begin();
+void Texto::sustituir_palabra(const string &p1, const string &p2){ //tratar resize tabla frecuencias
   bool iguales = p1 == p2; //Si las palabras son iguales...
   map<string, int>::iterator ex1 = frecuencia_palabras.find(p1);
   bool existe = ex1 != frecuencia_palabras.end(); //Si la palabra esta en el texto...
@@ -145,18 +144,30 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){//tratar resiz
       int frec2 = frec1 + ex2->second;
       set <string>::iterator sa = tabla_frecuencias [ex2->second] [p2.length() - 1].find(p2);
       tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
-      tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.)
+      int v_size = tabla_frecuencias [frec2].size();
+      if(v_size < p2.length()){
+	tabla_frecuencias [frec2].resize(p2.length());
+	tabla_frecuencias [frec2] [p2.length() - 1].insert(p2);
+      } 
+      else tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.) 
     }
     else{
       frecuencia_palabras [p2] = frec1;
-      tabla_frecuencias [frec1] [p2.length() - 1].insert(p2);
+      int v_size = tabla_frecuencias [frec1].size();
+      if(v_size < p2.length()){
+	tabla_frecuencias [frec1].resize(p2.length());
+	tabla_frecuencias [frec1] [p2.length() - 1].insert(p2);
+      }
+      else tabla_frecuencias [frec1] [p2.length() - 1].insert(p2);
     }
+    list<Frase>::iterator it1 = contenido.begin();
+    int num_frase = 1;
     while(it1 != contenido.end()){ //Iteramos sobre las frases
       list<string> p = (*it1).contenido_frase();
       list<string>::iterator it2 = p.begin();
       while(it2 != p.end()){ //Iteramos sobre el contenido de dicha frase
         char signo; signo = (*it2) [(*it2).length() - 1];
-        bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z'));
+        bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z')) and not (signo >= '0' and signo <= '9');
         if(es_signo){
           string aux = *it2; aux.substr(0, aux.size()-1);
           if(aux == p1){
@@ -167,6 +178,9 @@ void Texto::sustituir_palabra(const string &p1, const string &p2){//tratar resiz
         else if(*it2 == p1) *it2 = p2;
         ++it2;
       }
+      Frase f (p, num_frase);
+      *it1 = f;
+      ++num_frase;
       ++it1;
     }
   }

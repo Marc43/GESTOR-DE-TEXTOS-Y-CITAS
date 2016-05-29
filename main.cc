@@ -82,7 +82,9 @@ int main(){
       }
     }
     else if(op == "textos"){ //textos autor "<autor>" ?
-      recorta(iss); recorta(iss); iss.ignore('"'); string nombre = iss.str();
+      recorta(iss); recorta(iss); string nombre = iss.str();
+      nombre = nombre.substr(0, nombre.length() - 2);
+      refina_pf(nombre);
       if(not gestor.existe_autor(nombre)) cout << "error" << endl;
       else gestor.textos_autor(nombre);
     }
@@ -137,7 +139,6 @@ int main(){
      }
      else{ //frases expressio
          iss.str(iss.str().substr(0, iss.str().size()-2));
-         cout << iss.str() << endl;
          gestor.texto_escogido_gestor().frases_exp(iss);
      }
     }
