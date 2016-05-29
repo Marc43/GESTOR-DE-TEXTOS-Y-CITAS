@@ -64,32 +64,26 @@ bool Frase::i_eval_exp(istringstream &iss, stack<bool_exp> &s){
       a_tratar = a_tratar.substr(1, a_tratar.size()-1);
       bool value = true;
       while(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
-      cout << a_tratar << endl;
       while(a_tratar[a_tratar.size()-1] != '}'){
-        while(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
         if(value){
           value = value and existe_palabra_frase(a_tratar);
         }
         recorta(iss); iss >> a_tratar;
+        while(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
       }
       if(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
       else a_tratar = a_tratar.substr(0, a_tratar.size()-1);
-      cout << a_tratar << endl;
       if(value) value = value and existe_palabra_frase(a_tratar);
       recorta(iss);
       if(s.top().op.empty()) s.top().i = value;
       else{
-        cout << "estoy dentro" << endl;
         s.top().d = value;
         bool_exp top = s.top(); s.pop();
         while(not s.empty() and not s.top().op.empty()){
-          cout << "infinito?" << endl;
           if(top.op == "&") value = top.i and top.d;
           else value = top.i or top.d;
           top = s.top(); top.d = value; s.pop();
-          cout << "infinito de nuevo?" << endl;
         }
-        cout << "sali!" << endl;
         if(s.empty()) s.push(top);
         else{
           if(top.op == "&") s.top().i = top.i and top.d;
@@ -105,7 +99,6 @@ bool Frase::i_eval_exp(istringstream &iss, stack<bool_exp> &s){
       s.top().op = a_tratar;
       recorta(iss);
     }
-    cout << iss.str() << endl;
     return i_eval_exp(iss, s);
   }
 }
