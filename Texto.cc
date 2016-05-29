@@ -85,7 +85,8 @@ void Texto::frases_xy(int x, int y){ // Removido por que ya se trata en el main:
 
 void Texto::frases_exp(istringstream &iss){
     for(list<Frase>::iterator it = contenido.begin(); it != contenido.end(); ++it){
-      if((*it).eval_exp(iss)) (*it).escribir_frase();
+      istringstream iss2(iss.str());
+      if((*it).eval_exp(iss2)) (*it).escribir_frase();
     }
 }
 
