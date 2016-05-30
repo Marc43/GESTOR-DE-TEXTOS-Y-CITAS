@@ -14,12 +14,14 @@ int main(){
 	if(op == "text"){ //afegir text "<titol>"
 	  recorta(iss);
 	  string titulo = iss.str(); //Titulo del texto a anadir
-	  refina_pf(titulo);
+      refina_pf(titulo); iss.str(titulo);
+      titulo = normalizar(iss); //refina_signo(titulo);
 	  getline(cin, linea); 
-	  iss.str(linea);
-	  iss >> op; recorta(iss);
-	  string nombre_autor = iss.str(); //Nombre del autor
-	  refina_pf(nombre_autor);
+	  istringstream a(linea);
+	  recorta(a);
+	  string nombre_autor = a.str(); //Nombre del autor
+      refina_pf(nombre_autor); a.str(nombre_autor);
+      nombre_autor = normalizar(a);
 	  if(gestor.existe_autor(nombre_autor) and gestor.existe_texto_autor(nombre_autor, titulo)) cout << "error" << endl; //Ya existe tal texto en este autor
 	  else gestor.anadir_texto_gestor(nombre_autor, titulo);
 	}
@@ -46,7 +48,7 @@ int main(){
       if(not encontrado) cout << "error" << endl;
     }
     else if(op == "eliminar"){
-      recorta(iss); iss >> op;
+      recorta(iss); iss >> op; //Cites associadas ?? Frases secuencia ??
       if(op == "text"){ //eliminar text
 	if(not gestor.esta_escogido()) cout << "error" << endl;
 	else gestor.eliminar_texto_gestor();
@@ -60,14 +62,11 @@ int main(){
       recorta(iss);
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else{
-	iss >> op; string p1 = op; refina_pf(p1);
-	recorta(iss); recorta(iss); 
-	iss >> op; string p2 = op; refina_pf(p2);
-	string titulo = gestor.texto_escogido_gestor().titulo_texto();
-	Texto t = gestor.texto_escogido_gestor();
-	gestor.eliminar_texto_gestor();
-	if(p1 != p2) t.sustituir_palabra(p1, p2);
-	gestor.anadir_texto_gestor(t);
+          string p1, p2;
+          Texto t = gestor.texto_escogido_gestor();
+          gestor.eliminar_texto_gestor();
+          if(p1 != p2) t.sustituir_palabra(p1, p2);
+          gestor.anadir_texto_gestor(t);
       }
     }
     else if(op == "textos"){ //textos autor "<autor>" ?
@@ -96,7 +95,6 @@ int main(){
       else{ //info ?
 	cout << gestor.texto_escogido_gestor().autor_texto() << " \"" << gestor.texto_escogido_gestor().titulo_texto() << "\"";
 	cout << ' ' << gestor.texto_escogido_gestor().numero_frases() << ' ' << gestor.texto_escogido_gestor().numero_palabras() << endl;
-	cout << "Cites Associades:" << endl;
 	gestor.texto_escogido_gestor().citas_texto(0);
       }
     }

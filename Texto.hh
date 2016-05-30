@@ -164,7 +164,7 @@ public:
      * 	 \pre <b>p1</b> aparece en el texto
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
      */
-    void sustituir_palabra(const string &p1, const string &p2);
+    void sustituir_palabra(string &p1, string &p2);
 
     /** @brief
      *  \pre

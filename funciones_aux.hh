@@ -29,4 +29,11 @@ void refina_pf(string& palabra);
  */
 void refina_signo(string& palabra);
 
+/** @brief Normaliza una entrada
+ * \pre cierto
+ * \post eliminado el exceso de espacios
+ * en una entrada por pantalla
+ */
+string normalizar(istringstream& iss);
+
 #endif

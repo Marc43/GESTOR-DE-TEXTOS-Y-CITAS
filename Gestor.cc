@@ -57,13 +57,14 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
     while(entrada != "****") {
         istringstream iss(entrada);
 	while(iss >> pa){
+        cout << pa << endl;
 	    recorta(iss);
-            bool es_signo = not ((pa[pa.length()-1] >= 'a' and pa[pa.length()-1] <= 'z') or (pa[pa.length()-1] >= 'A' and pa[pa.length()-1] <= 'Z'));
+        bool es_signo = not ((pa[pa.length()-1] >= 'a' and pa[pa.length()-1] <= 'z') or (pa[pa.length()-1] >= 'A' and pa[pa.length()-1] <= 'Z'));
 	    string aux = pa; refina_signo(aux);
 	    map<string, int>::iterator frec = frecuencia_palabras.find(aux);
-            if (frec != frecuencia_palabras.end()) ++frecuencia_palabras[aux];
-            else frecuencia_palabras[aux] = 1;
-            if (not ini_frase and es_signo) {
+        if (not es_signo and frec != frecuencia_palabras.end()) ++frecuencia_palabras[aux];
+        else if(not es_signo) frecuencia_palabras[aux] = 1;
+        if (not ini_frase and es_signo) {
 		if(pa.size() == 1){
 		  list<string>::iterator aux = it2;
 		  --aux;

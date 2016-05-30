@@ -17,3 +17,20 @@ void refina_signo(string& palabra){ //Refina final si hay signo
     char c = palabra [palabra.length() - 1];
     if(not ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z')) and not (c >= '0' and c <= '9')) palabra = palabra.substr(0, palabra.length() - 1);
 }
+
+string normalizar(istringstream& iss){
+    string a_tratar, tratado;
+    bool first = true; tratado = "";
+    while(iss >> a_tratar){
+        if(first){
+            tratado += a_tratar;
+            first = false;
+        }
+        else{
+            tratado += " ";
+            tratado += a_tratar;
+        }
+    }
+
+    return tratado;
+}
