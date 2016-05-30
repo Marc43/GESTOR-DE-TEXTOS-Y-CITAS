@@ -150,7 +150,6 @@ int main(){
              recorta(aux);
          }
          iss.str(exp);
-         cout << exp << endl;
          gestor.texto_escogido_gestor().frases_exp(iss);
      }
     }
