@@ -40,8 +40,8 @@ void Gestor::anadir_texto_gestor(Texto& t){
     autor.anadir_texto_autor(t);
     autores [nombre] = autor;
   }
-  textos [titulo] = t;
-  texto_escogido = textos.find(titulo);
+  textos.insert(textos.end(), t);
+  texto_escogido = textos.end(); --texto_escogido; //Lo anadimos y lo seleccionamos (la funcion esta hecha expresamente para eso)
   escogido = true;
 }
 
@@ -61,8 +61,8 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         bool es_signo = not ((pa[pa.length()-1] >= 'a' and pa[pa.length()-1] <= 'z') or (pa[pa.length()-1] >= 'A' and pa[pa.length()-1] <= 'Z'));
 	    string aux = pa; refina_signo(aux);
 	    map<string, int>::iterator frec = frecuencia_palabras.find(aux);
-        if (not es_signo and frec != frecuencia_palabras.end()) ++frecuencia_palabras[aux];
-        else if(not es_signo) frecuencia_palabras[aux] = 1;
+        if (not aux.empty() and frec != frecuencia_palabras.end()) ++frecuencia_palabras[aux];
+        else if(not aux.empty()) frecuencia_palabras[aux] = 1;
         if (not ini_frase and es_signo) {
 		if(pa.size() == 1){
 		  list<string>::iterator aux = it2;
@@ -115,34 +115,34 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         Autor autor (nombre); autor.anadir_texto_autor(t);
         autores [nombre] = autor;
     }
-    textos [titulo] = t; 
+    textos.insert(textos.end(), t);
 }
 
 void Gestor::eliminar_texto_gestor(){
-    string nombre_autor = texto_escogido->second.autor_texto();
+    string nombre_autor = (*texto_escogido).autor_texto();
     if(autores[nombre_autor].numero_textos_autor() == 1){
         map <string, Autor>::iterator it = autores.find(nombre_autor);
         autores.erase(it);
     }
-    else autores[nombre_autor].eliminar_texto_autor(texto_escogido->second.titulo_texto());
+    else autores[nombre_autor].eliminar_texto_autor((*texto_escogido).titulo_texto());
     textos.erase(texto_escogido);
     escogido = false;
 }
 
 bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRATAR SIGNOS DE PUNTUACION
     bool match = false;
-    map<string, Texto>::iterator t;
-    for(map<string, Texto>::iterator it = textos.begin(); it != textos.end(); ++it){
+    list<Texto>::iterator t;
+    for(list<Texto>::iterator it = textos.begin(); it != textos.end(); ++it){
         list<string> aux = p;
         list<string>::iterator aux_it = aux.begin();
-        map<string, int> f_p = it->second.frecuencia_palabras_texto();
+        map<string, int> f_p = (*it).frecuencia_palabras_texto();
         while(aux_it != aux.end() and not aux.empty()){
             map<string, int>::iterator f_it = f_p.find(*aux_it);
             if(f_it != f_p.end()) aux_it = aux.erase(aux_it);
             else ++aux_it;
         }
         string a_tratar;
-        istringstream autor(it->second.autor_texto());
+        istringstream autor((*it).autor_texto());
         while(not autor.str().empty() and not aux.empty()){
             autor >> a_tratar;
             recorta(autor);
@@ -156,7 +156,7 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
                 else ++aux_it;
             }
         }
-        istringstream titulo(it->second.titulo_texto());
+        istringstream titulo((*it).titulo_texto());
         while(not titulo.str().empty() and not aux.empty()){
             titulo >> a_tratar;
             recorta(titulo);
@@ -204,7 +204,7 @@ bool Gestor::esta_escogido(){
 }
 
 Texto Gestor::texto_escogido_gestor(){
-  return texto_escogido->second;
+  return *texto_escogido;
 }
 
 void Gestor::todas_citas(){//daños colaterales
@@ -218,8 +218,8 @@ void Gestor::todas_citas(){//daños colaterales
 }
 
 void Gestor::anadir_cita_gestor(int x, int y){
-    if(x <= y and not (x <= 0 or y <= 0) and y <= texto_escogido->second.numero_frases() and not texto_escogido->second.existe_cita(x, y)){
-        istringstream iss(texto_escogido->second.autor_texto());
+    if(x <= y and not (x <= 0 or y <= 0) and y <= (*texto_escogido).numero_frases() and not (*texto_escogido).existe_cita(x, y)){
+        istringstream iss((*texto_escogido).autor_texto());
         string a_tratar, id, id_cita; id = ""; //id es nula
         while(iss >> a_tratar){
             char inicial = a_tratar[0];
@@ -229,7 +229,7 @@ void Gestor::anadir_cita_gestor(int x, int y){
             id += inicial;
 	    recorta(iss);
         }
-        list<Frase> l = texto_escogido->second.contenido_texto();
+        list<Frase> l = (*texto_escogido).contenido_texto();
         vector<Frase> v(y-x+1);
         list<Frase>::iterator itf = l.begin();
         for(int i = 1; i < x; ++i) ++itf;
@@ -237,7 +237,7 @@ void Gestor::anadir_cita_gestor(int x, int y){
             v[i] = *itf;
             ++itf;
         }
-        Cita c(v, texto_escogido->second.titulo_texto(), texto_escogido->second.autor_texto(), x, y);
+        Cita c(v, (*texto_escogido).titulo_texto(), (*texto_escogido).autor_texto(), x, y);
         map<string,int >::iterator it = this->id.find(id);
         int num;
         if(it != this->id.end()){
@@ -250,8 +250,8 @@ void Gestor::anadir_cita_gestor(int x, int y){
         }
         
         citas[id][num] = c;
-        texto_escogido->second.anadir_cita_texto(c, id, num);
-        autores [texto_escogido->second.autor_texto()].anadir_cita_autor(c, id, num);
+        (*texto_escogido).anadir_cita_texto(c, id, num);
+        autores [(*texto_escogido).autor_texto()].anadir_cita_autor(c, id, num);
     }
     else cout << "error" << endl;
 }
@@ -263,8 +263,16 @@ void Gestor::eliminar_cita_gestor(string id){
     }
     int num = atoi(id.substr(i, id.size() - i).c_str());
     string ini = id.substr(0, i);
-    autores[citas[ini][num].autor_cita()].eliminar_cita_autor(ini, num);
-    textos[citas[ini][num].titulo_texto_cita()].eliminar_cita_texto(ini, num);
+    string autor = citas[ini][num].autor_cita();
+    autores[autor].eliminar_cita_autor(ini, num);
+    string titulo = citas[ini][num].titulo_texto_cita();
+    bool encontrado = false;
+    list<Texto>::iterator it = textos.begin();
+    while(not encontrado and it != textos.end()){
+      if((*it).autor_texto() == autor and (*it).titulo_texto() == titulo) encontrado = true;
+      else ++it;
+    }
+    if(encontrado) (*it).eliminar_cita_texto(ini, num);
     citas[ini].erase(num);
     if(citas[ini].empty()) citas.erase(ini);
 }
@@ -278,6 +286,6 @@ void Gestor::info_cita(string id){
     while(id[i] >= 'A' and id[i] <= 'Z') ++i;
     string ini = id.substr(0, i);
     int num = atoi((id.substr(i, id.size() - 1)).c_str());
-    //cout << num <<  ' ' << ini << endl;
+
     citas[ini][num].info();
 }
