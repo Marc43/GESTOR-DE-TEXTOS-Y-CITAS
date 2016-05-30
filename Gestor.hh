@@ -33,8 +33,8 @@ class Gestor {
         map <string, Autor> autores;
 
         //Textos
-        map <string, Texto> textos;
-        map <string, Texto>::iterator texto_escogido; //Iterador que apunta al texto
+       list<Texto> textos;
+       list<Texto>::iterator texto_escogido; //Iterador que apunta al texto
         bool escogido;
 
         //Citas
