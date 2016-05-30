@@ -130,6 +130,19 @@ int main(){
      }
      else{ //frases expressio
          iss.str(iss.str().substr(0, iss.str().size() - 2));
+         istringstream aux(iss.str());
+         string saux, exp; exp = "";
+         while(aux >> saux){
+             if(saux == "(" or saux == "{" or saux == "}" or saux == ")") {if(exp[exp.size() - 1] == '&' or exp[exp.size() - 1] == '|') exp += " "; exp += saux;}
+             else if(exp[exp.size() - 1] == '(' or exp[exp.size() - 1] == '(') exp += saux;
+             else if(exp[exp.size() - 1] == ')' or exp[exp.size() - 1] == '}') {exp += " "; exp += saux;}
+             else if(exp[exp.size() - 1] == '|' or exp[exp.size() - 1] == '&'){exp += " "; exp += saux;}
+             else if((exp[exp.size() - 1] >= 'a' and exp[exp.size() - 1] <= 'z') or (exp[exp.size() - 1] >= 'A' and exp[exp.size() - 1] <= 'Z')) {exp += " "; exp += saux;}
+             else exp += saux;
+             recorta(aux);
+         }
+         iss.str(exp);
+         cout << exp << endl;
          gestor.texto_escogido_gestor().frases_exp(iss);
      }
     }
