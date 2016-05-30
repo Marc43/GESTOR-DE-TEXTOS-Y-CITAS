@@ -167,7 +167,7 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
       list<string> p = (*it1).contenido_frase();
       list<string>::iterator it2 = p.begin();
       while(it2 != p.end()){ //Iteramos sobre el contenido de dicha frase
-        char signo; signo = (*it2) [(*it2).length() - 1];
+        /*char signo; signo = (*it2) [(*it2).length() - 1];
         bool es_signo = not ((signo >= 'a' and signo <= 'z') or (signo >= 'A' and signo <= 'Z')) and not (signo >= '0' and signo <= '9');
         if(es_signo){
           string aux = *it2; aux.substr(0, aux.size()-1);
@@ -176,7 +176,16 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
             *it2 = aux;
           }
         }
-        else if(*it2 == p1) *it2 = p2;
+        else if(*it2 == p1) *it2 = p2;*/
+        string a_tratar = (*it2); refina_signo(a_tratar);
+        if(a_tratar == p1){
+          if(a_tratar == *it2) *it2 = p2;
+          else{
+            string aux = ""; aux += (*it2)[(*it2).size()-1];
+            *it2 = p2;
+            *it2 += aux;
+          }
+        }
         ++it2;
       }
       Frase f (p, num_frase);

@@ -63,6 +63,16 @@ int main(){
       if(not gestor.esta_escogido()) cout << "error" << endl;
       else{
           string p1, p2;
+          iss >> p1; recorta(iss);
+          if(p1 == "\"") {iss >> p1; recorta(iss);}
+          else p1 = p1.substr(1, p1.size()-1);
+          string paux = p1;
+          refina_signo(p1);
+          if(paux == p1) recorta(iss);
+          recorta(iss);
+          iss >> p2; recorta(iss);
+          if(p2 == "\"") {iss >> p2; recorta(iss);}
+          else p2 = p2.substr(1, p2.size()-1);
           Texto t = gestor.texto_escogido_gestor();
           gestor.eliminar_texto_gestor();
           if(p1 != p2) t.sustituir_palabra(p1, p2);
