@@ -57,7 +57,6 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
     while(entrada != "****") {
         istringstream iss(entrada);
 	while(iss >> pa){
-        cout << pa << endl;
 	    recorta(iss);
         bool es_signo = not ((pa[pa.length()-1] >= 'a' and pa[pa.length()-1] <= 'z') or (pa[pa.length()-1] >= 'A' and pa[pa.length()-1] <= 'Z'));
 	    string aux = pa; refina_signo(aux);
