@@ -17,7 +17,7 @@ using namespace std;
 
 /** @class Frase
  *  @brief Representa la frase, es decir, la union de palabras
- *  <b>frase</b> es un vector de palabras ya que siempre mantendran su forma
+ *  <b>frase</b> es una lista de strings ya que siempre mantendran su forma
  *  <b>num_palabras</b> es el atributo destinado a guardar el numero de palabras
  *  del parametro implicito, es decir, frase.size();
  */
@@ -52,7 +52,7 @@ public:
      */
     Frase(list<string>& frase, int num_frase);
 
-    /* Consultora */
+    /* Consultoras*/
 
     /** @brief Consultora del contenido del p.i.
      * \pre cierto
@@ -78,7 +78,7 @@ public:
      */
     bool existe_palabra_frase(string palabra);
 
-    /** @brief
+    /** @brief 
      *  \pre
      *  \post
      */
