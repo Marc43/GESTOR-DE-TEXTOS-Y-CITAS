@@ -1,3 +1,7 @@
+//
+// Created by Zebs on 17/05/2016.
+//
+
 #include "Gestor.hh"
 #include <stdlib.h>
 
@@ -40,6 +44,21 @@ bool Gestor::existe_cita(int x, int y, string autor, string titulo){
   return match;
 }
 
+void Gestor::anadir_texto_gestor(Texto& t){
+  string nombre = t.autor_texto();
+  string titulo = t.titulo_texto();
+  map<string, Autor>::iterator it = autores.find(nombre);
+  if(it != autores.end()) it->second.anadir_texto_autor(t);
+  else{
+    Autor autor (nombre);
+    autor.anadir_texto_autor(t);
+    autores [nombre] = autor;
+  }
+  textos.insert(textos.end(), t);
+  texto_escogido = textos.end(); --texto_escogido; //Lo anadimos y lo seleccionamos (la funcion esta hecha expresamente para eso)
+  escogido = true;
+}
+
 void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo, reestructurarla
     string entrada, pa; getline(cin, entrada);
     bool ini_frase = true;
@@ -78,7 +97,7 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
                     ini_frase = true; //Empezamos nueva frase
                 }
             }
-            else if (ini_frase and es_signo) { //NO TRATAR LOS SIGNOS SOLOS COMO FRASES!!!!
+            else if (ini_frase and es_signo) {
 	      if(pa[pa.length()-1] == '.' or pa[pa.length()-1] == '?' or pa[pa.length()-1] == '!'){
 		 //Hemos encontrado una frase vacia, y volvemos a empezar otra nueva
                 f.insert(it2, pa);
@@ -104,7 +123,6 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         }
         getline(cin, entrada);
     }
-    
     Texto t (nombre, titulo, num_p, num_f, contenido, frecuencia_palabras);
     map<string, Autor>::iterator aut = autores.find(nombre);
     if(aut != autores.end()) autores [nombre].anadir_texto_autor(t);
@@ -113,21 +131,6 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         autores [nombre] = autor;
     }
     textos.insert(textos.end(), t);
-}
-
-void Gestor::anadir_texto_gestor(Texto& t){
-  string nombre = t.autor_texto();
-  string titulo = t.titulo_texto();
-  map<string, Autor>::iterator it = autores.find(nombre);
-  if(it != autores.end()) it->second.anadir_texto_autor(t);
-  else{
-    Autor autor (nombre);
-    autor.anadir_texto_autor(t);
-    autores [nombre] = autor;
-  }
-  textos.insert(textos.end(), t);
-  texto_escogido = textos.end(); --texto_escogido; //Lo anadimos y lo seleccionamos (la funcion esta hecha expresamente para eso)
-  escogido = true;
 }
 
 void Gestor::eliminar_texto_gestor(){
@@ -206,7 +209,6 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
 void Gestor::todos_textos(){
     for(map<string, Autor>::iterator it = autores.begin(); it != autores.end(); ++it){ //Iteramos autores 
       it->second.textos_autor(1);
-        //Imprimir usando el autor.imprimir_textos();
     }
 }
 
@@ -222,7 +224,7 @@ Texto Gestor::texto_escogido_gestor(){
   return *texto_escogido;
 }
 
-void Gestor::todas_citas(){ //daños colaterales
+void Gestor::todas_citas(){
     for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
         for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
             cout << it->first << it2->first << endl;
@@ -238,9 +240,6 @@ void Gestor::anadir_cita_gestor(int x, int y){
         string a_tratar, id, id_cita; id = ""; //id es nula
         while(iss >> a_tratar){
             char inicial = a_tratar[0];
-//             if(inicial >= 'a' and inicial <= 'z'){ //Si no es mayuscula, convertirla
-//                 inicial = (inicial - 'a') + 'A';
-//             }
             id += inicial;
 	    recorta(iss);
         }
@@ -312,7 +311,7 @@ void Gestor::citas_autor(string autor){
 
 void Gestor::info_cita(string id){
     int i = 0;
-    while((id[i] >= 'A' and id[i] <= 'Z') or (id[i] >= 'a' and id[i] <= 'z')) ++i;
+    while(id[i] >= 'A' and id[i] <= 'Z') ++i;
     string ini = id.substr(0, i);
     int num = atoi((id.substr(i, id.size() - 1)).c_str());
     map<string, map<int, Cita> >::iterator it1 = citas.find(ini);

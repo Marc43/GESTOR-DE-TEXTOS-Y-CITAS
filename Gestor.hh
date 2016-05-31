@@ -1,3 +1,7 @@
+/** @file Gestor.hh
+ *  @brief Especificacion de la clase Gestor
+ */
+
 #ifndef GESTOR_HH
 #define GESTOR_HH
 

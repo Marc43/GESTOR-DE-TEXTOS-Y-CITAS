@@ -1,3 +1,7 @@
+/** @file funciones_aux.hh
+ *  @brief Especificacion del modulo auxiliar
+ */
+
 #include "funciones_aux.hh"
 
 void recorta(istringstream& iss){ //iss es un parametro de salida
