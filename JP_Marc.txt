@@ -115,7 +115,7 @@ contingut ?
 
 autor ?
 
-titol ?
+info ?
 
 frases (({les pesa} | {la faz}) & {asi}) ?
 
