@@ -1,0 +1,173 @@
+afegir text "El Credo del Samurai"
+autor "Anonimo"
+No tengo padre ni madre, del Cielo y de la Tierra hago mi padre y mi madre.
+No tengo hogar, del saika tanden hago mi hogar.
+No tengo poder divino, de la honestidad hago mi poder divino.
+No tengo recursos, de la docilidad hago mi recurso.
+No tengo poderes magicos, de mi caracter hago mi poder magico.
+No tengo vida ni muerte, del AUM hago mi vida y mi muerte.
+No tengo cuerpo, del ascetismo hago mi cuerpo.
+No tengo ojos, del relampago hago mis ojos.
+No tengo oidos, de mi sensibilidad hago mis oidos.
+No tengo brazos ni piernas, de la rapidez hago mis brazos y piernas.
+No tengo leyes, de la autodefensa hago mi ley.
+No tengo estrategia, de mi sakkatsu jizai hago mi estrategia.
+No tengo designios, de la oportunidad hago mi designio.
+No tengo milagros, del seguimiento de mi Dharma hago mi milagro.
+No tengo principios, del rinkiouhen hago mis principios.
+No tengo tacticas, del kyojitsu hago mi tactica.
+No tengo talento, del toi sokumyou hago mi talento.
+No tengo amigos, de mi mente hago mi amiga.
+No tengo enemigos, del descuido hago mi enemigo.
+No tengo armadura, del jingi hago mi armadura.
+No tengo castillo, de fudoshin hago mi castillo.
+No tengo espada, de mushin hago mi espada.
+****
+contingut ?
+
+info ?
+
+frases 4 7 ?
+
+nombre de frases ?
+
+nombre de paraules ?
+
+textos autor "Anonimo" ?
+
+triar text {Aikido}
+
+eliminar text
+
+triar text {espada Samurai}
+
+contingut ?
+
+info ?
+
+afegir cita 0 4
+
+frases 1 15 ?
+
+totes cites ?
+
+cites ?
+
+afegir cita 1 3
+
+afegir cita 18 22
+
+info ?
+
+afegir cita 1 3
+
+frases 0 4 ?
+
+eliminar cita "A1"
+
+info cita "A1" ?
+
+info ?
+
+afegir cita 1 3
+
+totes cites ?
+
+eliminar cita "A1"
+
+afegir text "Sobre el Bushido"
+autor "Mirumoto Jinto"
+El camino del valiente no sigue los pasos de la estupidez.
+Un perro sin amo vagabundea libre, El halcon de un Daimyo vuela mas alto.
+Solo hay una lealtad superiro a la del samurai hacia su Daimyo, la del Daimyo hacia sus subditos.
+Un alma sin respeto es una morada en ruinas, Debe de ser demolida para construir una nueva.
+La perfeccion es una montaña inescalable que debe de ser escalada a diario.
+La ofensa es como un buen haikyu, puede ignorarse, desconocerse, perdonarse o borrarse, pero nunca puede ser olvidada.
+Mi hoja es mi alma, mi alma pertenece a mi Daimyo, Ultrajar mi hoja es afrentar a mi Daimyo.
+La muerte no es eterna, el deshonor, si.
+El samurai nace para morir, La muerte, pues, no es una maldicion a evitar, sino el fin natural de toda vida.
+.
+****
+
+triar text {Bushido}
+
+nombre de frases ?
+
+contingut ?
+
+tots textos ?
+
+afegir cita 1 3
+
+afegir cita 4 9
+
+cites autor "Mirumoto Jinto" ?
+
+substitueix "Daimyo" per "Senor Feudal"
+
+info ?
+
+contingut ?
+
+tots autors ?
+
+afegir text "Sobre el Bushido"
+autor "Mirumoto Jinto"
+Prueba para ver que no repita nada.
+****
+
+textos autor "Mirumoto Jinto" ?
+
+eliminar text
+
+afegir text "Sobre el Bushido"
+autor "Mirumoto Jinto"
+El camino del valiente no sigue los pasos de la estupidez.
+Un perro sin amo vagabundea libre, El halcon de un Daimyo vuela mas alto.
+Solo hay una lealtad superior a la del samurai hacia su Daimyo, la del Daimyo hacia sus subditos.
+Un alma sin respeto es una morada en ruinas, Debe de ser demolida para construir una nueva.
+La perfeccion es una montana inescalable que debe de ser escalada a diario.
+La ofensa es como un buen haikyu, puede ignorarse, desconocerse, perdonarse o borrarse, pero nunca puede ser olvidada.
+Mi hoja es mi alma, mi alma pertenece a mi Daimyo, Ultrajar mi hoja es afrentar a mi Daimyo.
+La muerte no es eterna, el deshonor, si.
+El samurai nace para morir; La muerte, pues, no es una maldicion a evitar, sino el fin natural de toda vida.
+****
+
+substitueix "samurai" per "Ronin"
+
+cites ?
+
+afegir cita 1 5
+
+triar text {morir}
+
+nombre de frases ?
+
+nombre de paraules ?
+
+contingut ?
+
+afegir text "Siete Virtudes del Bushido"
+autor "Anonimo"
+1 Yu: Coraje, Valor Heroico.
+2 Rei: Cortesia.
+3 Jin: Compasion.
+4 Gi: Justicia.
+5 Meiyo: Honor.
+6 Chugo: Lealtad.
+7 Makoto: Sinceridad, verdad.
+****
+
+triar text {Bushido}
+
+triar text {Compasion}
+
+afegir cita 1 7
+
+afegir cita 5 5
+
+cites autor "Anonimo" ?
+
+totes cites ?
+
+sortir
