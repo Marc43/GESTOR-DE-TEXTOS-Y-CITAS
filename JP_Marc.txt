@@ -98,7 +98,7 @@ tots autors ?
 
 totes cites ?
 
-afegir text "     Normalizacion         ,    de    el titulo   , numero 1 "
+afegir text "     Normalizacion         ,    del    titulo   , numero 1 "
 autor "Anonimo"
 El autor de esta obra permanece en el anonimato.
 Aun asi se puede pensar que o el o alguno de nosotros la escribio, ya que no 
