@@ -136,35 +136,20 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
   if(not iguales and existe){
     //Cambios en las frecuencias
     int frec1 = ex1->second;
-    frecuencia_palabras.erase(ex1);
-    set <string>::iterator st = tabla_frecuencias [frec1] [p1.length() - 1].find(p1);
-    tabla_frecuencias [frec1] [p1.length() - 1].erase(st);
+    tabla_frecuencias [frec1] [ex1->first.length() - 1].erase(ex1->first);
+    frecuencia_palabras.erase(ex1); //Guardamos su anterior frec y lo borramos (se sustituyen todas las apariciones)
     map<string, int>::iterator ex2 = frecuencia_palabras.find(p2);
     if(ex2 != frecuencia_palabras.end()){
-      frecuencia_palabras [p2] += frec1; //Su nueva frecuencia es la suma de ambas frecuencias
-      int frec2 = frec1 + ex2->second;
-      set <string>::iterator sa = tabla_frecuencias [ex2->second] [p2.length() - 1].find(p2);
-      tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
-      map<int, vector< set <string> > >::iterator com = tabla_frecuencias.find(frec2);
-      int v_size = 0; 
-      if(com != tabla_frecuencias.end()) v_size = tabla_frecuencias [frec2].size();
-      else tabla_frecuencias [frec2].resize(p2.length());
-      if(v_size < p2.length()){
-	tabla_frecuencias [frec2].resize(p2.length());
-	tabla_frecuencias [frec2] [p2.length() - 1].insert(p2);
-      } 
-      else tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.) 
-
-    }
-    else{
-      frecuencia_palabras [p2] = frec1;
-      int v_size = tabla_frecuencias [frec1].size();
-      if(v_size < p2.length()){
-	tabla_frecuencias [frec1].resize(p2.length());
-	tabla_frecuencias [frec1] [p2.length() - 1].insert(p2);
+      tabla_frecuencias [ex2->second] [ex2->first.length() - 1].erase(ex2->first);
+      ex2->second += frec1;
+      int v_size = tabla_frecuencias [ex2->second].size();
+      if(ex2->first.length() < v_size){
+        tabla_frecuencias [ex2->second].resize(ex2->first.length());
+        tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
       }
-      else tabla_frecuencias [frec1] [p2.length() - 1].insert(p2);
+      else tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
     }
+    else frecuencia_palabras [p2] = frec1;
     list<Frase>::iterator it1 = contenido.begin();
     int num_frase = 1;
     while(it1 != contenido.end()){ //Iteramos sobre las frases
