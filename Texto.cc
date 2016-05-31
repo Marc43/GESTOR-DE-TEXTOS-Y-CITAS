@@ -141,7 +141,7 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
     map<string, int>::iterator ex2 = frecuencia_palabras.find(p2);
     if(ex2 != frecuencia_palabras.end()){
       tabla_frecuencias [ex2->second] [ex2->first.length() - 1].erase(ex2->first);
-      ex2->second += frec1;
+      frecuencia_palabras [ex2->second] += frec1;
       int v_size = tabla_frecuencias [ex2->second].size();
       if(ex2->first.length() < v_size){
         tabla_frecuencias [ex2->second].resize(ex2->first.length());
@@ -149,7 +149,15 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
       }
       else tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
     }
-    else frecuencia_palabras [p2] = frec1;
+    else{
+      frecuencia_palabras [p2] = frec1;
+      int v_size = tabla_frecuencias [ex2->second].size();
+      if(ex2->first.length() < v_size){
+        tabla_frecuencias [ex2->second].resize(ex2->first.length());
+        tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
+      }
+      else tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
+    }
     list<Frase>::iterator it1 = contenido.begin();
     int num_frase = 1;
     while(it1 != contenido.end()){ //Iteramos sobre las frases
