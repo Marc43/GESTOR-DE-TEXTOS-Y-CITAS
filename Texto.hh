@@ -10,7 +10,6 @@
 #include "Frase.hh"
 #include "Cita.hh"
 
-
 /*
  * Clase Texto
  */
@@ -23,7 +22,8 @@
  *  <b>citas</b> son las frases citadas del texto
  *  <b>num_frases</b> es el numero de frases, <b>num_palabras</b> es el numero de palabras
  *  <b>frecuencia_palabras</b> es un diccionario, donde el key es la frecuencia de las palabras, y 
- *  cada key le corresponde un vector de palabras con esa frecuencia.
+ *  cada key le corresponde un vector de palabras donde el indice es la longitud de las
+ *  palabras, y el vector en esa posicion contiene el set de las palabras con esa longitud
  */
 
 class Texto {
@@ -66,11 +66,11 @@ public:
     /**	@brief Constructora de la clase Texto
      * 	\pre cierto
      * 	\post crea un objeto de la clase Texto con los atributos correspondientes
+     *  y la tabla de frecuencias ya creada con su correspondiente asignacion
      */
     Texto(string autor, string titulo, int num_p, int num_f, list<Frase> contenido, map<string, int> frecuencia_palabras);
 
     /* Consultoras */
-
 
     /**	@brief Consultora del autor del p.i.
      * 	\pre cierto
@@ -93,26 +93,30 @@ public:
     void citas_texto(bool c);
 
     /** @brief Consultora sobre si una cita existe en el p.i.
-     *  cierto
-     *  devuelve cierto si la cita esta almacenada en el p.i., falso en caso contrario
+     *  \pre cierto
+     *  \post devuelve cierto si la cita esta almacenada 
+     *  en el p.i., falso en caso contrario
      */
     bool existe_cita(int x, int y);
 
     /**	@brief Consultora del numero de frases del p.i.
      * 	\pre cierto
-     * 	\post muestra por pantalla el numero de frases del texto
+     * 	\post muestra por pantalla el numero
+     *  de frases del texto
      */
     int numero_frases();
 
     /**	@brief Consultora del numero de palabras del p.i.
      * 	\pre cierto
-     * 	\post muestra por pantalla el numero de palabras del texto
+     * 	\post muestra por pantalla el numero 
+     *  de palabras del texto
      */
     int numero_palabras();
 
     /**	@brief Consultora del contenido del p.i.
      * 	\pre cierto
-     * 	\post muestra por pantalla el contenido (las frases) del texto.
+     * 	\post muestra por pantalla el contenido 
+     *  (las frases con su numeracion) del texto.
      */
     void mostrar_contenido_texto();
 
@@ -120,15 +124,15 @@ public:
      * 	\pre cierto
      * 	\post muestra por pantalla las palabras del texto ordenadas
      * 	decrecientemente por frecuencia, y en caso de empate, crecientemente
-     * 	por largada y alfabéticamente.
+     * 	por largada y alfabeticamente.
      */
     void tabla_frecuencias_texto();
 
     /**	@brief Consultora de las frases entre la #x y la #y, ambas incluidas
-     * 	\pre x > 0 e y < contenido.size()
-     * 	\post si <b>cita</b> es falso, muestra por pantalla el contenido del p.i.
-     * 	entre las frases <b>x</b> e <b>y</b>, ambas incluidas, y devuelve una cita vacia.
-     * 	en caso contrario devuelve una cita con estas frases, creando su identificador.
+     * 	\pre x y forman un intervalo valido
+     *  (x > 0 & y > 0) y ademas y < numero de frases
+     * 	\post Muestra por pantalla las frases <b>x</b> e 
+     *  <b>y</b>, ambas incluidas en el intervalo
      */
     void frases_xy(int x, int y);
 
@@ -137,7 +141,7 @@ public:
      * 	\post muestra por pantalla las frases del texto escogido
      *  que cumplen las expresion logica dada
      */
-    void frases_exp(istringstream &iss); //Diferente de frases "<paraula1> ... <paraulaN>" ???
+    void frases_exp(istringstream &iss);
 
     /** @brief Consultora de frases dada una expresion sequencial
      *  \pre cierto
@@ -145,7 +149,25 @@ public:
      *  cumplen la sequencia de palabras dada
      */
     void frases_seq(list<string>& seq);
-
+    
+    /** @brief Consultora de la frecuencia de las palabras en un texto
+     *  \pre cierto
+     *  \post Devuelve un map asociado al texto
+     *  el cual tiene de key la palabra y contiene
+     *  la frecuencia de dicha palabra.
+     */
+    map<string, int> frecuencia_palabras_texto();
+    
+    
+    /** @brief Consultora del contenido de un texto
+     *  \pre cierto
+     *  \post Devuelve una lista que contiene
+     *  todas y cada una de las frases (objeto Frase)
+     *  pertenecientes al texto del cual estamos 
+     *  devolviendo su contenido
+     */
+    list<Frase> contenido_texto();
+    
     /* Modificadoras */
 
     /**	@brief Modificadora que anade una cita al p.i.
@@ -165,23 +187,6 @@ public:
      * 	\post todas las apariciones de <b>p1</b> en el texto son <b>p2</b>
      */
     void sustituir_palabra(string &p1, string &p2);
-
-    /** @brief
-     *  \pre
-     *  \post
-     */
-    /*list<Frase> eval_exp(istringstream &iss, stack<bool_exp> &s);*/
-
-    /** @brief
-     *  \pre
-     *  \post
-     */
-    map<string, int> frecuencia_palabras_texto();
-
-    /** @brief
-     *  \pre
-     *  \post
-     */
-    list<Frase> contenido_texto();
+    
 };
 #endif
