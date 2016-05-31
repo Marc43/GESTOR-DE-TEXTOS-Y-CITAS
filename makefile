@@ -23,3 +23,10 @@ program.o: program.cc
 
 Texto.o: Texto.cc Texto.hh
 	g++ -c Texto.cc $(FLAGS)
+
+program.tar: *.cc *.hh makefile
+	tar -cvf program.tar *.cc *.hh makefile
+
+clean:
+	rm *.o
+	rm *.exe
