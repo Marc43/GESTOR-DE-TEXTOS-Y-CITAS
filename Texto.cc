@@ -39,15 +39,6 @@ void Texto::citas_texto(bool c){
   }
 }
 
-bool Texto::existe_cita(int x, int y){
-  for(map<string, map<int, Cita> >::iterator it = citas.begin(); it != citas.end(); ++it){
-    for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
-      if(it2->second.frase_inicial() == x and it2->second.frase_final() == y) return true;
-    }
-  }
-  return false;
-}
-
 int Texto::numero_frases(){
   return num_frases;
 }
@@ -136,27 +127,19 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
   if(not iguales and existe){
     //Cambios en las frecuencias
     int frec1 = ex1->second;
-    tabla_frecuencias [frec1] [ex1->first.length() - 1].erase(ex1->first);
-    frecuencia_palabras.erase(ex1); //Guardamos su anterior frec y lo borramos (se sustituyen todas las apariciones)
+    frecuencia_palabras.erase(ex1);
+    tabla_frecuencias[frec1][p1.length()-1].erase(p1);
     map<string, int>::iterator ex2 = frecuencia_palabras.find(p2);
     if(ex2 != frecuencia_palabras.end()){
-      tabla_frecuencias [ex2->second] [ex2->first.length() - 1].erase(ex2->first);
-      frecuencia_palabras [ex2->second] += frec1;
-      int v_size = tabla_frecuencias [ex2->second].size();
-      if(ex2->first.length() < v_size){
-        tabla_frecuencias [ex2->second].resize(ex2->first.length());
-        tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
-      }
-      else tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
+      ex2->second += frec1; //Sumamos las frecuencias 
+      tabla_frecuencias[ex2->second - frec1][p2.length()-1].erase(p2);
+      if(tabla_frecuencias[ex2->second].size() < p2.length()) tabla_frecuencias[ex2->second].resize(p2.length());
+      tabla_frecuencias[ex2->second][p2.length()-1].insert(p2);
     }
     else{
-      frecuencia_palabras [p2] = frec1;
-      int v_size = tabla_frecuencias [ex2->second].size();
-      if(ex2->first.length() < v_size){
-        tabla_frecuencias [ex2->second].resize(ex2->first.length());
-        tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
-      }
-      else tabla_frecuencias [ex2->second] [ex2->first.length()].insert(ex2->first);
+      frecuencia_palabras [p2] = frec1; //Toda aparicion de p1 es p2 ahora
+      if(tabla_frecuencias[frec1].size() < p2.length()) tabla_frecuencias[frec1].resize(p2.length());
+      tabla_frecuencias[frec1][p2.length()-1].insert(p2);
     }
     list<Frase>::iterator it1 = contenido.begin();
     int num_frase = 1;

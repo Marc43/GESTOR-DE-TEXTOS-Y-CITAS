@@ -30,6 +30,20 @@ void Gestor::todos_autores() {//revisar, motivos de eficiencia
     }
 }
 
+bool Gestor::existe_cita(int x, int y, string autor, string titulo){
+  bool match = false;
+  map<string, map<int, Cita> >::iterator it = citas.begin();
+  while(not match and it != citas.end()){
+    map<int, Cita>::iterator it2 = it->second.begin();
+    while(not match and it2 != it->second.end()){
+      if(it2->second.autor_cita() == autor and it2->second.titulo_texto_cita() == titulo and it2->second.frase_inicial() == x and it2->second.frase_final() == y) match = true;
+      ++it2;
+    }
+    ++it;
+  }
+  return match;
+}
+
 void Gestor::anadir_texto_gestor(Texto& t){
   string nombre = t.autor_texto();
   string titulo = t.titulo_texto();
@@ -193,15 +207,14 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
 }
 
 void Gestor::todos_textos(){
-    for(map<string, Autor>::iterator it = autores.begin(); it != autores.end(); ++it){ //Iteramos autores
-      cout << it->first << " ";  
-      it->second.textos_autor();
+    for(map<string, Autor>::iterator it = autores.begin(); it != autores.end(); ++it){ //Iteramos autores 
+      it->second.textos_autor(1);
         //Imprimir usando el autor.imprimir_textos();
     }
 }
 
 void Gestor::textos_autor(string nombre){
-  autores [nombre].textos_autor();
+  autores [nombre].textos_autor(0);
 }
 
 bool Gestor::esta_escogido(){
@@ -223,7 +236,7 @@ void Gestor::todas_citas(){ //daños colaterales
 }
 
 void Gestor::anadir_cita_gestor(int x, int y){
-    if(x <= y and not (x <= 0 or y <= 0) and y <= (*texto_escogido).numero_frases() and not (*texto_escogido).existe_cita(x, y)){
+    if(x <= y and not (x <= 0 or y <= 0) and y <= (*texto_escogido).numero_frases() and not existe_cita(x, y, (*texto_escogido).autor_texto(), (*texto_escogido).titulo_texto())){
         istringstream iss((*texto_escogido).autor_texto());
         string a_tratar, id, id_cita; id = ""; //id es nula
         while(iss >> a_tratar){
@@ -253,34 +266,51 @@ void Gestor::anadir_cita_gestor(int x, int y){
             this->id[id] = 1;
             num = 1;
         }
-        
         citas[id][num] = c;
-        (*texto_escogido).anadir_cita_texto(c, id, num);
-        autores [(*texto_escogido).autor_texto()].anadir_cita_autor(c, id, num);
+	(*texto_escogido).anadir_cita_texto(c, id, num);
     }
     else cout << "error" << endl;
 }
 
 void Gestor::eliminar_cita_gestor(string id){
-  int i = 0;
-  while(id[i] >= 'A' and id[i] <= 'Z') ++i;
-  int num = atoi(id.substr(i, id.size() - i).c_str());
-  string ini = id.substr(0, i);
-  map<string, map<int, Cita> >::iterator it1 = citas.find(ini);
-  if(it1 != citas.end()){
-    map<int, Cita>::iterator it2 = it1->second.find(num);
-    if(it2 != it1->second.end()){
-      map<int, Cita>::iterator itaux = citas [ini].find(num);
-      if(itaux != citas [ini].end()) citas [ini].erase(itaux);
-    }
-    if(citas[ini].empty()) citas.erase(ini);
+    int i = 0;
+    while((id[i] >= 'A' and id[i] <= 'Z') or (id[i] >= 'a' and id[i] <= 'z')) ++i;
+    int num = atoi(id.substr(i, id.size() - i).c_str());
+    string ini = id.substr(0, i);
+    map<string, map<int, Cita> >::iterator it1 = citas.find(ini);
+    if(it1 != citas.end()){
+      map<int, Cita>::iterator it2 = it1->second.find(num);
+      if(it2 != it1->second.end()){
+	string autor = citas[ini][num].autor_cita();
+	string titulo = citas[ini][num].titulo_texto_cita();
+	bool encontrado = false;
+	list<Texto>::iterator it = textos.begin();
+	while(not encontrado and it != textos.end()){
+	  if((*it).autor_texto() == autor and (*it).titulo_texto() == titulo) encontrado = true;
+	  else ++it;
+      }
+      if(encontrado){
+	(*it).eliminar_cita_texto(ini, num);
+	map<int, Cita>::iterator itaux = citas [ini].find(num);
+	if(itaux != citas [ini].end()) citas [ini].erase(itaux);
+      }
+      if(citas[ini].empty()) citas.erase(ini);
+      }
+      else cout << "error" << endl;
     }
     else cout << "error" << endl;
 }
 
 void Gestor::citas_autor(string autor){
-    map<string, Autor>::iterator it = autores.find(autor);
-    if(it != autores.end()) autores[autor].citas_autor();
+  for(map<string, map<int, Cita>>::iterator it = citas.begin(); it != citas.end(); ++it){
+    for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
+      if(it2->second.autor_cita() == autor){
+	cout << it->first << it2->first << endl;
+	it2->second.escribir_cita();
+	cout << "\"" << it2->second.titulo_texto_cita() << "\"" << endl;
+      }
+    }
+  }
 }
 
 void Gestor::info_cita(string id){

@@ -15,7 +15,6 @@
 /** @class Autor
  *  @brief Representa un autor de algún texto almacenado por el programa
  *  <b>textos</b> es una map donde el key es el titulo, mapeando al texto correspondiente, todos escritos por el autor
- *  <b>citas</b> es un map, donde el key es el identificador de la cita, mapeando a la Cita
  *  <b>nombre</b> representa el nombre del autor en concreto
  */
 
@@ -26,7 +25,6 @@ class Autor {
     //Atributos de la clase Autor
     
     map<string, Texto> textos;
-    map<string, map<int, Cita> > citas;
     string nombre;
     int num_textos;
     int num_palabras;
@@ -51,12 +49,6 @@ class Autor {
     Autor(string nombre);
     
     /* Consultoras */
-    
-    /** @brief Consultora de las citas de los textos del p.i.
-     * 	\pre cierto
-     * 	\post muestra por pantalla las citas del autor, ordenadas por referencia.
-     */
-    void citas_autor();
 
     /** @brief Consultora del nombre del autor
      *  \pre ciert
@@ -67,9 +59,9 @@ class Autor {
     /** @brief Consultora de los textos del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla todos los textos del autor, ordenados
-     * 	alfabeticamente
+     * 	alfabeticamente. Si c, muestra el nombre del autor
      */
-    void textos_autor();
+    void textos_autor(bool c);
 
     /** @brief Consultora del numero de palabras del p.i
      *  \pre cierto
@@ -109,18 +101,6 @@ class Autor {
      * 	\post en la lista de textos del autor no existe dicho texto
      */
     void eliminar_texto_autor(string titulo);
-    
-    /** @brief Modificadora que anade una cita al p.i.
-     * 	\pre <b>cita</b> es una cita no vacia
-     * 	\post <b>cita</b> cita pertenece a las citas del autor
-     */
-    void anadir_cita_autor(Cita cita, string ini, int num);
-    
-    /** @brief Modificadora que elimina una cita de las citas del autor
-     * 	\pre existe una cita del autor tal que su referencia es <b>identificador</b>
-     * \post dicha cita ya no pertenece a las citas del autor 
-     */
-    void eliminar_cita_autor(string ini, int num);
     
 };
 #endif

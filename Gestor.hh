@@ -58,6 +58,13 @@ class Gestor {
          *  en la estructura, en caso contrario, devuelve falso
          */
          bool existe_autor(string nombre);
+	 
+	 /** @brief Consultora de existencia de un autor dado su nombre
+         *  \pre cierto
+         *  \post devuelve cierto si existe un autor con nombre <b>nombre</b>
+         *  en la estructura, en caso contrario, devuelve falso
+         */
+         bool existe_cita(int x, int y, string autor, string titulo);
 
         /** @brief Consultora de existencia de un texto
          *  \pre cierto
@@ -66,7 +73,7 @@ class Gestor {
          */
         bool existe_texto_autor(string nombre, string titulo);
 
-        /** @brief Consultora de los autores almacenados en la estructura
+        /** @brief Consultora de los autores almacenados en la estructuºra
          *  \pre cierto
          *  \post imprime por pantalla dichos autores
          */
