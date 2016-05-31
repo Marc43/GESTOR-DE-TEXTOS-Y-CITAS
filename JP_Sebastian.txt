@@ -1,0 +1,130 @@
+afegir text "Sociedad de suciedad"
+autor "Compak"
+Empieza, el es un pieza aunque no encaje.
+Agoniza, se hace trizas, al ver su imagen al margen; Sociedad
+de suciedad es su ciudad: todos sucumben. A pensar en robar para
+encajar en este puzzle. Yo    ! Cargo mas amargo que cuatro litros
+de bitter. Pienso en vomitar, tu instrumental, se me repite.
+****
+
+afegir text "Tema parte uno"
+autor "Zebs"
+Suelo mirar hacia arriba, el cielo bajo mis pies. Solo veo mascaras, mas las caras
+son tristes. Leyendo en noches largas cartas que un dia escribiste
+pensamientos en mi coco como un toro    que me embiste. Viste? Esto ya   , no es lo que era.
+Fuera ninos no tan niños pasan noches en la acera. Quien pudiera. Quien supiera
+lo que eso acarrea. El mas sabio no monta un calvario ni aunque lo supiera.
+Espera! No me consideres un demente.
+****
+
+triar text {   bitter  instrumental   margen}
+
+autor ?
+
+substitueix "vomitar" per "potar"
+
+substitueix "Sociedad" per "suciedad"
+
+taula frequencies ?
+
+frases 2 3 ?
+
+frases 1 2 ?
+
+contingut ?
+
+afegir cita 1 3
+
+triar text {coco ninos}
+
+afegir cita 9 10
+
+cites autor "Zebs" ?
+
+frases (   ({    sabio}   | {    ninos}) & {no}) ?
+
+eliminar text
+
+afegir text "Tema parte dos"
+autor "Zebs"
+No nos cuenten cuentos de hadas  , cuentas pendientes no fueron perdonadas. Una
+familia en la calle sin poder     comer nada . Y un gerente prepotente con billetes
+bajo su almohada. No me digan nada ! No me creo sus   bonitas. Conferencias politicas
+parecen charlas comicas  . Uso extravagante  de mentiras y retorica. No logica. Pero dejan
+miradas      atonitas.
+****
+
+triar text {no en}
+
+triar text {no en charlas}
+
+afegir cita 1 3
+
+totes cites ?
+
+info ?
+
+cites autor "Compak" ?
+
+eliminar cita "C2"
+
+eliminar cita "Z2"
+
+afegir text "Tema parte dos"
+autor "Zebs"
+Cerebros huecos, en los que mi voz no hace eco. Por ideales cerrados o falta de respeto.
+O eso, o simplemente se hacen los suecos. Pues solo el tonto es feliz y la idiotez es su amuleto.
+****
+
+afegir text "Historia"
+autor "Compak"
+Llaman a la puerta se despierta en cualquier bar. Si esta es su fiesta deberia de contestar.
+Era su duda asiuda viuda de autoridad. Que advierte que no vierta en ese vaso la verdad. Obvia
+la bria euforia que podria desatar su fatidica furia en un area de la ciudad. Experto en reyertas
+deja la puerta abierta. Abriendose paso a canonazos de metal.
+****
+
+triar text {a la puerta}
+
+frases "la puerta" ?
+
+frases "la puerta se" ?
+
+frases 1 2 ?
+
+frases 4 5 ?
+
+taula frequencies ?
+
+substitueix "puerta" per "ventana"
+
+substitueix "que" per "what"
+
+substitueix "que" per "no"
+
+contingut ?
+
+autor ?
+
+frases {en} ?
+
+info ?
+
+textos autor "Zebs" ?
+
+textos autor "Compak" ?
+
+afegir text "Lose yourself"
+autor "Marshall Mathers"
+His palms are sweaty, knees weak, arms are heavy. Theres vomit on the sweater already, moms
+spaghetti. Hes nevous, but on the surface he looks calm and ready, to drop spaghetti. But he keeps on 
+forgetting, spaghetti, the whole crowd, goes so loud. He opens his mouth, but spaghetti wont come out.
+****
+
+tots textos ?
+
+triar text {spaghetti}
+
+frases ({spaghetti} & ({whole} | {out}    |    {calm}     | {sweater})) ?
+
+sortir

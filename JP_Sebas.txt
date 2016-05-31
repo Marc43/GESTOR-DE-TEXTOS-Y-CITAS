@@ -1,0 +1,261 @@
+afegir text "Sociedad de suciedad"
+
+afegir text "Tema parte uno"
+
+triar text {   bitter  instrumental   margen}
+
+autor ?
+Compak
+
+substitueix "vomitar" per "potar"
+
+substitueix "Sociedad" per "suciedad"
+
+taula frequencies ?
+en 3
+al 2
+de 2
+es 2
+se 2
+su 2
+suciedad 2
+A 1
+Yo 1
+el 1
+me 1
+no 1
+tu 1
+un 1
+mas 1
+que 1
+ver 1
+este 1
+hace 1
+para 1
+Cargo 1
+pieza 1
+potar 1
+robar 1
+todos 1
+Pienso 1
+amargo 1
+aunque 1
+bitter 1
+ciudad 1
+cuatro 1
+encaje 1
+imagen 1
+litros 1
+margen 1
+pensar 1
+puzzle 1
+repite 1
+trizas 1
+Agoniza 1
+Empieza 1
+encajar 1
+sucumben 1
+instrumental 1
+
+frases 2 3 ?
+2 Agoniza, se hace trizas, al ver su imagen al margen; suciedad de suciedad es su ciudad: todos sucumben.
+3 A pensar en robar para encajar en este puzzle.
+
+frases 1 2 ?
+1 Empieza, el es un pieza aunque no encaje.
+2 Agoniza, se hace trizas, al ver su imagen al margen; suciedad de suciedad es su ciudad: todos sucumben.
+
+contingut ?
+1 Empieza, el es un pieza aunque no encaje.
+2 Agoniza, se hace trizas, al ver su imagen al margen; suciedad de suciedad es su ciudad: todos sucumben.
+3 A pensar en robar para encajar en este puzzle.
+4 Yo!
+5 Cargo mas amargo que cuatro litros de bitter.
+6 Pienso en potar, tu instrumental, se me repite.
+
+afegir cita 1 3
+
+triar text {coco ninos}
+
+afegir cita 9 10
+
+cites autor "Zebs" ?
+Z1
+9 El mas sabio no monta un calvario ni aunque lo supiera.
+10 Espera!
+"Tema parte uno"
+
+frases (   ({    sabio}   | {    ninos}) & {no}) ?
+6 Fuera ninos no tan niños pasan noches en la acera.
+9 El mas sabio no monta un calvario ni aunque lo supiera.
+
+eliminar text
+
+afegir text "Tema parte dos"
+
+triar text {no en}
+error
+
+triar text {no en charlas}
+
+afegir cita 1 3
+
+totes cites ?
+C1
+1 Empieza, el es un pieza aunque no encaje.
+2 Agoniza, se hace trizas, al ver su imagen al margen; suciedad de suciedad es su ciudad: todos sucumben.
+3 A pensar en robar para encajar en este puzzle.
+Compak "Sociedad de suciedad"
+Z1
+9 El mas sabio no monta un calvario ni aunque lo supiera.
+10 Espera!
+Zebs "Tema parte uno"
+Z2
+1 No nos cuenten cuentos de hadas, cuentas pendientes no fueron perdonadas.
+2 Una familia en la calle sin poder comer nada.
+3 Y un gerente prepotente con billetes bajo su almohada.
+Zebs "Tema parte dos"
+
+info ?
+Zebs "Tema parte dos" 9 55
+Cites Associades:
+Z2
+1 No nos cuenten cuentos de hadas, cuentas pendientes no fueron perdonadas.
+2 Una familia en la calle sin poder comer nada.
+3 Y un gerente prepotente con billetes bajo su almohada.
+
+cites autor "Compak" ?
+C1
+1 Empieza, el es un pieza aunque no encaje.
+2 Agoniza, se hace trizas, al ver su imagen al margen; suciedad de suciedad es su ciudad: todos sucumben.
+3 A pensar en robar para encajar en este puzzle.
+"Sociedad de suciedad"
+
+eliminar cita "C2"
+error
+
+eliminar cita "Z2"
+
+afegir text "Tema parte dos"
+error
+
+afegir text "Historia"
+
+triar text {a la puerta}
+
+frases "la puerta" ?
+1 Llaman a la puerta se despierta en cualquier bar.
+6 Experto en reyertas deja la puerta abierta.
+
+frases "la puerta se" ?
+1 Llaman a la puerta se despierta en cualquier bar.
+
+frases 1 2 ?
+1 Llaman a la puerta se despierta en cualquier bar.
+2 Si esta es su fiesta deberia de contestar.
+
+frases 4 5 ?
+4 Que advierte que no vierta en ese vaso la verdad.
+5 Obvia la bria euforia que podria desatar su fatidica furia en un area de la ciudad.
+
+taula frequencies ?
+la 5
+de 4
+en 4
+su 3
+a 2
+que 2
+puerta 2
+Si 1
+es 1
+no 1
+se 1
+un 1
+Era 1
+Que 1
+bar 1
+ese 1
+area 1
+bria 1
+deja 1
+duda 1
+esta 1
+paso 1
+vaso 1
+Obvia 1
+furia 1
+metal 1
+viuda 1
+Llaman 1
+asiuda 1
+ciudad 1
+fiesta 1
+podria 1
+verdad 1
+vierta 1
+Experto 1
+abierta 1
+deberia 1
+desatar 1
+euforia 1
+advierte 1
+fatidica 1
+reyertas 1
+autoridad 1
+canonazos 1
+contestar 1
+cualquier 1
+despierta 1
+Abriendose 1
+
+substitueix "puerta" per "ventana"
+
+substitueix "que" per "what"
+
+substitueix "que" per "no"
+
+contingut ?
+1 Llaman a la ventana se despierta en cualquier bar.
+2 Si esta es su fiesta deberia de contestar.
+3 Era su duda asiuda viuda de autoridad.
+4 Que advierte what no vierta en ese vaso la verdad.
+5 Obvia la bria euforia what podria desatar su fatidica furia en un area de la ciudad.
+6 Experto en reyertas deja la ventana abierta.
+7 Abriendose paso a canonazos de metal.
+
+autor ?
+Compak
+
+frases {en} ?
+1 Llaman a la ventana se despierta en cualquier bar.
+4 Que advierte what no vierta en ese vaso la verdad.
+5 Obvia la bria euforia what podria desatar su fatidica furia en un area de la ciudad.
+6 Experto en reyertas deja la ventana abierta.
+
+info ?
+Compak "Historia" 7 63
+Cites Associades:
+
+textos autor "Zebs" ?
+"Tema parte dos"
+
+textos autor "Compak" ?
+"Historia"
+"Sociedad de suciedad"
+
+afegir text "Lose yourself"
+
+tots textos ?
+Compak "Historia"
+Compak "Sociedad de suciedad"
+Marshall Mathers "Lose yourself"
+Zebs "Tema parte dos"
+
+triar text {spaghetti}
+
+frases ({spaghetti} & ({whole} | {out}    |    {calm}     | {sweater})) ?
+2 Theres vomit on the sweater already, moms spaghetti.
+3 Hes nevous, but on the surface he looks calm and ready, to drop spaghetti.
+4 But he keeps on forgetting, spaghetti, the whole crowd, goes so loud.
+5 He opens his mouth, but spaghetti wont come out.
+

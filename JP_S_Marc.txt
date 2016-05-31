@@ -1,0 +1,275 @@
+afegir text " 19. Dedos y cuerdas "
+
+totes cites ?
+
+tots textos ?
+Patrick Rothfuss "19. Dedos y cuerdas"
+
+triar text {laud}
+
+autor ?
+Patrick Rothfuss
+
+nombre de paraules ?
+63
+
+nombre de frases ?
+6
+
+afegir cita 5 5?
+
+afegir cita 4 5 ?
+
+substitueix "laud" per "guitarra"
+
+frases 4 4 ?
+4 Unicamente me fijaba en mi entorno cuando llovia, por que entonces no podia sacar mi guitarra para tocar y eso me dolia.
+
+taula de frequencies ?
+mi 4
+que 4
+no 3
+a 2
+me 2
+era 2
+una 2
+poco 2
+cuando 2
+entonces 2
+y 1
+No 1
+de 1
+en 1
+os 1
+ya 1
+yo 1
+eso 1
+fue 1
+por 1
+Creo 1
+cosa 1
+para 1
+Claro 1
+Tocar 1
+dolia 1
+mente 1
+mismo 1
+podia 1
+sacar 1
+tenia 1
+tocar 1
+unico 1
+empezo 1
+fijaba 1
+llovia 1
+tiempo 1
+tocaba 1
+Tambien 1
+entorno 1
+pequena 1
+porcion 1
+consuelo 1
+guitarra 1
+despertar 1
+Unicamente 1
+confundais 1
+necesitaba 1
+
+afegir text "52   .    Quemarse"
+
+triar text {dormir}
+
+autor ?
+Patrick Rothfuss
+
+frases 3 2 ?
+error
+
+frases 1 3 ?
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+3 Pero si la desairas, llegara un dia en que la llamaras y ella no contestara.
+
+frases "  que " ?
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+3 Pero si la desairas, llegara un dia en que la llamaras y ella no contestara.
+4 Asi que empece a dormir menos para darle a ella el tiempo que necesitaba.
+
+afegir cita 1 2
+
+totes cites ?
+PR1
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR2
+4 Unicamente me fijaba en mi entorno cuando llovia, por que entonces no podia sacar mi laud para tocar y eso me dolia.
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+Patrick Rothfuss "52. Quemarse"
+
+eliminar text
+
+afegir text "Trilogia de la Fundacion"
+
+triar text {Isaac se refiere}
+
+contingut ?
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+3 Asimov hace uso de su claro talento novelistico en cuanto a la, ciencia ficcion se refiere.
+
+frases "a la" ?
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+3 Asimov hace uso de su claro talento novelistico en cuanto a la, ciencia ficcion se refiere.
+
+afegir cita 1 4
+error
+
+afegir cita 1 2
+
+info ?
+Isaac Asimov "Trilogia de la Fundacion" 3 87
+Cites Associades:
+IA1
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+
+cites autor "Isaac Asimov" ?
+IA1
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+"Trilogia de la Fundacion"
+
+cites autor "Patrick Rothfuss" ?
+PR1
+5 Claro que tocaba.
+"19. Dedos y cuerdas"
+PR2
+4 Unicamente me fijaba en mi entorno cuando llovia, por que entonces no podia sacar mi laud para tocar y eso me dolia.
+5 Claro que tocaba.
+"19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+"52. Quemarse"
+
+frases {XXIV} ?
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+
+frases ({de la} | {de lo} | {a la}) ?
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+3 Asimov hace uso de su claro talento novelistico en cuanto a la, ciencia ficcion se refiere.
+
+eliminar text
+
+eliminar text
+error
+
+tots textos ?
+Patrick Rothfuss "19. Dedos y cuerdas"
+
+tots autors ?
+Patrick Rothfuss 1 6 63
+
+totes cites ?
+IA1
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+Isaac Asimov "Trilogia de la Fundacion"
+PR1
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR2
+4 Unicamente me fijaba en mi entorno cuando llovia, por que entonces no podia sacar mi laud para tocar y eso me dolia.
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+Patrick Rothfuss "52. Quemarse"
+
+afegir text "     Normalizacion         ,    de    el titulo   , numero 1 "
+
+triar text {Anonimo}
+
+contingut ?
+1 El autor de esta obra permanece en el anonimato.
+2 Aun asi se puede pensar que o el o alguno de nosotros la escribio, ya que no tiene mucho misterio.
+3 Es una obra simple y llana.
+4 Sin nada que ni tu ni yo, ni ningun ser humano con la capacidad minima sea capaz de entender.
+5 Por lo tanto es asi uno de los textos mas conocidos sobre la faz de la tierra.
+6 Aun asi a algunos les pesa este hecho, por que?
+7 Envidia?
+
+frases (({les pesa} | {la faz}) & {asi}) ?
+5 Por lo tanto es asi uno de los textos mas conocidos sobre la faz de la tierra.
+6 Aun asi a algunos les pesa este hecho, por que?
+
+afegir cita 1 1 
+
+afegir cita 1 3
+
+totes cites ?
+A1
+1 El autor de esta obra permanece en el anonimato.
+Anonimo "Normalizacion, de el titulo, numero 1"
+A2
+1 El autor de esta obra permanece en el anonimato.
+2 Aun asi se puede pensar que o el o alguno de nosotros la escribio, ya que no tiene mucho misterio.
+3 Es una obra simple y llana.
+Anonimo "Normalizacion, de el titulo, numero 1"
+IA1
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+Isaac Asimov "Trilogia de la Fundacion"
+PR1
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR2
+4 Unicamente me fijaba en mi entorno cuando llovia, por que entonces no podia sacar mi laud para tocar y eso me dolia.
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+Patrick Rothfuss "52. Quemarse"
+
+eliminar cita "IA1"
+
+eliminar cita "A1"
+
+eliminar cita "A2"
+
+eliminar cita "PR2"
+
+totes cites ?
+IA1
+1 En 1966, en la XXIV Convencion Mundial de Ciencia Ficcion celebrada en Cleveland, se otorgo el premio Hugo a la mejor serie de novelas del genero a la Trilogia de la Fundacion de Isaac Asimov, de la que la fundacion constituye la primera parte.
+2 Y de lo que no hay duda es de que se trata de una de las obras mas ambiciosas de lgenero en cuanto a planteamiento y amplitud.
+Isaac Asimov "Trilogia de la Fundacion"
+PR1
+5 Claro que tocaba.
+Patrick Rothfuss "19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+Patrick Rothfuss "52. Quemarse"
+
+eliminar text
+
+contingut ?
+error
+
+cites autor "Patrick Rothfuss" ?
+PR1
+5 Claro que tocaba.
+"19. Dedos y cuerdas"
+PR3
+1 La musica es una amante orgullosa y temperamental.
+2 Si le dedicas el tiempo y la atencion que se merece es toda tuya.
+"52. Quemarse"
+
