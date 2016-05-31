@@ -32,7 +32,7 @@ class Frase {
 private:
     //Atributos clase Frase
     list<string> frase;
-    int num_palabras; // num_palabras == frase.size();
+    int num_palabras;
     int num_frase;
 
 public:
