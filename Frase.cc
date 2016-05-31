@@ -61,6 +61,10 @@ bool Frase::i_eval_exp(istringstream &iss, stack<bool_exp> &s){
       iss.str(iss.str().substr(1, iss.str().size()-1));
     }
     else if(a_tratar[0] == '{'){
+      if(s.empty()){
+	bool_exp aux;
+	s.push(aux);
+      }
       a_tratar = a_tratar.substr(1, a_tratar.size()-1);
       bool value = true;
       while(a_tratar.back() == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
