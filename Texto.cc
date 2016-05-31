@@ -28,7 +28,7 @@ string Texto::titulo_texto(){
 
 void Texto::citas_texto(bool c){
   map<string, map<int, Cita> >::iterator it = citas.begin();
-  if(c and citas.size() >= 1) cout << "Cites Associades:" << endl;
+  if(not c and citas.size() >= 1) cout << "Cites Associades:" << endl;
   while(it != citas.end()){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       cout << it->first << it2->first << endl;

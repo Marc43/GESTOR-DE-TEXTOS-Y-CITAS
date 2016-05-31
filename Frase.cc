@@ -63,15 +63,15 @@ bool Frase::i_eval_exp(istringstream &iss, stack<bool_exp> &s){
     else if(a_tratar[0] == '{'){
       a_tratar = a_tratar.substr(1, a_tratar.size()-1);
       bool value = true;
-      while(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
-      while(a_tratar[a_tratar.size()-1] != '}'){
+      while(a_tratar.back() == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
+      while(a_tratar.back() != '}'){
         if(value){
           value = value and existe_palabra_frase(a_tratar);
         }
         recorta(iss); iss >> a_tratar;
-        while(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
+        while(a_tratar.back() == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
       }
-      if(a_tratar[a_tratar.size()-1] == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
+      if(a_tratar.back() == ')') a_tratar = a_tratar.substr(0, a_tratar.size()-1);
       else a_tratar = a_tratar.substr(0, a_tratar.size()-1);
       if(value) value = value and existe_palabra_frase(a_tratar);
       recorta(iss);

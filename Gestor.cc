@@ -132,7 +132,8 @@ void Gestor::eliminar_texto_gestor(){
 bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRATAR SIGNOS DE PUNTUACION
     bool match = false;
     list<Texto>::iterator t;
-    for(list<Texto>::iterator it = textos.begin(); it != textos.end(); ++it){
+    list<Texto>::iterator it = textos.begin();
+    while(it != textos.end()){
         list<string> aux = p;
         list<string>::iterator aux_it = aux.begin();
         map<string, int> f_p = (*it).frecuencia_palabras_texto();
@@ -180,6 +181,7 @@ bool Gestor::escoger_texto(const list<string>& p){ //version con frecuencia? TRA
                 match = true;
             }
         }
+        ++it;
     }
     escogido = match;
     texto_escogido = t;
@@ -264,7 +266,6 @@ void Gestor::eliminar_cita_gestor(string id){
     int num = atoi(id.substr(i, id.size() - i).c_str());
     string ini = id.substr(0, i);
     string autor = citas[ini][num].autor_cita();
-    autores[autor].eliminar_cita_autor(ini, num);
     string titulo = citas[ini][num].titulo_texto_cita();
     bool encontrado = false;
     list<Texto>::iterator it = textos.begin();
@@ -272,8 +273,11 @@ void Gestor::eliminar_cita_gestor(string id){
       if((*it).autor_texto() == autor and (*it).titulo_texto() == titulo) encontrado = true;
       else ++it;
     }
-    if(encontrado) (*it).eliminar_cita_texto(ini, num);
-    citas[ini].erase(num);
+    if(encontrado) {
+      (*it).eliminar_cita_texto(ini, num);
+      citas[ini].erase(num);
+      autores[autor].eliminar_cita_autor(ini, num);
+    }
     if(citas[ini].empty()) citas.erase(ini);
 }
 

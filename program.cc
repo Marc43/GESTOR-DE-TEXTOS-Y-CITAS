@@ -73,6 +73,7 @@ int main(){
           iss >> p2; recorta(iss);
           if(p2 == "\"") {iss >> p2; recorta(iss);}
           else p2 = p2.substr(1, p2.size()-1);
+	  refina_signo(p2);
           Texto t = gestor.texto_escogido_gestor();
           gestor.eliminar_texto_gestor();
           if(p1 != p2) t.sustituir_palabra(p1, p2);
@@ -139,15 +140,19 @@ int main(){
      else{ //frases expressio
          iss.str(iss.str().substr(0, iss.str().size() - 2));
          istringstream aux(iss.str());
-         string saux, exp; exp = "";
+         string saux, exp; exp = " ";
          while(aux >> saux){
-             if(saux == "(" or saux == "{" or saux == "}" or saux == ")") {if(exp[exp.size() - 1] == '&' or exp[exp.size() - 1] == '|') exp += " "; exp += saux;}
-             else if(exp[exp.size() - 1] == '(' or exp[exp.size() - 1] == '(') exp += saux;
-             else if(exp[exp.size() - 1] == ')' or exp[exp.size() - 1] == '}') {exp += " "; exp += saux;}
-             else if(exp[exp.size() - 1] == '|' or exp[exp.size() - 1] == '&'){exp += " "; exp += saux;}
-             else if((exp[exp.size() - 1] >= 'a' and exp[exp.size() - 1] <= 'z') or (exp[exp.size() - 1] >= 'A' and exp[exp.size() - 1] <= 'Z')) {exp += " "; exp += saux;}
-             else exp += saux;
-             recorta(aux);
+	    char last = exp[exp.size()-1];
+            if(saux == "(" or saux == "{" or saux == "}" or saux == ")") {
+	       if(last == '&' or last == '|') exp += " ";
+	       exp += saux;
+	    }
+            else if(last == '(' or last == '(') exp += saux;
+            else if(last == ')' or last == '}') {exp += " "; exp += saux;}
+            else if(last == '|' or last == '&'){exp += " "; exp += saux;}
+            else if((last >= 'a' and last <= 'z') or (last >= 'A' and last <= 'Z')) {exp += " "; exp += saux;}
+            else exp += saux;
+            recorta(aux);
          }
          iss.str(exp);
          gestor.texto_escogido_gestor().frases_exp(iss);
