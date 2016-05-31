@@ -28,14 +28,13 @@ string Texto::titulo_texto(){
 
 void Texto::citas_texto(bool c){
   map<string, map<int, Cita> >::iterator it = citas.begin();
-  if(not c and citas.size() >= 1) cout << "Cites Associades:" << endl;
+  if(not c) cout << "Cites Associades:" << endl;
   while(it != citas.end()){
     for(map<int, Cita>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
       cout << it->first << it2->first << endl;
       it2->second.escribir_cita();
     }
     if(c) cout << autor << " \"" << titulo << '"' << endl;
-
     ++it;
   }
 }
@@ -100,19 +99,20 @@ void Texto::frases_seq(list<string> &seq){ //mirar, tiene que tratar los signos
   while(frase_act != contenido.end()){ //Mientras estemos dentro del contenido...
     list<string> frase = (*frase_act).contenido_frase(); //Es una lista auxiliar, asi que podemos modificar su contenido...
     list<string>::iterator pf = frase.begin();
-    list<string>::iterator pseq = seq.begin();
-    bool es_seq = true;
-    while(pf != frase.end()){
+    bool match = false;
+    while(pf != frase.end() and not match){
+      bool es_seq = true;
       refina_signo(*pf);
+      list<string>::iterator pseq = seq.begin();
       if(*pf == *pseq){
         list<string>::iterator aux_pf = pf; ++aux_pf;
         list<string>::iterator aux_pseq = pseq; ++aux_pseq;
         while(seq.size() <= frase.size() and es_seq and aux_pf != frase.end() and aux_pseq != seq.end()){
-	      refina_signo(*aux_pf);
+	  refina_signo(*aux_pf);
           if(*aux_pf != *aux_pseq) es_seq = false;
           ++aux_pf; ++aux_pseq;
         }
-        if(es_seq and aux_pseq == seq.end()) (*frase_act).escribir_frase();
+        if(es_seq and aux_pseq == seq.end()) {(*frase_act).escribir_frase(); match = true;}
       }
       ++pf; //Comprueba la secuencia para la siguiente palabra
     }
@@ -129,8 +129,8 @@ void Texto::eliminar_cita_texto(string ini, int num){
   if(citas[ini].empty()) citas.erase(ini);
 }
 
-void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla frecuencias
-  bool iguales = p1 == p2; //Si las palabras son iguales...
+void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla frecuencias sustituir peta para dos numeros
+  bool iguales = p1 == p2; //Si las palabras son iguales... ESTO YA SE HACE EN EL MAIN
   map<string, int>::iterator ex1 = frecuencia_palabras.find(p1);
   bool existe = ex1 != frecuencia_palabras.end(); //Si la palabra esta en el texto...
   if(not iguales and existe){
@@ -145,12 +145,16 @@ void Texto::sustituir_palabra(string &p1, string &p2){ //tratar resize tabla fre
       int frec2 = frec1 + ex2->second;
       set <string>::iterator sa = tabla_frecuencias [ex2->second] [p2.length() - 1].find(p2);
       tabla_frecuencias [ex2->second] [p2.length() - 1].erase(sa); //Borrado de la antigua p2...
-      int v_size = tabla_frecuencias [frec2].size();
+      map<int, vector< set <string> > >::iterator com = tabla_frecuencias.find(frec2);
+      int v_size = 0; 
+      if(com != tabla_frecuencias.end()) v_size = tabla_frecuencias [frec2].size();
+      else tabla_frecuencias [frec2].resize(p2.length());
       if(v_size < p2.length()){
 	tabla_frecuencias [frec2].resize(p2.length());
 	tabla_frecuencias [frec2] [p2.length() - 1].insert(p2);
       } 
       else tabla_frecuencias [frec2] [p2.length() - 1].insert(p2); //Insertado de la nueva p2 (nueva frec.) 
+
     }
     else{
       frecuencia_palabras [p2] = frec1;

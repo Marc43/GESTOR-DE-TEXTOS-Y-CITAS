@@ -31,7 +31,7 @@ void Autor::textos_autor(){
     if(it != textos.begin()) cout << " ";
     cout << '\"' << it->second.titulo_texto() << '\"';
     ++it;
-  } cout << endl;
+  } if(not textos.empty()) cout << endl;
 }
 
 int Autor::numero_palabras_autor(){

@@ -14,21 +14,29 @@ int main(){
 	if(op == "text"){ //afegir text "<titol>"
 	  recorta(iss);
 	  string titulo = iss.str(); //Titulo del texto a anadir
-      refina_pf(titulo); iss.str(titulo);
-      titulo = normalizar(iss); //refina_signo(titulo);
+	  refina_pf(titulo); iss.str(titulo);
+	  titulo = normalizar(iss); //refina_signo(titulo);
 	  getline(cin, linea); 
 	  istringstream a(linea);
 	  recorta(a);
 	  string nombre_autor = a.str(); //Nombre del autor
-      refina_pf(nombre_autor); a.str(nombre_autor);
-      nombre_autor = normalizar(a);
-	  if(gestor.existe_autor(nombre_autor) and gestor.existe_texto_autor(nombre_autor, titulo)) cout << "error" << endl; //Ya existe tal texto en este autor
+	  refina_pf(nombre_autor); a.str(nombre_autor);
+	  nombre_autor = normalizar(a);
+	    if(gestor.existe_autor(nombre_autor) and gestor.existe_texto_autor(nombre_autor, titulo)){
+	    string entrada, pa; getline(cin, entrada);
+	    while(entrada != "****") {
+	      istringstream iss(entrada);
+	      while(iss >> pa){}
+	      getline(cin, entrada);
+	  }
+	  cout << "error" << endl; //Ya existe tal texto en este autor
+	}
 	  else gestor.anadir_texto_gestor(nombre_autor, titulo);
 	}
 	else if(gestor.esta_escogido()){ //afegir cita x y
-	  char p;
-	  iss >> p; int x = p - '0'; //Funcionara para digitos mas grandes? por ejemplo de la frase 10 a la 20
-	  iss >> p; int y = p - '0';
+	  string p;
+	  iss >> p; int x = atoi(p.c_str());
+	  iss >> p; int y = atoi(p.c_str());
 	  gestor.anadir_cita_gestor(x, y); //No le pasamos el texto ya que trabaja sobre el escogido
 	}
 	else cout << "error" << endl; //Ningun texto escogido
@@ -83,9 +91,8 @@ int main(){
     else if(op == "textos"){ //textos autor "<autor>" ?
       recorta(iss); recorta(iss); string nombre = iss.str();
       nombre = nombre.substr(0, nombre.length() - 2);
-      refina_pf(nombre);
-      if(not gestor.existe_autor(nombre)) cout << "error" << endl;
-      else gestor.textos_autor(nombre);
+      refina_pf(nombre); iss.str(nombre); nombre = normalizar(iss);
+      gestor.textos_autor(nombre);
     }
     else if(op == "tots"){ 
       recorta(iss); iss >> op;
@@ -129,8 +136,8 @@ int main(){
 	string aux = iss.str(); aux = aux.substr(0, aux.length() - 2); //Quitamos el " ?"
 	refina_pf(aux);
 	iss.str(aux); //La reconvertimos en un stream
-	list<string> l; list<string>::iterator it = l.begin();
-	iss >> aux; l.insert(it, aux); recorta(iss);
+	list<string> l; list<string>::iterator it = l.end();
+	iss >> op; l.insert(it, op); recorta(iss);
 	while(iss >> op){
 	  l.insert(it, op);
 	  recorta(iss);
@@ -173,15 +180,21 @@ int main(){
         if(op == "autor"){ //cites autor
           recorta(iss);
           string autor = iss.str(); autor = autor.substr(0, autor.length() - 2); //Quitamos el " ?"
-	  refina_pf(autor);
+	  refina_pf(autor); iss.str(autor); autor = normalizar(iss);
           gestor.citas_autor(autor);
         }
         else{ //cites ?
-          gestor.texto_escogido_gestor().citas_texto(1);
+	  if(gestor.esta_escogido()){
+	    gestor.texto_escogido_gestor().citas_texto(1);
+	  }
+          else cout << "error" << endl;
         }
       }
     else if(op == "taula"){ //Taula de frequencies
-      gestor.texto_escogido_gestor().tabla_frecuencias_texto();
+      if(gestor.esta_escogido()){
+	gestor.texto_escogido_gestor().tabla_frecuencias_texto();
+      }
+      else cout << "error" << endl;
     }
     getline(cin, linea); //Entrada de un nuevo comando
   }

@@ -22,13 +22,18 @@ string normalizar(istringstream& iss){
     string a_tratar, tratado;
     bool first = true; tratado = "";
     while(iss >> a_tratar){
+        char c = a_tratar [0];
+	bool es_signo = not((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z') or (c >= '0' and c <= '9'));
         if(first){
-            tratado += a_tratar;
-            first = false;
+          tratado += a_tratar;
+          first = false;
         }
+        else if(es_signo){
+	  tratado += a_tratar;
+	}
         else{
-            tratado += " ";
-            tratado += a_tratar;
+          tratado += " ";
+          tratado += a_tratar;
         }
     }
 
