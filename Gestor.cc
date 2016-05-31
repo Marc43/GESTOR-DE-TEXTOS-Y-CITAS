@@ -44,21 +44,6 @@ bool Gestor::existe_cita(int x, int y, string autor, string titulo){
   return match;
 }
 
-void Gestor::anadir_texto_gestor(Texto& t){
-  string nombre = t.autor_texto();
-  string titulo = t.titulo_texto();
-  map<string, Autor>::iterator it = autores.find(nombre);
-  if(it != autores.end()) it->second.anadir_texto_autor(t);
-  else{
-    Autor autor (nombre);
-    autor.anadir_texto_autor(t);
-    autores [nombre] = autor;
-  }
-  textos.insert(textos.end(), t);
-  texto_escogido = textos.end(); --texto_escogido; //Lo anadimos y lo seleccionamos (la funcion esta hecha expresamente para eso)
-  escogido = true;
-}
-
 void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo, reestructurarla
     string entrada, pa; getline(cin, entrada);
     bool ini_frase = true;
@@ -123,6 +108,7 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         }
         getline(cin, entrada);
     }
+    
     Texto t (nombre, titulo, num_p, num_f, contenido, frecuencia_palabras);
     map<string, Autor>::iterator aut = autores.find(nombre);
     if(aut != autores.end()) autores [nombre].anadir_texto_autor(t);
@@ -131,6 +117,21 @@ void Gestor::anadir_texto_gestor(string nombre, string titulo){ //Si hay tiempo,
         autores [nombre] = autor;
     }
     textos.insert(textos.end(), t);
+}
+
+void Gestor::anadir_texto_gestor(Texto& t){
+  string nombre = t.autor_texto();
+  string titulo = t.titulo_texto();
+  map<string, Autor>::iterator it = autores.find(nombre);
+  if(it != autores.end()) it->second.anadir_texto_autor(t);
+  else{
+    Autor autor (nombre);
+    autor.anadir_texto_autor(t);
+    autores [nombre] = autor;
+  }
+  textos.insert(textos.end(), t);
+  texto_escogido = textos.end(); --texto_escogido; //Lo anadimos y lo seleccionamos (la funcion esta hecha expresamente para eso)
+  escogido = true;
 }
 
 void Gestor::eliminar_texto_gestor(){
