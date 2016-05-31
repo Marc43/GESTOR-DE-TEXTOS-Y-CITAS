@@ -32,7 +32,7 @@ class Frase {
 private:
     //Atributos clase Frase
     list<string> frase;
-    int num_palabras; // num_palabras == frase.size();
+    int num_palabras;
     int num_frase;
 
 public:
@@ -78,15 +78,18 @@ public:
      */
     bool existe_palabra_frase(string palabra);
 
-    /** @brief
-     *  \pre
-     *  \post
+    /** @brief Consultora de si una frase cumple cierta expresion
+     *  \pre iss contiene una expresion
+     *  \post devuelve true si la frase cumple 
+     *  la expresion entrada por pantalla
      */
     bool eval_exp(istringstream & iss);
 
-    /** @brief
-     *  \pre
-     *  \post
+    /** @brief Funcion inmersora de bool eval_exp(istringstream& iss);
+     *  \pre <b>iss</b> es la expresion booleana y <b>s</b> 
+     *  representa el arbol de expresiones booleanas
+     *  \post devuelve true si la frase cumple
+     *  la expresion booleana
      */
     bool i_eval_exp(istringstream & iss, stack<bool_exp> & s);
 
