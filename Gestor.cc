@@ -1,7 +1,3 @@
-//
-// Created by Zebs on 17/05/2016.
-//
-
 #include "Gestor.hh"
 #include <stdlib.h>
 
@@ -316,7 +312,7 @@ void Gestor::citas_autor(string autor){
 
 void Gestor::info_cita(string id){
     int i = 0;
-    while(id[i] >= 'A' and id[i] <= 'Z') ++i;
+    while((id[i] >= 'A' and id[i] <= 'Z') or (id[i] >= 'a' and id[i] <= 'z')) ++i;
     string ini = id.substr(0, i);
     int num = atoi((id.substr(i, id.size() - 1)).c_str());
     map<string, map<int, Cita> >::iterator it1 = citas.find(ini);
