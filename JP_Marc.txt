@@ -113,6 +113,10 @@ triar text {Anonimo}
 
 contingut ?
 
+autor ?
+
+titol ?
+
 frases (({les pesa} | {la faz}) & {asi}) ?
 
 afegir cita 1 1 
