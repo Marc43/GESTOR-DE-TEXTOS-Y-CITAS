@@ -18,8 +18,6 @@
  *  <b>titulo_texto</b> es el titulo asociado al texto al que pertenece
  *  <b>autor</b> representa el nombre del autor del texto al que pertenece
  *  <b>x</b> e <b>y</b> representan el numero de frases inicial y final en el texto
- *  <b>id</b> es el identificador asociado a la cita, dada por las iniciales del
- *    autor y un numero de orden de aparicion
  */
 
 class Cita {
@@ -77,15 +75,15 @@ class Cita {
     */
     void escribir_cita();
 
-    /** @brief
-     *  \pre
-     *  \post
+    /** @brief Consultora respecto la frase inicial de una cita
+     *  \pre cierto
+     *  \post devuelve el valor de la frase inicial de la cita
      */
     int frase_inicial();
 
-    /** @brief
-     *  \pre
-     *  \post
+    /** @brief Consultora respecto la frase final de una cita
+     *  \pre cierto
+     *  \post devuelve el valor de la frase final de la cita
      */
     int frase_final();
 };
