@@ -59,7 +59,7 @@ class Autor {
     /** @brief Consultora de los textos del p.i.
      * 	\pre cierto
      * 	\post muestra por pantalla todos los textos del autor, ordenados
-     * 	alfabeticamente. Si c, muestra el nombre del autor
+     * 	alfabeticamente. Si c es true, muestra el nombre del autor
      */
     void textos_autor(bool c);
 
@@ -84,7 +84,7 @@ class Autor {
     /** @brief Consultora de la existencia de un texto
      *  \pre cierto
      *  \post devuelve cierto si existe un texto
-     *  con nombre <b>titulo</b>, si no, false
+     *  con titulo <b>titulo</b>, si no, false
      */
      bool existe_texto_autor(string titulo);
     
